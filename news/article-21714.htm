@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-21714.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>uniapp自定义弹窗组件</title>
+        <meta name="description" content="介绍 uniapp自定义弹窗组件uniPop，基于uni-app开发的自定义模态弹窗|msg信息框|alert对话框|confirm确认框|toast弱提示框 支持多种动画效果、多弹窗类型ios/an" />
+        <link rel="icon" href="__ADDON__/img/passwall2/favicon.ico" type="image/x-icon"/>
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a href="/" class="navbar-brand p-0">
+                    <span class="text-primary mb-0">Pass Wall2</span>
+                </a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">uniapp自定义弹窗组件</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>介绍<br /> uniapp自定义弹窗组件uniPop，基于uni-app开发的自定义模态弹窗|msg信息框|alert对话框|confirm确认框|toast弱提示框</p> <p>支持多种动画效果、多弹窗类型ios/android、可以自定义弹窗样式/自定义多按钮及事件/弹窗显示位置、自动关闭秒数、遮罩层透明度及点击遮罩是否关闭</p> <p>H5/小程序/App三端效果如下，亲测多端效果兼容性一致。(后续大图均展示App端)</p> <p>用法<br /> ◆ 弹窗uniPop.vue组件两种引入方式</p> <p>1、在main.js里引入全局组件</p> <pre><code>import uniPop from './components/uniPop/uniPop.vue'  Vue.component('uni-pop', uniPop)</code></pre> <p>2、在相应页面引入组件</p> <p>复制代码</p> <pre><code>import uniPop from './components/uniPop/uniPop.vue' export default {     data() {         return {             ...         }     },     components:{         uniPop     },     ... }</code></pre> <pre><code>&lt;template&gt;     &lt;view class="container"&gt;         ...                  &lt;!-- 弹窗模板 --&gt;         &lt;uni-pop ref="uniPop"&gt;&lt;/uni-pop&gt;     &lt;/view&gt; &lt;/template&gt;</code></pre> <p>msg信息框效果</p> <pre><code>this.$refs.uniPop.show({     content: 'msg消息提示框（5s后窗口关闭）',     shade: true,     shadeClose: false,     time: 5,     anim: 'fadeIn', })</code></pre> <pre><code>this.$refs.uniPop.show({     skin: 'toast',     content: 'loading',     icon: 'loading', //success | info | error | loading     shade: false,     time: 3 })</code></pre> <pre><code>let uniPop = this.$refs.uniPop uniPop.show({     skin: 'ios',     title: '开启新邮件提醒',     content: '为了保证新邮件能及时收到提醒，请前往系统 [设置] - [电池] 中关闭应用锁屏清理。',     shadeClose: false,          btns: [         {             text: '取消',             style: 'color: #2a83f2',             onTap() {                 uniPop.close();             }         },         {             text: '前往设置',             style: 'color: #2a83f2',             onTap() {                 console.log('您点击了前往设置！');             }         }     ] })</code></pre> <p>调用方式如上，只是传入参数不一样，下面就不一 一展示了</p> <p>◆ uniapp自定义模板template</p> <pre><code> /**   * @tpl        uni-app自定义弹窗组件 - uniPop.vue   * @author     andy by 2019-09-20   * @about      Q：282310962  wx：xy190310   */  &lt;template&gt;     &lt;view v-if="opts.isVisible" class="uniPop" :class="opts.isCloseCls"&gt;         &lt;view class="unipop__ui_panel"&gt;             &lt;view v-if="opts.shade" class="unipop__ui_mask" @tap="shadeTaped"&gt;&lt;/view&gt;             &lt;view class="unipop__ui_main"&gt;                 &lt;view class="unipop__ui_child" :style="opts.style"&gt;                     &lt;!-- 标题 --&gt;                     &lt;view v-if="opts.title" class="unipop__ui_tit"&gt;{<!-- -->{opts.title}}&lt;/view&gt;                     &lt;!-- 内容 --&gt;                     &lt;view v-if="opts.content" class="unipop__ui_cnt" :style="opts.contentStyle"&gt;                         {<!-- -->{opts.content}}                     &lt;/view&gt;                     &lt;view v-if="opts.btns" class="unipop__ui_btns"&gt;                         &lt;text v-for="(item,index) in opts.btns" :key="index" class="btn" :style="item.style" @tap="btnTaped(item)"&gt;{<!-- -->{item.text}}&lt;/text&gt;                     &lt;/view&gt;                 &lt;/view&gt;                 &lt;!-- xclose --&gt;                 &lt;view v-if="opts.xclose" class="unipop__xclose" @tap="close"&gt;&lt;/view&gt;             &lt;/view&gt;         &lt;/view&gt;     &lt;/view&gt; &lt;/template&gt;</code></pre> <p>◆ 默认参数配置</p> <pre><code>data() {     return {         defaultOptions: {             isVisible: false,       //是否显示弹窗                          title: '',              //标题             content: '',            //内容             contentStyle: '',       //内容样式             style: null,            //自定义弹窗样式             skin: '',               //弹窗风格             icon: '',               //弹窗图标             xclose: false,          //自定义关闭按钮                          shade: true,            //遮罩层             shadeClose: true,       //点击遮罩关闭             opacity: '',            //遮罩透明度             time: 0,                //自动关闭秒数             end: null,              //销毁弹窗回调函数                          anim: 'scaleIn',        //弹窗动画  scaleIn(默认) | fadeIn | shake | top | right | bottom | left             position: '',           //弹窗位置  top | right | bottom | left                          btns: null,             //弹窗按钮         },         opts: {},         timer: null     } },</code></pre> <p>◆ 通过Object.assign函数进行参数合并处理</p> <pre><code>methods: {     // 显示弹窗事件（处理传参）     show(args) {         this.opts = Object.assign({}, this.defaultOptions, args, {isVisible: true})         // console.log(this.opts)                  // 自动关闭         if(this.opts.time) {             this.timer = setTimeout(() =&gt; {                 this.close()             }, this.opts.time * 1000)         }     },     ... }</code></pre> <p>好了，uni-app自定义弹窗组件介绍就到这里，希望能喜欢????????~~</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-21308.htm">被猫抓了一下轻微破皮有一点血丝要打针吗要打几针（被猫抓伤了,出了一点点血,需要打疫苗吗）</a></p>
+                                        <p>下一个：<a href="/news/article-21716.htm">动物医院电视剧 动物医院动画片全集</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-7-free-high-speed-nodes.htm" title="「10月7日」最高速度18.9M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「10月7日」最高速度18.9M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-21-node-share-links.htm" title="「10月21日」最高速度18.2M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「10月21日」最高速度18.2M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-19931.htm" title="掌握JavaScript中的迭代器和生成器，顺便了解一下async、await的原理">掌握JavaScript中的迭代器和生成器，顺便了解一下async、await的原理</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-7-free-node-subscribe-links.htm" title="「9月7日」最高速度20.2M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「9月7日」最高速度20.2M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-subscribe-node.htm" title="「12月1日」最高速度19.2M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「12月1日」最高速度19.2M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-4-node-share-links.htm" title="「11月4日」最高速度18.6M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「11月4日」最高速度18.6M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-21-node-share.htm" title="「11月21日」最高速度20.4M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「11月21日」最高速度20.4M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-15-free-subscribe-node.htm" title="「10月15日」最高速度18.1M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「10月15日」最高速度18.1M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-21-node-share-links.htm" title="「9月21日」最高速度18.5M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「9月21日」最高速度18.5M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-free-node-subscribe.htm" title="「11月13日」最高速度19.8M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「11月13日」最高速度19.8M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">7</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
