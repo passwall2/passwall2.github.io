@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-26840.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>ElasticSearch（五） 整合Spring-data-elasticsearch</title>
+        <meta name="description" content="spring-data-elasticsearch对ElasticSearch API进行了封装，很好的集成了Spring框架，我们只需要定义好实体类（定义文档、文档类型、索引字段，字段类型等）和实现" />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a href="/" class="navbar-brand p-0">
+                    <span class="text-primary mb-0">Pass Wall2</span>
+                </a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">ElasticSearch（五） 整合Spring-data-elasticsearch</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>spring-data-elasticsearch对ElasticSearch API进行了封装，很好的集成了Spring框架，我们只需要定义好实体类（定义文档、文档类型、索引字段，字段类型等）和实现对应的接口，即可操作ElasticSearch。<br /><strong>1. 版本对应关系</strong> :spring-data-elasticsearch 跟ElasticSearch客户端是有版本对应关系的，低版本的elasticsearch客户端是连接不了高版本的elasticsearch服务器，所以，使用spring-data-elasticsearch前要先确定好elasticsearch服务器版本，然后引入对应的spring-data-elasticsearch 版本。版本对应关系如下：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/b040a3c0150c960949d9f62dba9f0d47.jpg" alt="ElasticSearch（五） 整合Spring-data-elasticsearch"><br /><strong>2. 引入maven依赖</strong><br /> 引入maven包</p> <pre><code>&lt;dependency&gt;     &lt;groupId&gt;org.springframework.data&lt;/groupId&gt;     &lt;artifactId&gt;spring-data-elasticsearch&lt;/artifactId&gt;     &lt;version&gt;3.1.6.RELEASE&lt;/version&gt; &lt;/dependency&gt;</code></pre> <p><strong>3.定义实体类和对应的Repository</strong><br /> 实体类：User.java，类注解和属性注解请看下一节解析。</p> <pre><code>@Document(indexName = "user_db", type = "user_table") public class User{     @Id     @Field(type = FieldType.Keyword)     private String userId;      @Field(type= FieldType.Keyword)     private String account;       @Field(type= FieldType.Keyword)     private String userName;      @Field(type= FieldType.Keyword)     private String idCard;       @Field(type = FieldType.Date,             format = DateFormat.custom,             pattern = "yyyy-MM-dd HH:mm:ss")     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")     private Date createTime;      //DOTO     //get和set方法     //toString()方法 }</code></pre> <p>定义Repository：UserRepository，Repository使用请看下一节解析</p> <pre><code>package com.myelastic.repository; import com.myelastic.model.User; import org.springframework.data.elasticsearch.repository.ElasticsearchRepository; public interface UserRepository extends ElasticsearchRepository&lt;User, String&gt; {     User findByUserId(StringuserId); }</code></pre> <p>至此，实体类和Repository就定义完成了，实体类主要是定义了Java对象跟ES索引、字段映射之间的关系，Repository仓库主要定义了对ES相关的操作，默认集成ElasticsearchRepository类是支持普通的增删查的。<br /><strong>4、引入XML，集成Spring</strong><br /> 定义完实体类和Reposity后，就可以通过配置xml文件，并且引入到Spring中。以下为spring-elasticsearch.xml配置：</p> <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;beans xmlns="http://www.springframework.org/schema/beans"        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"        xmlns:elasticsearch="http://www.springframework.org/schema/data/elasticsearch"        xsi:schemaLocation="http://www.springframework.org/schema/data/elasticsearch https://www.springframework.org/schema/data/elasticsearch/spring-elasticsearch.xsd 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd"&gt;      &lt;elasticsearch:repositories base-package="com.myelastic.repository"  elasticsearch-template-ref="elasticsearchTemplate"/&gt;      &lt;elasticsearch:transport-client id="client" cluster-nodes="ip:9300,ip:9300" cluster-name="elasticsearch" /&gt;      &lt;bean name="elasticsearchTemplate" class="org.springframework.data.elasticsearch.core.ElasticsearchTemplate"&gt;         &lt;constructor-arg name="client" ref="client"/&gt;     &lt;/bean&gt;  &lt;/beans&gt;</code></pre> <p>base-package：指RepositoryJava类定义包路径，如UserRepository 在包com.myelastic.repository路径下。<br /> elasticsearch-template-ref：指向模板配置bean名称，不填默认为elasticsearchTemplate。<br /> cluster-nodes：集群节点，ip:端口号（Transport 端口，非http端口），多个节点英文逗号（,）隔开。<br /> cluster-name：集群节点名称，对应ES配置文件elasticsearch.yml<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://xn--cluster-vk1r.name"  rel="nofollow">的cluster.name</a>。<br /><strong>5、完成配置，调用实现</strong><br /> 完成以上配置后，就可以在程序中引用调用ES了。</p> <pre><code>@Service public class MyService {    @Autowired   private UserRepository repository;    //创建用户索引   public User userIndex(User user) {     	User userEs = repository.save(user);     	return userEs;   }     //根据用户ID查询用户信息   public User queryUserById(String userId) {   		User user = repository.findByUserId(userId);      	return user;   }   }</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-26364.htm">做宠物粮生意怎样做才好 做宠物粮生意怎样做才好呢</a></p>
+                                        <p>下一个：<a href="/news/article-26842.htm">携程开源分布式配置系统Apollo服务端是如何实时更新配置的</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-20-free-node-subscribe-links.htm" title="「10月20日」最高速度21M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「10月20日」最高速度21M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-free-subscribe-node.htm" title="「11月5日」最高速度19.9M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「11月5日」最高速度19.9M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-13-free-node-subscribe-links.htm" title="「10月13日」最高速度19.1M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「10月13日」最高速度19.1M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-free-node-subscribe.htm" title="「12月12日」最高速度18.3M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「12月12日」最高速度18.3M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-21714.htm" title="uniapp自定义弹窗组件">uniapp自定义弹窗组件</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-8-free-node-subscribe-links.htm" title="「11月8日」最高速度19.9M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「11月8日」最高速度19.9M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-free-node-subscribe.htm" title="「11月13日」最高速度19.8M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「11月13日」最高速度19.8M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-21-node-share-links.htm" title="「10月21日」最高速度18.2M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「10月21日」最高速度18.2M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-1-free-subscribe-node.htm" title="「10月1日」最高速度19.5M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「10月1日」最高速度19.5M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-10-free-node-subscribe.htm" title="「9月10日」最高速度21.3M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「9月10日」最高速度21.3M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">7</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
