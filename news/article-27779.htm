@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-27779.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Echarts在vue中的基本使用以及常用配置</title>
+        <meta name="description" content="目录 1、安装Echarts 2、在main.js中引入 3、在组件中使用 &nbsp;4、各个配置项总结  1、安装Echarts npm install echarts --save 2、在mai" />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a href="/" class="navbar-brand p-0">
+                    <span class="text-primary mb-0">Pass Wall2</span>
+                </a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Echarts在vue中的基本使用以及常用配置</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<div id="content_views" class="htmledit_views"> <p id="main-toc"><strong>目录</strong></p> <p id="1%E3%80%81%E5%AE%89%E8%A3%85Echarts-toc" style="margin-left:40px;"><a href="#1%E3%80%81%E5%AE%89%E8%A3%85Echarts" rel="nofollow">1、安装Echarts</a></p> <p id="2%E3%80%81%E5%9C%A8main.js%E4%B8%AD%E5%BC%95%E5%85%A5-toc" style="margin-left:40px;"><a href="#2%E3%80%81%E5%9C%A8main.js%E4%B8%AD%E5%BC%95%E5%85%A5" rel="nofollow">2、在main.js中引入</a></p> <p id="3%E3%80%81%E5%9C%A8%E7%BB%84%E4%BB%B6%E4%B8%AD%E4%BD%BF%E7%94%A8-toc" style="margin-left:40px;"><a href="#3%E3%80%81%E5%9C%A8%E7%BB%84%E4%BB%B6%E4%B8%AD%E4%BD%BF%E7%94%A8" rel="nofollow">3、在组件中使用</a></p> <p id="%C2%A04%E3%80%81%E5%90%84%E4%B8%AA%E9%85%8D%E7%BD%AE%E9%A1%B9%E6%80%BB%E7%BB%93-toc" style="margin-left:40px;"><a href="#%C2%A04%E3%80%81%E5%90%84%E4%B8%AA%E9%85%8D%E7%BD%AE%E9%A1%B9%E6%80%BB%E7%BB%93" rel="nofollow">&nbsp;4、各个配置项总结</a></p> <p style="margin-left:40px;"> <h2 id="1%E3%80%81%E5%AE%89%E8%A3%85Echarts">1、安装Echarts</h2> <pre><code>npm install echarts --save</code></pre> <h2 id="2%E3%80%81%E5%9C%A8main.js%E4%B8%AD%E5%BC%95%E5%85%A5">2、在main.js中引入</h2> <pre><code>//全局引入echarts import * as echarts from 'echarts' Vue.prototype.$echarts=echarts</code></pre> <h2 id="3%E3%80%81%E5%9C%A8%E7%BB%84%E4%BB%B6%E4%B8%AD%E4%BD%BF%E7%94%A8">3、在组件中使用</h2> <p>准备一个盒子，确定盒子宽高</p> <pre><code>&lt;div&gt;      &lt;!-- 基本的折线图 --&gt;     &lt;div id="line" style="width: 400px; height: 300px"&gt;&lt;/div&gt; &lt;/div&gt;</code></pre> <p>js代码块</p> <pre><code>&lt;script&gt; export default {   data() {     return {};   },   methods: {     myEcharts() {       var line = this.$echarts.init(document.getElementById("line"));       //配置图表       var option = {           //x轴           xAxis: {             type: 'category',  //坐标轴类型             data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']           },           //y轴           yAxis: {             type: 'value'           },           //系列           series: [             {               data: [150, 230, 224, 218, 135, 147, 260],               type: 'line'             }           ]        };        line.setOption(option);     }        },   mounted() {     this.myEcharts();   }, } &lt;/script&gt;</code></pre> <p>&nbsp;一个最简单的折线图就做好啦！</p> <p class="img-center"><img fetchpriority="high" decoding="async" alt="" height="306" src="http://img.555519.xyz/uploads3/20220608/76dbe4540e5b6c545ca8549d973fb0c7.jpg"></p> <h2 id="%C2%A04%E3%80%81%E5%90%84%E4%B8%AA%E9%85%8D%E7%BD%AE%E9%A1%B9%E6%80%BB%E7%BB%93">&nbsp;4、各个配置项总结</h2> <ul> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;series-系列</li> <li>&nbsp; &nbsp; &nbsp; &nbsp; title-图表标题</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xAxis-直角坐标系x轴，</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yAxis-直角坐标系y轴，</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dataRange-值域</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;legend-图例</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tooltip-提示框，</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;toolbox-工具栏，</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;grid- 网格 直角坐标系底板，</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;categoryAxis-类目轴</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;valueAxis-数值型坐标轴默认参数</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;angleAxis-极坐标轴角度轴，</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radiusAxis-极坐标系半径轴，</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;polar-极坐标系底板，</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;geo-地理坐标系，</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dataZoom-数据区缩放组件</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scatter-散点图默认参数</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radar-雷达图默认参数</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;visualMap-视觉映射组件</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bar-柱形图默认参数</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line-折线图默认参数</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pie-饼图默认参数</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;k-K线图默认参数</li> </ul> <h3>4.1&nbsp;series-系列</h3> <h3>4.2&nbsp;title-图表标题</h3> <pre><code>title: {         text:'图表标题',         subtext:'图表副标题',         x: 'left',                 // 水平安放位置，默认为左对齐，可选为：                                    // 'center' ¦ 'left' ¦ 'right'                                    // ¦ {number}（x坐标，单位px） 例如 x:10         y: 'top',                  // 垂直安放位置，默认为全图顶端，可选为：                                    // 'top' ¦ 'bottom' ¦ 'center'                                    // ¦ {number}（y坐标，单位px）         //textAlign: null          // 水平对齐方式，默认根据x设置自动调整         backgroundColor: 'rgba(0,0,0,0)',  //标题背景颜色         borderColor: '#ccc',       // 标题边框颜色         borderWidth: 0,            // 标题边框线宽，单位px，默认为0（无边框）         padding: 5,                // 标题内边距，单位px，默认各方向内边距为5，                                    // 接受数组分别设定上右下左边距，同css         itemGap: 10,               // 主副标题纵向间隔，单位px，默认为10，         textStyle: {             fontSize: 18,          //主标题字号             fontWeight: 'bolder',             color: '#333'          // 主标题文字颜色         },         subtextStyle: {             color: '#aaa'          // 副标题文字颜色         }     },</code></pre> <h3>4.3 legend-图例</h3> <p class="img-center"><img decoding="async" alt="" height="53" src="http://img.555519.xyz/uploads3/20220608/b2c4a7ecc12c39fb3031b218605f296b.jpg"></p> <pre><code>legend: {         orient: 'horizontal',      // 布局方式，默认为水平布局，可选为：                                    // 'horizontal' ¦ 'vertical'         x: 'center',               // 水平安放位置，默认为全图居中，可选为：                                    // 'center' ¦ 'left' ¦ 'right'                                    // ¦ {number}（x坐标，单位px）         y: 'top',                  // 垂直安放位置，默认为全图顶端，可选为：                                    // 'top' ¦ 'bottom' ¦ 'center'                                    // ¦ {number}（y坐标，单位px）         backgroundColor: 'rgba(0,0,0,0)',         borderColor: '#ccc',       // 图例边框颜色         borderWidth: 0,            // 图例边框线宽，单位px，默认为0（无边框）         padding: 5,                // 图例内边距，单位px，默认各方向内边距为5，                                    // 接受数组分别设定上右下左边距，同css         itemGap: 10,               // 各个item之间的间隔，单位px，默认为10，                                    // 横向布局时为水平间隔，纵向布局时为纵向间隔         itemWidth: 20,             // 图例图形宽度         itemHeight: 14,            // 图例图形高度         textStyle: {             color: '#333'          // 图例文字颜色         }     },</code></pre> <h3>4.4&nbsp;tooltip-提示框组件</h3> <p><img decoding="async" alt="" height="172" src="http://img.555519.xyz/uploads3/20220608/3ace73847ad81f6c005eeabc91e3e488.jpg"></p> <pre><code>tooltip: {         trigger: 'item',           // 触发类型，默认数据触发，可选为：'item' ¦ 'axis'         showDelay: 20,             // 显示延迟，添加显示延迟可以避免频繁切换，单位ms         hideDelay: 100,            // 隐藏延迟，单位ms         transitionDuration : 0.4,  // 动画变换时间，单位s         backgroundColor: 'rgba(0,0,0,0.7)',     // 提示背景颜色，默认为透明度为0.7的                                                                    黑色         borderColor: '#333',       // 提示边框颜色         borderRadius: 4,           // 提示边框圆角，单位px，默认为4         borderWidth: 0,            // 提示边框线宽，单位px，默认为0（无边框）         padding: 5,                // 提示内边距，单位px，默认各方向内边距为5，                                    // 接受数组分别设定上右下左边距，同css         axisPointer : {            // 坐标轴指示器，坐标轴触发有效             type : 'line',         // 默认为直线，可选为：'line' | 'shadow'             lineStyle : {          // 直线指示器样式设置                 color: '#48b',                 width: 2,                 type: 'solid'             },             shadowStyle : {                       // 阴影指示器样式设置                 width: 'auto',                   // 阴影大小                 color: 'rgba(150,150,150,0.3)'  // 阴影颜色             }         },         textStyle: {             color: '#fff'         }     },</code></pre> <h3>&nbsp;4.5&nbsp;toolbox-工具栏</h3> <p>这是ECharts中的工具栏。内置有导出图片、数据视图、动态类型切换、数据区域缩放、重置五个工具。</p> <p class="img-center"><img loading="lazy" decoding="async" alt="" height="59" src="http://img.555519.xyz/uploads3/20220608/dc4c38ff78e0cdd5d7e26005b27e0888.jpg"></p> <ol> <li>saveAsImage：把图表保存为图片 <ol> <li>type：保存图片的格式</li> <li>name：保存文件的名字</li> <li>backgroundColor：保存图片的背景色</li> <li>show：是否显示该工具</li> </ol> </li> <li>restore：配置项还原 <ol> <li>&nbsp;&nbsp;show：是否显示该工具</li> </ol> </li> <li>dataView：数据视图工具 <ol> <li>show：是否显示该工具</li> <li>readOnly：是否不可编辑</li> <li>optionToContent：自定义</li> <li>dataView ：展现函数</li> </ol> </li> <li>dataZoom：数据区域缩放 <ol> <li>show：是否显示该工具</li> </ol> </li> <li>magicType：动态类型切换 <ol> <li>show：是否显示该工具</li> <li>type：'line'(切换为折线图),&nbsp;'bar'(切换为柱状图),&nbsp;'stack'(切换为堆叠模式),&nbsp;'tiled'(切换为&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;平铺模式)</li> </ol> </li> </ol> <pre><code>toolbox：{     show: true,     feature: {     dataView: { //数据视图         show: true     },     restore: { //重置          show: true     },     dataZoom: { //数据缩放视图         show: true     },     saveAsImage: {//保存图片         show: true     },     magicType: {//动态类型切换         type: ['bar', 'line']     }     }</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-27306.htm">一片枫叶的拼音是什么（一片枫叶猜一首歌）</a></p>
+                                        <p>下一个：<a href="/news/article-27782.htm">宠物领养平台免费有哪些呢可靠的简单介绍</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-25915.htm" title="STL之vector">STL之vector</a></li>
+                        <li class="py-2"><a href="/news/article-22226.htm" title="被猫咬出血了一定要***吗3天了（被猫咬出血了要马上***吗）">被猫咬出血了一定要***吗3天了（被猫咬出血了要马上***吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-7-free-high-speed-nodes.htm" title="「10月7日」最高速度18.9M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「10月7日」最高速度18.9M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-23612.htm" title="动物疫苗注射后多久产生抗体呢 动物疫苗注射后多久产生抗体呢">动物疫苗注射后多久产生抗体呢 动物疫苗注射后多久产生抗体呢</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-12-node-share-links.htm" title="「11月12日」最高速度22.2M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「11月12日」最高速度22.2M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-25457.htm" title="动物医院英语短语怎么说呢 动物医院英语短语怎么说呢怎么写">动物医院英语短语怎么说呢 动物医院英语短语怎么说呢怎么写</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-15-free-node-subscribe.htm" title="「11月15日」最高速度20.1M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「11月15日」最高速度20.1M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-6-node-share-links.htm" title="「11月6日」最高速度19.6M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「11月6日」最高速度19.6M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-24-free-node-subscribe-links.htm" title="「11月24日」最高速度22.2M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「11月24日」最高速度22.2M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-22677.htm" title="动物诊疗许可证办理多少钱（动物诊疗许可证需要多少钱）">动物诊疗许可证办理多少钱（动物诊疗许可证需要多少钱）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">54</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">7</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
