@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-29631.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>vue proxyTable的跨域中pathRewrite配置方式_vue.js</title>
+        <meta name="description" content="目录  vue浏览器跨域问题和vue proxyTable跨域中pathRewrite配置  vue浏览器跨域问题 为什么会跨域 什么是同源策略 解决办法 pathRewrite  代理配置proxy" />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a href="/" class="navbar-brand p-0">
+                    <span class="text-primary mb-0">Pass Wall2</span>
+                </a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">vue proxyTable的跨域中pathRewrite配置方式_vue.js</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">vue浏览器跨域问题和vue proxyTable跨域中pathRewrite配置</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_0_0" rel="nofollow">vue浏览器跨域问题</a></li> <li><a href="#_lab2_0_1" rel="nofollow">为什么会跨域</a></li> <li><a href="#_lab2_0_2" rel="nofollow">什么是同源策略</a></li> <li><a href="#_lab2_0_3" rel="nofollow">解决办法</a></li> <li><a href="#_lab2_0_4" rel="nofollow">pathRewrite</a></li> </ul> <li><a href="#_label1" rel="nofollow">代理配置proxy下pathrewrite失效踩坑</a></li> <ul class="second_class_ul"></ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>vue浏览器跨域问题和vue proxyTable跨域中pathRewrite配置</h2> <p class="maodian"><a name="_lab2_0_0" rel="nofollow"></a></p> <h3>vue浏览器跨域问题</h3> <p>当浏览器报如下错误时，则说明请求跨域了。</p> <blockquote> <p>localhost/:1 Failed to load http://www.thenewstep.cn/test/testToken.php: Response to preflight request doesn’t pass access control check: No ‘Access-Control-Allow-Origin’ header is present on the requested resource. Origin ‘http://localhost:8080’ is therefore not allowed access. If an opaque response serves your needs, set the request’s mode to ‘no-cors’ to fetch the resource with CORS disabled.</p> </blockquote> <p class="maodian"><a name="_lab2_0_1" rel="nofollow"></a></p> <h3>为什么会跨域</h3> <p>因为浏览器同源策略的限制，不是同源的脚本不能操作其他源下面的对象。</p> <p class="maodian"><a name="_lab2_0_2" rel="nofollow"></a></p> <h3>什么是同源策略</h3> <p>同源策略（Same origin policy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。</p> <p>可以说Web是构建在同源策略基础之上的，浏览器只是针对同源策略的一种实现。</p> <p>简单的来说:协议、IP、端口三者都相同，则为同源</p> <p class="maodian"><a name="_lab2_0_3" rel="nofollow"></a></p> <h3>解决办法</h3> <p>跨域的解决办法有很多，比如script标签 、jsonp、后端设置cros等等…,但是我这里讲的是webpack配置vue 的 proxyTable解决跨域。</p> <p class="maodian"><a name="_lab2_0_4" rel="nofollow"></a></p> <h3>pathRewrite</h3> <p>简单来说，pathRewrite是使用proxy进行代理时，对请求路径进行重定向以匹配到正确的请求地址，</p> <div class="ay1code"> <pre class="brush:js;">dev: {      // Paths      assetsSubDirectory: 'static',      assetsPublicPath: '/',      proxyTable: {        '/api': {          target: 'http://XX.XX.XX.XX:8083',          changeOrigin: true,          pathRewrite: {            '^/api': '/api'   // 这种接口配置出来     http://XX.XX.XX.XX:8083/api/login            //'^/api': '/' 这种接口配置出来     http://XX.XX.XX.XX:8083/login          }        }      }    },</pre> </div> <p>如何不配置pathRewrite 请求就被转发到 http://XX.XX.XX.XX:8083 并把相应uri带上。</p> <p>比如：localhost:8080/api/xxx 会被转发到http://XX.XX.XX.XX:8083/api/xxx</p> <p>配置完成后需要重新编译一遍 , 调用接口的时候</p> <div class="ay1code"> <pre class="brush:js;">        // 获取菜单权限        getPermission(){          this.$ajaxget({            url: '/api/getPermission',            data: {},            isLayer: true,            successFc: data =&gt; {              console.log(data.data)            }          })</pre> </div> <p>2种数据请求方式： fecth和axios</p> <p><strong>1、fetch方式</strong></p> <p>在需要请求的页面，只需要这样写(/apis+具体请求参数)，如下：</p> <div class="ay1code"> <pre class="brush:js;">fetch("/apis/test/testToken.php", {        method: "POST",        headers: {          "Content-type": "application/json",          token: "f4c902c9ae5a2a9d8f84868ad064e706"        },        body: JSON.stringify(data)      })        .then(res =&gt; res.json())        .then(data =&gt; {          console.log(data);        });</pre> </div> <p><strong>2、axios方式</strong></p> <p>main.js代码</p> <div class="ay1code"> <pre class="brush:js;">import Vue from 'vue'  import App from './App'  import axios from 'axios'  Vue.config.productionTip = false  Vue.prototype.$axios = axios //将axios挂载在Vue实例原型上  // 设置axios请求的token  axios.defaults.headers.common['token'] = 'f4c902c9ae5a2a9d8f84868ad064e706'  //设置请求头  axios.defaults.headers.post["Content-type"] = "application/json"</pre> </div> <p>axios请求页面代码</p> <div class="ay1code"> <pre class="brush:js;">this.$axios.post('/apis/test/testToken.php',data).then(res=&gt;{          console.log(res)  })</pre> </div> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>代理配置proxy下pathrewrite失效踩坑</h2> <p>从网上直接找到的代码复制过来报错，最后找了一下午为什么失效，最后发现问题直接破防了</p> <p><strong>错误：</strong></p> <div class="ay1code"> <pre class="brush:js;">pathRewrite: {     "  ^/api  "  : "" //若请求的路径在目标url下但不在/api 下，则将其转换成空    },</pre> </div> <p><strong>正确：</strong></p> <div class="ay1code"> <pre class="brush:js;">pathRewrite: {     "^/api": "" //若请求的路径在目标url下但不在/api 下，则将其转换成空     },</pre> </div> <p><strong>原因：</strong></p> <p>直接复制过来的 "  ^/api  "  : ""里面多了两个空格，判断url的时候就获取不到/api，删除空格就解决问题了</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-29167.htm">动物医院办理条件要求是什么意思呀（动物医院办理条件要求是什么意思呀怎么写）</a></p>
+                                        <p>下一个：<a href="/news/article-29634.htm">成都宠物托运平台有哪些平台好（成都宠物运输比较可靠的公司）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-9-9-free-high-speed-nodes.htm" title="「9月9日」最高速度22.7M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「9月9日」最高速度22.7M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-4-free-node-subscribe-links.htm" title="「10月4日」最高速度20.8M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「10月4日」最高速度20.8M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-29631.htm" title="vue proxyTable的跨域中pathRewrite配置方式_vue.js">vue proxyTable的跨域中pathRewrite配置方式_vue.js</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-8-free-node-subscribe-links.htm" title="「11月8日」最高速度19.9M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「11月8日」最高速度19.9M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-10-free-node-subscribe-links.htm" title="「10月10日」最高速度18.1M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「10月10日」最高速度18.1M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-free-high-speed-nodes.htm" title="「11月20日」最高速度21M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「11月20日」最高速度21M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-22227.htm" title="延吉市宠物医院推荐（延吉市宠物狗）">延吉市宠物医院推荐（延吉市宠物狗）</a></li>
+                        <li class="py-2"><a href="/news/article-24444.htm" title="领养宠物合同协议书可以电子签名吗有效吗怎么写（领养宠物协议有法律效力吗）">领养宠物合同协议书可以电子签名吗有效吗怎么写（领养宠物协议有法律效力吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-9-free-subscribe-node.htm" title="「12月9日」最高速度21.2M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「12月9日」最高速度21.2M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-23612.htm" title="动物疫苗注射后多久产生抗体呢 动物疫苗注射后多久产生抗体呢">动物疫苗注射后多久产生抗体呢 动物疫苗注射后多久产生抗体呢</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">66</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">7</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
