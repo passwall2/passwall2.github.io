@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-37787.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>C++内存泄漏的定位方法总结</title>
+        <meta name="description" content="一、内存泄漏检测工具Valgrind安装及使用   下载Valgrind工具源码： http://www.valgrind.org/downloads/valgrind-3.14.0.tar.bz2 " />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a href="/" class="navbar-brand p-0">
+                    <span class="text-primary mb-0">Pass Wall2</span>
+                </a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">C++内存泄漏的定位方法总结</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <h3>一、内存泄漏检测工具Valgrind安装及使用</h3> <ul> <li> <p>下载Valgrind工具源码：</p> <p>http://www.valgrind.org/downloads/valgrind-3.14.0.tar.bz2</p> </li> <li> <p>解压缩：</p> <p>tar -jxvf valgrind-3.14.0.tar.bz2</p> </li> <li> <p>进入安装后的目录进行安装：</p> <p>cd valgrind-3.14.0</p> <p>./configure --prefix=/home/NJR/valgrind</p> <p>make</p> <p>make install</p> </li> <li> <p>配置环境变量：</p> <p>vi /etc/profile</p> <p>最后一行加入：export PATH=$PATH:/home/NJR/valgrind/bin</p> <p>生效环境变量：source /etc/profile</p> </li> <li> <p>假设想要检测的执行文件是main,并且想把检测结果输入到文件valgrind_report.log中，就执行下面语句：</p> <p>valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --run-libc-freeres=yes --log-file=./valgrind_report.log ./test</p> <p>如果只想把结果打印到屏幕上，就执行下面语句</p> <p>valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --run-libc-freeres=yes ./test</p> </li> <li> <p>举例子：</p> <pre><code>#include &lt;iostream&gt;  void func(void) {     int *x = (int *)malloc(8 * sizeof(int));     x[9] = 0;              //数组下标越界 }                        //内存未释放    int main(void) {     func();      return 0; }</code></pre> </li> </ul> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 执行编译命令：&nbsp;</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gcc -Wall test.cpp -g -fno-inline -o test</p> <p>运行后的结果，可以看到</p> <pre><code>==56206== Memcheck, a memory error detector ==56206== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al. ==56206== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info ==56206== Command: ./test ==56206== Parent PID: 40069 ==56206==  ==56206== Invalid write of size 4 ==56206==    at 0x400514: getMemory() (test.cpp:6) ==56206==    by 0x400525: main (test.cpp:12) ==56206==  Address 0x5201064 is 4 bytes after a block of size 32 alloc'd ==56206==    at 0x4C2DE4D: malloc (vg_replace_malloc.c:299) ==56206==    by 0x400507: getMemory() (test.cpp:5) ==56206==    by 0x400525: main (test.cpp:12) ==56206==  ==56206==  ==56206== HEAP SUMMARY: ==56206==     in use at exit: 32 bytes in 1 blocks ==56206==   total heap usage: 1 allocs, 0 frees, 32 bytes allocated ==56206==  ==56206== 32 bytes in 1 blocks are definitely lost in loss record 1 of 1 ==56206==    at 0x4C2DE4D: malloc (vg_replace_malloc.c:299) ==56206==    by 0x400507: getMemory() (test.cpp:5) ==56206==    by 0x400525: main (test.cpp:12) ==56206==  ==56206== LEAK SUMMARY: ==56206==    definitely lost: 32 bytes in 1 blocks ==56206==    indirectly lost: 0 bytes in 0 blocks ==56206==      possibly lost: 0 bytes in 0 blocks ==56206==    still reachable: 0 bytes in 0 blocks ==56206==         suppressed: 0 bytes in 0 blocks ==56206==  ==56206== For counts of detected and suppressed errors, rerun with: -v ==56206== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)</code></pre> <h3>二、重载全局或局部类内operator new操作符和delete操作符</h3> <p>原理：</p> <p>1.定义一个全局的内存信息表，用来存储内存申请的文件名及位置</p> <p>2.重载operator new/new[]，保存内存申请信息</p> <p>3.重载operator delete/delete[]，删除内存申请信息</p> <p>4.定义一个全局/静态常量，在程序结束时，核查内存信息表是否还存在内存申请信息，如果存在则说明发生内存泄漏，否则无内存泄漏</p> <pre><code class="language-cpp">struct Info {     void *ptr;     const char *file_name;     long line; };  Info ptr_list[1024]; unsigned int ptr_num = 0;  int find_ptr(void *p) {     for (unsigned int i = 0; i &lt; ptr_num; ++i)     {         if (ptr_list[i].ptr == p)         {             return i;         }     }      return -1; }  void del_ptr(unsigned int i) {     while(i+1 &lt; ptr_num)     {         ptr_list[i] = ptr_list[i+1];         i++;     }      ptr_num--; }  struct ProcEnd {     ~ProcEnd()     {         for (unsigned int i = 0; i &lt; ptr_num; ++i)         {             printf("file: %s, line: %d, memory leak!!!\n", ptr_list[i].file_name, ptr_list[i].line);         }     } };  void* operator new(size_t size, const char *file_name, long line) {     printf("global new\n");     void *p = malloc(size);     ptr_list[ptr_num].ptr = p;     ptr_list[ptr_num].file_name = file_name;     ptr_list[ptr_num].line = line;     ptr_num++;     return p; }  void* operator new[](size_t size, const char *file_name, long line) {     return operator new(size, file_name, line); }  void operator delete(void *p) {     int i = find_ptr(p);     if (i != -1)     {         free(p);         del_ptr(i);     }     else     {         printf("delete unknown pointer!!!\n");     } }  void operator delete[](void *p) {     operator delete(p); }  ProcEnd end;  struct BTNode {     BTNode(char val) : val(val), left(nullptr), right(nullptr) {}      char val;     BTNode *left;     BTNode *right; };</code></pre> <p>检验输出结果：</p> <pre><code class="language-cpp">#include &lt;iostream&gt;  int main() {     int *i = new int(0);     return 0; }</code></pre> <p>控制台打印信息：</p> <p>global new<br /> file: ../src/TEST.cpp, line: 197, memory leak!!!</p> <p>可以看出发生了内存泄漏，并提示对应的文件名称和行号。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-37279.htm">南京农大动物医院仙林分院怎么样（南京农大动物医院有限责任公司）</a></p>
+                                        <p>下一个：<a href="/news/article-37788.htm">做猫粮的机器多少钱一台（家用猫粮机器）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-8-node-share-links.htm" title="「1月8日」最高速度21.6M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「1月8日」最高速度21.6M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-17-node-share.htm" title="「10月17日」最高速度22.6M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「10月17日」最高速度22.6M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-24992.htm" title="同安宠物领养中心电话地址 同安宠物领养中心电话地址查询">同安宠物领养中心电话地址 同安宠物领养中心电话地址查询</a></li>
+                        <li class="py-2"><a href="/news/article-25457.htm" title="动物医院英语短语怎么说呢 动物医院英语短语怎么说呢怎么写">动物医院英语短语怎么说呢 动物医院英语短语怎么说呢怎么写</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-6-free-high-speed-nodes.htm" title="「12月6日」最高速度18.4M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「12月6日」最高速度18.4M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-24-node-share-links.htm" title="「10月24日」最高速度18M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「10月24日」最高速度18M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-7-free-node-subscribe-links.htm" title="「12月7日」最高速度18.1M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「12月7日」最高速度18.1M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-32034.htm" title="toString()、new String()和(String) 、String.ValueOf()的区别">toString()、new String()和(String) 、String.ValueOf()的区别</a></li>
+                        <li class="py-2"><a href="/news/article-28704.htm" title="动物医院资质查询系统怎么查询（动物医院诊疗管理系统）">动物医院资质查询系统怎么查询（动物医院诊疗管理系统）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-free-high-speed-nodes.htm" title="「11月20日」最高速度21M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「11月20日」最高速度21M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
