@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-38263.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>AspNetCore配置多环境log4net配置文件</title>
+        <meta name="description" content="在之前的文章中有讲到AspNetCore多环境配置文件的应用，我们根据自己多种环境分别配置多个appsettings.$EnvironmentName.json文件。 在实际的开发中我们可能会遇到不只" />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a href="/" class="navbar-brand p-0">
+                    <span class="text-primary mb-0">Pass Wall2</span>
+                </a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">AspNetCore配置多环境log4net配置文件</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				</h1> <p>在之前的文章中有讲到AspNetCore多环境配置文件的应用，我们根据自己多种环境分别配置多个<code>appsettings.$EnvironmentName.json</code>文件。<br /> 在实际的开发中我们可能会遇到不只一个配置文件，如当我们使用log4net日志库时，喜欢使用单独的<code>log4net.config</code>配置文件。并且我们还遇到不同环境下的配置文件还存在差异。这时我们可能可以效仿<code>appsettings.json</code>多环境配置的风格实现多环境配置文件。</p> </h1> <p>新建Web项目<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/d99f705ba64b13c94a46290dd7dfe733.jpg" alt="AspNetCore配置多环境log4net配置文件"><br /> 安装<code>Microsoft.Extensions.Logging.Log4Net.AspNetCore</code><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/3bacf878d4b30571542c15a042051537.jpg" alt="AspNetCore配置多环境log4net配置文件"></p> <p>创建两个环境的配置文件分别如图，并设置文件属性使其在发布时能够复制到根目录<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/28bd15c4fb93e07f92935acaf3f8bec0.jpg" alt="AspNetCore配置多环境log4net配置文件"></p> <p>两个配置文件内容如下，例如我们这里生产环境的配置文件多增加一个<code>KafkaAppender</code>使日志发送至<code>kafka</code>消息丢列中，然后<code>kafka</code>的消费者将日志消费至<code>ES集群</code>,而本地开发的日志则没必要进行上传ES。</p> <pre><code class="language-xml">&lt;!--log4net.config--&gt; &lt;?xml version="1.0" encoding="utf-8" ?&gt; &lt;log4net&gt;   &lt;!-- If you are looking here and want more output, first thing to do is change root/priority/@value to "INFO" or "ALL". --&gt;   &lt;root&gt;     Value of priority may be ALL, DEBUG, INFO, WARN, ERROR, FATAL, OFF.     &lt;priority value="ALL" /&gt;     &lt;appender-ref ref="error-file" /&gt;     &lt;appender-ref ref="debug-file" /&gt;     &lt;appender-ref ref="KafkaAppender" /&gt;   &lt;/root&gt;    &lt;!-- Example of turning on the output from a component or namespace. --&gt;   &lt;logger name="Common"&gt;     &lt;appender-ref ref="debugger"/&gt;     &lt;priority value="DEBUG" /&gt;   &lt;/logger&gt;      &lt;appender name="KafkaAppender" type="log4net.Kafka.Appender.KafkaAppender, log4net.Kafka.Appender"&gt;     &lt;KafkaSettings&gt;       &lt;brokers&gt;         &lt;add value="127.0.0.1:9092" /&gt;       &lt;/brokers&gt;       &lt;topic type="log4net.Layout.PatternLayout"&gt;         &lt;conversionPattern value="kafka.logstash" /&gt;       &lt;/topic&gt;     &lt;/KafkaSettings&gt;     &lt;layout type="log4net.Layout.PatternLayout"&gt;       &lt;conversionPattern value="%date %level% [%t] %logger - %message" /&gt;     &lt;/layout&gt;   &lt;/appender&gt;      &lt;appender name="debugger" type="log4net.Appender.DebugAppender"&gt;     &lt;!-- Sends log messages to Visual Studio if attached. --&gt;     &lt;immediateFlush value="true" /&gt;     &lt;layout type="log4net.Layout.SimpleLayout" /&gt;   &lt;/appender&gt;    &lt;appender name="debug-file" type="log4net.Appender.RollingFileAppender"&gt;     &lt;param name="Encoding" value="utf-8" /&gt;     &lt;file value="Logs/debug" /&gt;     &lt;appendToFile value="true" /&gt;     &lt;!-- Immediate flush on error log, to avoid data loss with sudden termination. --&gt;     &lt;immediateFlush value="true" /&gt;     &lt;staticLogFileName value="false" /&gt;     &lt;rollingStyle value="Date" /&gt;     &lt;datepattern value="-yyyy.MM.dd'.log'" /&gt;     &lt;!-- Prevents Orchard.exe from displaying locking debug messages. --&gt;     &lt;lockingModel type="log4net.Appender.FileAppender+MinimalLock" /&gt;     &lt;layout type="log4net.Layout.PatternLayout"&gt;       &lt;conversionPattern value="%date %level% [%property{trace}] %logger - %message%newline" /&gt;     &lt;/layout&gt;   &lt;/appender&gt;    &lt;appender name="error-file" type="log4net.Appender.RollingFileAppender"&gt;     &lt;param name="Encoding" value="utf-8" /&gt;     &lt;file value="Logs/error" /&gt;     &lt;appendToFile value="true" /&gt;     &lt;!-- Immediate flush on error log, to avoid data loss with sudden termination. --&gt;     &lt;immediateFlush value="true" /&gt;     &lt;staticLogFileName value="false" /&gt;     &lt;rollingStyle value="Date" /&gt;     &lt;datepattern value="-yyyy.MM.dd'.log'" /&gt;     &lt;!-- Prevents Orchard.exe from displaying locking debug messages. --&gt;     &lt;lockingModel type="log4net.Appender.FileAppender+MinimalLock" /&gt;     &lt;filter type="log4net.Filter.LevelRangeFilter"&gt;       &lt;!-- Only ERROR and FATAL log messages end up in this target, even if child loggers accept lower priority. --&gt;       &lt;levelMin value="ERROR" /&gt;     &lt;/filter&gt;     &lt;layout type="log4net.Layout.PatternLayout"&gt;       &lt;conversionPattern value="%date [%t] %logger - %message [%P{Url}]%newline" /&gt;     &lt;/layout&gt;   &lt;/appender&gt;  &lt;/log4net&gt;</code></pre> <pre><code class="language-xml">&lt;!--log4net.Development.config--&gt; &lt;?xml version="1.0" encoding="utf-8" ?&gt; &lt;log4net&gt;   &lt;!-- If you are looking here and want more output, first thing to do is change root/priority/@value to "INFO" or "ALL". --&gt;   &lt;root&gt;     Value of priority may be ALL, DEBUG, INFO, WARN, ERROR, FATAL, OFF.     &lt;priority value="ALL" /&gt;     &lt;appender-ref ref="error-file" /&gt;     &lt;appender-ref ref="debug-file" /&gt;   &lt;/root&gt;    &lt;!-- Example of turning on the output from a component or namespace. --&gt;   &lt;logger name="Common"&gt;     &lt;appender-ref ref="debugger"/&gt;     &lt;priority value="DEBUG" /&gt;   &lt;/logger&gt;      &lt;appender name="debugger" type="log4net.Appender.DebugAppender"&gt;     &lt;!-- Sends log messages to Visual Studio if attached. --&gt;     &lt;immediateFlush value="true" /&gt;     &lt;layout type="log4net.Layout.SimpleLayout" /&gt;   &lt;/appender&gt;    &lt;appender name="debug-file" type="log4net.Appender.RollingFileAppender"&gt;     &lt;param name="Encoding" value="utf-8" /&gt;     &lt;file value="Logs/debug" /&gt;     &lt;appendToFile value="true" /&gt;     &lt;!-- Immediate flush on error log, to avoid data loss with sudden termination. --&gt;     &lt;immediateFlush value="true" /&gt;     &lt;staticLogFileName value="false" /&gt;     &lt;rollingStyle value="Date" /&gt;     &lt;datepattern value="-yyyy.MM.dd'.log'" /&gt;     &lt;!-- Prevents Orchard.exe from displaying locking debug messages. --&gt;     &lt;lockingModel type="log4net.Appender.FileAppender+MinimalLock" /&gt;     &lt;layout type="log4net.Layout.PatternLayout"&gt;       &lt;conversionPattern value="%date %level% [%property{trace}] %logger - %message%newline" /&gt;     &lt;/layout&gt;   &lt;/appender&gt;    &lt;appender name="error-file" type="log4net.Appender.RollingFileAppender"&gt;     &lt;param name="Encoding" value="utf-8" /&gt;     &lt;file value="Logs/error" /&gt;     &lt;appendToFile value="true" /&gt;     &lt;!-- Immediate flush on error log, to avoid data loss with sudden termination. --&gt;     &lt;immediateFlush value="true" /&gt;     &lt;staticLogFileName value="false" /&gt;     &lt;rollingStyle value="Date" /&gt;     &lt;datepattern value="-yyyy.MM.dd'.log'" /&gt;     &lt;!-- Prevents Orchard.exe from displaying locking debug messages. --&gt;     &lt;lockingModel type="log4net.Appender.FileAppender+MinimalLock" /&gt;     &lt;filter type="log4net.Filter.LevelRangeFilter"&gt;       &lt;!-- Only ERROR and FATAL log messages end up in this target, even if child loggers accept lower priority. --&gt;       &lt;levelMin value="ERROR" /&gt;     &lt;/filter&gt;     &lt;layout type="log4net.Layout.PatternLayout"&gt;       &lt;conversionPattern value="%date [%t] %logger - %message [%P{Url}]%newline" /&gt;     &lt;/layout&gt;   &lt;/appender&gt;  &lt;/log4net&gt;</code></pre> <p>在<code>Program.cs</code>中添加log4net配置如下图</p> <pre><code>// ===============多环境log4net配置=============== IWebHostEnvironment environment = builder.Environment; var configName = "log4net" + (environment.IsProduction() ? string.Empty : "." + environment.EnvironmentName) + ".config"; builder.Logging.AddLog4Net(configName, watch: true); // ===============多环境log4net配置===============</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/0c83c704e49b8221aa4ba4e6c352bebc.jpg" alt="AspNetCore配置多环境log4net配置文件"><br /> 现在所有的配置都完成了。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-37788.htm">做猫粮的机器多少钱一台（家用猫粮机器）</a></p>
+                                        <p>下一个：<a href="/news/article-38266.htm">猫粮狗粮加工机器（猫粮狗粮生产设备小型）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-node-subscribe.htm" title="「11月11日」最高速度19.9M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「11月11日」最高速度19.9M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-34405.htm" title="三国杀换武将的武将（三国杀武将转换技）">三国杀换武将的武将（三国杀武将转换技）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-free-node-subscribe-links.htm" title="「12月15日」最高速度22.8M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「12月15日」最高速度22.8M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-27779.htm" title="Echarts在vue中的基本使用以及常用配置">Echarts在vue中的基本使用以及常用配置</a></li>
+                        <li class="py-2"><a href="/news/article-19931.htm" title="掌握JavaScript中的迭代器和生成器，顺便了解一下async、await的原理">掌握JavaScript中的迭代器和生成器，顺便了解一下async、await的原理</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-3-free-high-speed-nodes.htm" title="「11月3日」最高速度18.9M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「11月3日」最高速度18.9M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-26840.htm" title="ElasticSearch（五） 整合Spring-data-elasticsearch">ElasticSearch（五） 整合Spring-data-elasticsearch</a></li>
+                        <li class="py-2"><a href="/news/article-32034.htm" title="toString()、new String()和(String) 、String.ValueOf()的区别">toString()、new String()和(String) 、String.ValueOf()的区别</a></li>
+                        <li class="py-2"><a href="/news/article-36159.htm" title="动物医院科室有哪些 动物医院科室有哪些岗位">动物医院科室有哪些 动物医院科室有哪些岗位</a></li>
+                        <li class="py-2"><a href="/news/article-23141.htm" title="饲料机器小型颗粒机220v家用（饲料机器 小型 颗粒机 220v 家用）">饲料机器小型颗粒机220v家用（饲料机器 小型 颗粒机 220v 家用）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
