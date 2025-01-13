@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-40250.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>spring 循环依赖,Bean使用@Async注解 导致项目启动失败</title>
+        <meta name="description" content="&nbsp; 一天下午，重新部署测试环境的时候，发现服务启动失败，报如下错误： ERROR o.s.web.context.ContextLoader - Context initialization" />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a href="/" class="navbar-brand p-0">
+                    <span class="text-primary mb-0">Pass Wall2</span>
+                </a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">spring 循环依赖,Bean使用@Async注解 导致项目启动失败</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>&nbsp; 一天下午，重新部署测试环境的时候，发现服务启动失败，报如下错误：</p> <pre class="has"><code class="language-java">ERROR o.s.web.context.ContextLoader - Context initialization failed   org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'matchAutoJiaoJuan': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.online.tk.test.service.MatchService com.online.tk.test.task.matchAutoJiaoJuan.matchService; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'matchService': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.online.tk.test.service.testAnswerCardService com.online.tk.test.service.MatchService.testAnswerCardService; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'testAnswerCardService': Bean with name 'testAnswerCardService' has been injected into other beans [practiceCardDubboService] in its raw version as part of a circular reference, but has eventually been wrapped. This means that said other beans do not use the final version of the bean. This is often the result of over-eager type matching - consider using 'getBeanNamesOfType' with the 'allowEagerInit' flag turned off, for example</code></pre> <p>大致的意思是&nbsp; :启动失败，创建bean失败，名为“testanswercardService”的bean已作为循环引用的一部分，以其原始版本注入到其他bean[practicecardDuboService]中，但最终被包装。这意味着其他bean不使用bean的最终版本。这通常是过度渴望类型匹配的结果-例如，考虑在禁用“allowagerinit”标志的情况下使用“getBeannameSoftype”（Injection 注射&nbsp; Autowired自动装配;注解; nested 嵌套的）</p> <p>简单来说，项目中存在了循环引用。matchService 中注入了testAnswerCardService ，同时在testAnswerCardService 中也引用了</p> <p>matchService ,导致循环引用。因为是老项目中，确实存在着循环引用的问题，关于循环引用如何解决，稍后总结。</p> <p>循环引用这个问题不是最近开发的功能，是一直存在的，为什么今天突然有问题了？</p> <p>一，首先怀疑测试环境代码的有问题,对比了下没有发现什么区别。然后部署了别的分支（match和dev）分支的代码，发现报同样的问题，初步判定不是代码的问题（后来结果证明这个判断是错的，忽略了小小的一个字段）</p> <p>二，然后猜测是不是spring什么相关版本自动升级了，看了看pom文件的结构，都是定义的特别的某个的版本，目前老项目使用的是4.2.5，检查了一遍，也没发现其他异常，排除版本突然升级的问题</p> <p>三，是不是测试环境在搞什么测试动作，重新启动了下其他的两个项目，发现是没问题的，??尴尬了。</p> <p>四，是不是还是代码的问题呢</p> <p>&nbsp;&nbsp;&nbsp;&nbsp; 节前刚上线，那个时候代码还是没有问题的。重新拉了一个分支，然后将代码会滚到节前,竟然发现代码是否运行的。所以应该还是代码的问题??，接着试着将代码还原到昨天，发现代码仍然没有问题。逐步缩小范围，然后git compare,发现了如下代码:</p> <p><img fetchpriority="high" decoding="async" alt="" class="has" height="231" src="http://img.555519.xyz/uploads3/20220707/22456bfa5fdbd766d4d774e17e34775f.jpg"></p> <p>哈哈，在testAnswerCardService 类里面，有一个异步方法。</p> <p>四，虽然找到了原因，但是不理解原理，找了找相关资料</p> <p>&nbsp;原因解释如下：在程序启动的时候，Spring 已经对testAnswerCardService 里面的matchService记载完成，当准备创建matchService的时候发现使用了@Async注解，即Spring又需要江Bean代理一次，然后Spring发现该Bean已经被其他对象注入，所以会造成这个问题。</p> <p>关于@Async生成代理这块，其实还是有些模糊，参考一下文章：</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/lianhuazy167/article/details/66967673"  rel="nofollow">https://blog.csdn.net/lianhuazy167/article/details/66967673</a></p> <p>小结</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 回想这个排查思路，其实挺简单的，但是不够仔细，导致绕了远路。又对spring这一块了解了下，并且对于项目中的整个pom文件结构做了了解,也算学习和提升下，不断进步吧。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-39751.htm">动物医院需要什么设备呢图片高清（动物医院的工作流程及要点）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-20846.htm" title="狗粮品牌推荐（狗粮品牌推荐性价比高）">狗粮品牌推荐（狗粮品牌推荐性价比高）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-9-node-share-links.htm" title="「10月9日」最高速度20.6M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「10月9日」最高速度20.6M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-node-share.htm" title="「11月22日」最高速度20M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「11月22日」最高速度20M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-9-free-node-subscribe-links.htm" title="「1月9日」最高速度22.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「1月9日」最高速度22.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-23-free-node-subscribe-links.htm" title="「10月23日」最高速度21.7M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「10月23日」最高速度21.7M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-17-node-share.htm" title="「10月17日」最高速度22.6M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「10月17日」最高速度22.6M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-8-free-node-subscribe-links.htm" title="「12月8日」最高速度22.8M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「12月8日」最高速度22.8M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-24063.htm" title="狗粮品牌排行榜有哪些品牌的（狗粮排行榜简析十大狗粮品牌）">狗粮品牌排行榜有哪些品牌的（狗粮排行榜简析十大狗粮品牌）</a></li>
+                        <li class="py-2"><a href="/news/article-25457.htm" title="动物医院英语短语怎么说呢 动物医院英语短语怎么说呢怎么写">动物医院英语短语怎么说呢 动物医院英语短语怎么说呢怎么写</a></li>
+                        <li class="py-2"><a href="/news/article-35103.htm" title="动物医院需要几个兽医资格证才能进去呢 动物医院需要几个兽医资格证才能进去呢">动物医院需要几个兽医资格证才能进去呢 动物医院需要几个兽医资格证才能进去呢</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">38</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
