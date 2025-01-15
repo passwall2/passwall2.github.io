@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-41241.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>JS实现导出Excel和CSV文件操作_javascript技巧</title>
+        <meta name="description" content="一、js导出Excel  &lt;html&gt;  &lt;head&gt;      &lt;/head&gt;  &lt;body&gt;  &lt;script type="text/java" />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a href="/" class="navbar-brand p-0">
+                    <span class="text-primary mb-0">Pass Wall2</span>
+                </a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">JS实现导出Excel和CSV文件操作_javascript技巧</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<h2>一、js导出Excel</h2> <div class="ay1code"> <pre class="brush:xhtml;">&lt;html&gt;  &lt;head&gt;      &lt;/head&gt;  &lt;body&gt;  &lt;script type="text/javascript" src="./xlsx.core.min.js"&gt;&lt;/script&gt;  &lt;script type="text/javascript"&gt;  /**   * 通用的打开下载对话框方法，没有测试过具体兼容性   * @param url 下载地址，也可以是一个blob对象，必选   * @param saveName 保存文件名，可选   */  function openDownloadDialog(url, saveName) {      if (typeof url == 'object' &amp;&amp; url instanceof Blob) {          url = URL.createObjectURL(url); // 创建blob地址      }      var aLink = document.createElement('a');      aLink.href = url;      aLink.download = saveName || ''; // HTML5新增的属性，指定保存文件名，可以不要后缀，注意，file:///模式下不会生效      var event;      if (window.MouseEvent) event = new MouseEvent('click');      else {          event = document.createEvent('MouseEvents');          event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);      }      aLink.dispatchEvent(event);  }  // 将一个sheet转成最终的excel文件的blob对象，然后利用URL.createObjectURL下载  function sheet2blob(sheet, sheetName) {      sheetName = sheetName || 'sheet1';      var workbook = {          SheetNames: [sheetName],          Sheets: {}      };      workbook.Sheets[sheetName] = sheet;      // 生成excel的配置项      var wopts = {          bookType: 'xlsx', // 要生成的文件类型          bookSST: false, // 是否生成Shared String Table，官方解释是，如果开启生成速度会下降，但在低版本IOS设备上有更好的兼容性          type: 'binary'      };      var wbout = XLSX.write(workbook, wopts);      var blob = new Blob([s2ab(wbout)], { type: "application/octet-stream" });      // 字符串转ArrayBuffer      function s2ab(s) {          var buf = new ArrayBuffer(s.length);          var view = new Uint8Array(buf);          for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) &amp; 0xFF;          return buf;      }      return blob;  }  &lt;/script&gt;      &lt;script type="text/javascript"&gt;  var exportDataSource = [{                      name: '路人甲',                      phone: '123456789',                      email: '000@123456.com'                  }, {                      name: '炮灰乙',                      phone: '123456789',                      email: '000@123456.com'                  }, {                      name: '土匪丙',                      phone: '123456789',                      email: '000@123456.com'                  }, {                      name: '流氓丁',                      phone: '123456789',                      email: '000@123456.com'                  }, ]; //导出json数据源  function exportExcel() {              var excelItems = [];              for (let i = 0; i &lt; exportDataSource.length; i++) {                  if (exportDataSource[i].name != "") {                      excelItems.push({                          "姓名": exportDataSource[i].name,                          "电话": exportDataSource[i].phone,                          "邮箱": exportDataSource[i].email                      }); //属性                  }              }              var sheet = XLSX.utils.json_to_sheet(excelItems);              openDownloadDialog(sheet2blob(sheet), 'exportdata.xlsx');          }  &lt;/script&gt;      &lt;a style="float: right;" onclick="exportExcel()"&gt;导出下载&lt;/a&gt;  &lt;/body&gt;  &lt;/html&gt;</pre> </div> <h2>二、js实现json导出csv</h2> <div class="ay1code"> <pre class="brush:xhtml;">&lt;html&gt;  &lt;head&gt;    &lt;p style="font-size: 20px;color: red;"&gt;使用a标签方式将json导出csv文件&lt;/p&gt;    &lt;button onclick='tableToExcel()'&gt;导出&lt;/button&gt;  &lt;/head&gt;  &lt;body&gt;    &lt;script&gt;                    function tableToExcel(){        //要导出的json数据        const jsonData = [          {            name:'路人甲',            phone:'123456789',            email:'000@123456.com'          },          {            name:'炮灰乙',            phone:'123456789',            email:'000@123456.com'          },          {            name:'土匪丙',            phone:'123456789',            email:'000@123456.com'          },          {            name:'流氓丁',            phone:'123456789',            email:'000@123456.com'          },        ]        //列标题，逗号隔开，每一个逗号就是隔开一个单元格        let str = `姓名,电话,邮箱\n`;        //增加\t为了不让表格显示科学计数法或者其他格式        for(let i = 0 ; i &lt; jsonData.length ; i++ ){          for(let item in jsonData[i]){              str+=`${jsonData[i][item] + '\t'},`;               }          str+='\n';        }        //encodeURIComponent解决中文乱码        let uri = 'data:text/csv;charset=utf-8,\ufeff' + encodeURIComponent(str);        //通过创建a标签实现        let link = document.createElement("a");        link.href = uri;        //对下载的文件命名        link.download =  "json数据表.csv";        document.body.appendChild(link);        link.click();        document.body.removeChild(link);      }     &lt;/script&gt;  &lt;/body&gt;  &lt;/html&gt;</pre> </div> <h2>三、js实现json导出csv</h2> <div class="ay1code"> <pre class="brush:xhtml;">&lt;html&gt;  &lt;head&gt;    &lt;p style="font-size: 20px;color: red;"&gt;使用table标签方式将json导出xls文件&lt;/p&gt;    &lt;button onclick='tableToExcel()'&gt;导出&lt;/button&gt;  &lt;/head&gt;  &lt;body&gt;    &lt;script&gt;                    function tableToExcel(){        //要导出的json数据        const jsonData = [          {            name:'路人甲',            phone:'123456',            email:'123@123456.com'          },          {            name:'炮灰乙',            phone:'123456',            email:'123@123456.com'          },          {            name:'土匪丙',            phone:'123456',            email:'123@123456.com'          },          {            name:'流氓丁',            phone:'123456',            email:'123@123456.com'          },        ]        //列标题        let str = '&lt;tr&gt;&lt;td&gt;姓名&lt;/td&gt;&lt;td&gt;电话&lt;/td&gt;&lt;td&gt;邮箱&lt;/td&gt;&lt;/tr&gt;';        //循环遍历，每行加入tr标签，每个单元格加td标签        for(let i = 0 ; i &lt; jsonData.length ; i++ ){          str+='&lt;tr&gt;';          for(let item in jsonData[i]){              //增加\t为了不让表格显示科学计数法或者其他格式              str+=`&lt;td&gt;${ jsonData[i][item] + '\t'}&lt;/td&gt;`;               }          str+='&lt;/tr&gt;';        }        //Worksheet名        let worksheet = 'Sheet1'        let uri = 'data:application/vnd.ms-excel;base64,';           //下载的表格模板数据        let template = `&lt;html xmlns:o="urn:schemas-microsoft-com:office:office"         xmlns:x="urn:schemas-microsoft-com:office:excel"         xmlns="http://www.w3.org/TR/REC-html40"&gt;        &lt;head&gt;&lt;!--[if gte mso 9]&gt;&lt;xml&gt;&lt;x:ExcelWorkbook&gt;&lt;x:ExcelWorksheets&gt;&lt;x:ExcelWorksheet&gt;          &lt;x:Name&gt;${worksheet}&lt;/x:Name&gt;          &lt;x:WorksheetOptions&gt;&lt;x:DisplayGridlines/&gt;&lt;/x:WorksheetOptions&gt;&lt;/x:ExcelWorksheet&gt;          &lt;/x:ExcelWorksheets&gt;&lt;/x:ExcelWorkbook&gt;&lt;/xml&gt;&lt;![endif]--&gt;          &lt;/head&gt;&lt;body&gt;&lt;table&gt;${str}&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;`;        //下载模板        window.location.href = uri + base64(template)      }      //输出base64编码      function base64 (s) { return window.btoa(unescape(encodeURIComponent(s))) }  &lt;/script&gt;  &lt;/body&gt;  &lt;/html&gt;</pre> </div> <h2>四、js实现Tab转为Excel</h2> <div class="ay1code"> <pre class="brush:xhtml;">&lt;!DOCTYPE html&gt;  &lt;html lang="en"&gt;    &lt;head&gt;      &lt;meta charset="UTF-8"&gt;      &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;      &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;      &lt;title&gt;excel 导出测试&lt;/title&gt;      &lt;style&gt;          table {              border-collapse: collapse;              text-align: center;              vertical-align: middle;              width: 800px;              font-size: 20px;          }                    button {              height: 30px;              width: 100px;              margin: 20px 20px;              background: yellowgreen;              border-radius: 10px;              outline: none;          }                    input {              height: 30px;              padding-left: 10px;              margin: 10px;          }      &lt;/style&gt;  &lt;/head&gt;    &lt;body&gt;      &lt;div id="wrap" style="width:900px;margin:20px auto;"&gt;          &lt;h3&gt;js脚本 导出excel测试&lt;/h3&gt;          &lt;table id="tb" border="1" cellspacing="0" cellpadding="0"&gt;              &lt;thead&gt;                  &lt;tr&gt;                      &lt;th&gt;ID&lt;/th&gt;                      &lt;th&gt;姓名&lt;/td&gt;                          &lt;th&gt;年龄&lt;/td&gt;                              &lt;th&gt;座右铭&lt;/th&gt;                  &lt;/tr&gt;              &lt;/thead&gt;              &lt;tbody&gt;                  &lt;tr&gt;                      &lt;td&gt;1&lt;/td&gt;                      &lt;td&gt;张三&lt;/td&gt;                      &lt;td&gt;18&lt;/td&gt;                      &lt;td&gt;走的人多了，变成了路。&lt;/td&gt;                  &lt;/tr&gt;                  &lt;tr&gt;                      &lt;td&gt;2&lt;/td&gt;                      &lt;td&gt;李四&lt;/td&gt;                      &lt;td&gt;88&lt;/td&gt;                      &lt;td&gt;人人都有自己走的路，哪条属于自己呢？&lt;/td&gt;                  &lt;/tr&gt;                  &lt;tr&gt;                      &lt;td&gt;3&lt;/td&gt;                      &lt;td&gt;王五&lt;/td&gt;                      &lt;td&gt;81&lt;/td&gt;                      &lt;td&gt;走别人的路，让他没道可走！&lt;/td&gt;                  &lt;/tr&gt;              &lt;/tbody&gt;          &lt;/table&gt;            &lt;label&gt;              姓名：&lt;input type="text" autocomplete id="name" placeholder="请输入您的姓名..." &gt;          &lt;/label&gt;            &lt;label&gt;              年龄：&lt;input type="text" autocomplete id="age" placeholder="请输入您的年龄..."&gt;          &lt;/label&gt;            &lt;label&gt;              座右铭：&lt;input type="text" autocomplete id="sex" placeholder="请输入您的座右铭..." &gt;          &lt;/label&gt;              &lt;button id="add"&gt;添加信息&lt;/button&gt;          &lt;button id="out" onclick="btn_export()"&gt;导出文件&lt;/button&gt;      &lt;/div&gt;      &lt;script src="./xlsx.core.min.js"&gt;&lt;/script&gt;      &lt;script src="./jquery.min.js"&gt;&lt;/script&gt;      &lt;script src="./excel.js"&gt;&lt;/script&gt;        &lt;script&gt;          function btn_export() {              var table = document.querySelector("#tb");              var sheet = XLSX.utils.table_to_sheet(table); //将一个table对象转换成一个sheet对象              openDownloadDialog(sheet2blob(sheet), 'excel.xlsx');          }              var id = $("input").length + 1;          $(function() {              $("#add").click(function() {                  var name = $("#name").val();                  var age = $("#age").val();                  var sex = $("#sex").val();                  $("tbody").append("&lt;tr&gt;&lt;td&gt;" + id + "&lt;/td&gt;&lt;td&gt;" + name + "&lt;/td&gt; &lt;td&gt;" + age + "&lt;/td&gt; &lt;td&gt;" + sex + "&lt;/td&gt;&lt;/tr&gt;");                  id++;                  $("input").val('');              });          })      &lt;/script&gt;  &lt;/body&gt;    &lt;/html&gt;</pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-41240.htm">SpringBoot中的重定向不可用（使用redirect：）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-28236.htm" title="【Python】自带的venv管理虚拟环境">【Python】自带的venv管理虚拟环境</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-23-node-share-links.htm" title="「11月23日」最高速度19.5M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「11月23日」最高速度19.5M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-17-node-share.htm" title="「10月17日」最高速度22.6M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「10月17日」最高速度22.6M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-22-free-node-subscribe-links.htm" title="「12月22日」最高速度19.6M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「12月22日」最高速度19.6M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-12-free-node-subscribe-links.htm" title="「10月12日」最高速度20.6M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「10月12日」最高速度20.6M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-24992.htm" title="同安宠物领养中心电话地址 同安宠物领养中心电话地址查询">同安宠物领养中心电话地址 同安宠物领养中心电话地址查询</a></li>
+                        <li class="py-2"><a href="/news/article-34883.htm" title="成都领养宠物中心在哪儿（成都领养宠物的地方）">成都领养宠物中心在哪儿（成都领养宠物的地方）</a></li>
+                        <li class="py-2"><a href="/news/article-24063.htm" title="狗粮品牌排行榜有哪些品牌的（狗粮排行榜简析十大狗粮品牌）">狗粮品牌排行榜有哪些品牌的（狗粮排行榜简析十大狗粮品牌）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-2-free-high-speed-nodes.htm" title="「1月2日」最高速度19.5M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「1月2日」最高速度19.5M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-34886.htm" title="中国十大动物疫苗公司排名第一的是（动物疫苗厂家有哪些）">中国十大动物疫苗公司排名第一的是（动物疫苗厂家有哪些）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
