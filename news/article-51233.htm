@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-51233.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>innoDB如何解决幻读详解</title>
+        <meta name="description" content="前天有个去快手面试的小伙伴私信我，他遇到了这样一个问题： “InnoDB如何解决幻读”？ 这个问题确实不是很好回答，在实际应用中，很多同学几乎都不关注数据库的事务隔离性。 所有问题基本就是CRUD，一" />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Pass Wall2机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://passwall2.github.io/news/article-51233.htm" />
+    <meta property="og:site_name" content="Pass Wall2机场订阅官网" />
+    <meta property="og:title" content="innoDB如何解决幻读详解" />
+    <meta property="og:image" content="https://passwall2.github.io/uploads/20240825/9215ec70bb164dbea030e073a6fd3be3.webp" />
+        <meta property="og:release_date" content="2025-02-04T00:32:27" />
+    <meta property="og:updated_time" content="2025-02-04T00:32:27" />
+        <meta property="og:description" content="前天有个去快手面试的小伙伴私信我，他遇到了这样一个问题： “InnoDB如何解决幻读”？ 这个问题确实不是很好回答，在实际应用中，很多同学几乎都不关注数据库的事务隔离性。 所有问题基本就是CRUD，一" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="innoDB如何解决幻读详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://use.fontawesome.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a href="/" class="navbar-brand p-0">
+                                <span class="text-primary mb-0">Pass Wall2</span>
+                                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">innoDB如何解决幻读详解</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<blockquote> <p>前天有个去快手面试的小伙伴私信我，他遇到了这样一个问题： “InnoDB如何解决幻读”？</p> <p>这个问题确实不是很好回答，在实际应用中，很多同学几乎都不关注数据库的事务隔离性。</p> <p>所有问题基本就是CRUD，一把梭~</p> <p>那么今天，我们来看一下 关于“InnoDB如何解决幻读”这个问题，普通人和高手的回答！</p> </blockquote> <p><strong>普通人：</strong></p> <p>嗯，我印象中，幻读是通过MVCC机制来解决的，嗯....</p> <p>MVCC类似于一种乐观锁的机制，通过版本的方式来区分不同的并发事务，避免幻读问题！</p> <p><strong>高手：</strong></p> <p>我会从三个方面来回答：</p> <p>1、 Mysql的事务隔离级别</p> <p>Mysql有四种事务隔离级别，这四种隔离级别代表当存在多个事务并发冲突时，可能出现的脏读、不可重复读、幻读的问题。</p> <p>其中InnoDB在RR的隔离级别下，解决了幻读的问题。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/99e70dc24f013b583987f314be9f8221.jpg" alt="innoDB如何解决幻读详解"></p> <p>2、 什么是幻读？</p> <p>那么， 什么是幻读呢？</p> <p>幻读是指在同一个事务中，前后两次查询相同的范围时，得到的结果不一致</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/fe759bc44f4bb03cd9dba55fd73effc0.jpg" alt="innoDB如何解决幻读详解"></p> <ul> <li>第一个事务里面我们执行了一个范围查询，这个时候满足条件的数据只有一条</li> <li>第二个事务里面，它插入了一行数据，并且提交了</li> <li>接着第一个事务再去查询的时候，得到的结果比第一次查询的结果多出来了一条数据。</li> </ul> <p>所以，幻读会带来数据一致性问题。</p> <p>3、 InnoDB如何解决幻读的问题</p> <p>InnoDB引入了间隙锁和next-key Lock机制来解决幻读问题，为了更清晰的说明这两种锁，我举一个例子：</p> <p>假设现在存在这样一个B+ Tree的索引结构，这个结构中有四个索引元素分别是：1、4、7、10。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/106a7a04358493299494552b1c61c5bf.jpg" alt="innoDB如何解决幻读详解"></p> <p>当我们通过主键索引查询一条记录，并且对这条记录通过for update加锁。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/bc502996d000426ecb7fb9f65d4152d2.jpg" alt="innoDB如何解决幻读详解"></p> <p>这个时候，会产生一个记录锁，也就是行锁，锁定id=1这个索引。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/55da1fe75dc1b791425b91c2003b813a.jpg" alt="innoDB如何解决幻读详解"></p> <p>被锁定的记录在锁释放之前，其他事务无法对这条记录做任何操作。</p> <p>前面我说过对幻读的定义： 幻读是指在同一个事务中，前后两次查询相同的范围时，得到的结果不一致！</p> <p>注意，这里强调的是范围查询，</p> <p>也就是说，InnoDB引擎要解决幻读问题，必须要保证一个点，就是如果一个事务通过这样一条语句进行锁定时。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/c1a84f99c939f728c0c7435c2d6ec846.jpg" alt="innoDB如何解决幻读详解"></p> <p>另外一个事务再执行这样一条insert语句，需要被阻塞，直到前面获得锁的事务释放。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/7a2d7eab839fbe98a69052b4c6d61657.jpg" alt="innoDB如何解决幻读详解"></p> <p>所以，在InnoDB中设计了一种间隙锁，它的主要功能是锁定一段范围内的索引记录</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/69ec685283ba9e74e4c70a86e1ecb316.jpg" alt="innoDB如何解决幻读详解"></p> <p>当对查询范围id&gt;4 and id &lt;7加锁的时候，会针对B+树中（4，7）这个开区间范围的索引加间隙锁。</p> <p>意味着在这种情况下，其他事务对这个区间的数据进行插入、更新、删除都会被锁住。</p> <p>但是，还有另外一种情况，比如像这样</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/ad22ea746d976b29271e9095f128be50.jpg" alt="innoDB如何解决幻读详解"></p> <p>这条查询语句是针对id&gt;4这个条件加锁，那么它需要锁定多个索引区间，所以在这种情况下InnoDB引入了next-key Lock机制。</p> <p>next-key Lock相当于间隙锁和记录锁的合集，记录锁锁定存在的记录行，间隙锁锁住记录行之间的间隙，而next-key Lock锁住的是两者之和。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/3d27d2f93ed06f2acaf99f3fa3bae82e.jpg" alt="innoDB如何解决幻读详解"></p> <p>每个数据行上的非唯一索引列上都会存在一把next-key lock，当某个事务持有该数据行的next-key lock时，会锁住一段左开右闭区间的数据。</p> <p>因此，当通过id&gt;4这样一种范围查询加锁时，会加next-key Lock，锁定的区间范围是：(4, 7] , (7,10],(10,+∞]</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/72f766a705011652cfdac2d6248e3619.jpg" alt="innoDB如何解决幻读详解"></p> <p>间隙锁和next-key Lock的区别在于加锁的范围，间隙锁只锁定两个索引之间的引用间隙，而next-key Lock会锁定多个索引区间，它包含记录锁和间隙锁。</p> <p>当我们使用了范围查询，不仅仅命中了Record记录，还包含了Gap间隙，在这种情况下我们使用的就是临键锁，它是MySQL里面默认的行锁算法。</p> <p>4 、总结</p> <p>虽然InnoDB中通过间隙锁的方式解决了幻读问题，但是加锁之后一定会影响到并发性能，因此，如果对性能要求较高的业务场景中，可以把隔离级别设置成RC，这个级别中不存在间隙锁。</p> <p>以上就是我对于innoDB如何解决幻读问题的理解！</p> <p><strong>总结：</strong></p> <p>通过这个面试题可以发现，大厂面试对于基本功的考察还是比较严格的。</p> <p>不过，不管是为了应付面试，还是为以后的职业规划做铺垫， 技术能力的高低都是你在这个行业的核心竞争力。</p> <p>我是Mic，一个工作了14年的Java程序员，咱们下篇文章再见。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-50695.htm">上海宠物救助领养网真实可靠吗（上海宠物领养救助中心）</a></p>
+                                        <p>下一个：<a href="/news/article-51234.htm">成都宠物领养平台领养可靠吗现在多少钱（成都宠物领养平台领养可靠吗现在多少钱）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-27306.htm" title="一片枫叶的拼音是什么（一片枫叶猜一首歌）">一片枫叶的拼音是什么（一片枫叶猜一首歌）</a></li>
+                        <li class="py-2"><a href="/news/article-34886.htm" title="中国十大动物疫苗公司排名第一的是（动物疫苗厂家有哪些）">中国十大动物疫苗公司排名第一的是（动物疫苗厂家有哪些）</a></li>
+                        <li class="py-2"><a href="/news/article-42233.htm" title="百合梨汤的做法和功效(百合梨汤的做法大全)">百合梨汤的做法和功效(百合梨汤的做法大全)</a></li>
+                        <li class="py-2"><a href="/news/article-28238.htm" title="宠物粮食加工厂设备有哪些厂家生产饲料 宠物粮食加工厂设备有哪些厂家生产饲料的">宠物粮食加工厂设备有哪些厂家生产饲料 宠物粮食加工厂设备有哪些厂家生产饲料的</a></li>
+                        <li class="py-2"><a href="/news/article-32509.htm" title="vue项目几个比较好的实践(路由模块化，打包dll优化，vuex)">vue项目几个比较好的实践(路由模块化，打包dll优化，vuex)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-27-free-high-speed-nodes.htm" title="「1月27日」最高速度22.7M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「1月27日」最高速度22.7M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-44225.htm" title="设计模式详解之结构型设计模式——适配器、装饰器">设计模式详解之结构型设计模式——适配器、装饰器</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-17-free-high-speed-nodes.htm" title="「1月17日」最高速度19.3M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「1月17日」最高速度19.3M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-25457.htm" title="动物医院英语短语怎么说呢 动物医院英语短语怎么说呢怎么写">动物医院英语短语怎么说呢 动物医院英语短语怎么说呢怎么写</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-16-free-node-subscribe.htm" title="「11月16日」最高速度18.8M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「11月16日」最高速度18.8M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">91</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
