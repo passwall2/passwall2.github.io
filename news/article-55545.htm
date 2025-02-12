@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-55545.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>DataView和DataTable的区别、联系、以及相互转化方法</title>
+        <meta name="description" content="一、定义区别   DataTable：表示内存中数据的一个表，它完全是在内存中的一个独立存在，包含了这张表的全部信息。 建立方式 ①通过连接数据库后从中读取出来跟数据源断开、独立存在的一个表； ②完全" />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Pass Wall2机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://passwall2.github.io/news/article-55545.htm" />
+    <meta property="og:site_name" content="Pass Wall2机场订阅官网" />
+    <meta property="og:title" content="DataView和DataTable的区别、联系、以及相互转化方法" />
+    <meta property="og:image" content="https://passwall2.github.io/uploads/20240825/aa0c747ed67f58e4b557c4fdfa587268.webp" />
+        <meta property="og:release_date" content="2025-02-12T09:09:34" />
+    <meta property="og:updated_time" content="2025-02-12T09:09:34" />
+        <meta property="og:description" content="一、定义区别   DataTable：表示内存中数据的一个表，它完全是在内存中的一个独立存在，包含了这张表的全部信息。 建立方式 ①通过连接数据库后从中读取出来跟数据源断开、独立存在的一个表； ②完全" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="DataView和DataTable的区别、联系、以及相互转化方法">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://use.fontawesome.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a href="/" class="navbar-brand p-0">
+                                <span class="text-primary mb-0">Pass Wall2</span>
+                                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">DataView和DataTable的区别、联系、以及相互转化方法</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2> <a id="_0" rel="nofollow"></a>一、定义区别</h2> <ol> <li> <p><strong>DataTable</strong>：表示内存中数据的一个表，它完全是在内存中的一个独立存在，包含了这张表的全部信息。</p> <p><strong>建立方式</strong><br /> ①通过连接数据库后从中读取出来跟数据源断开、独立存在的一个表；<br /> ②完全由程序通过代码来建立的一个表。</p> </li> <li> <p><strong>DataView</strong>：表示用于排序、筛选、搜索、编辑和导航的 DataTable 的<strong>可绑定数据</strong>的自定义视图。</p> </li> <li> <p><strong>DataRowView</strong>：表示</p> </li> </ol> <p>通过DataRowView.Row 属性得到此DataRowView对应的DataRow</p> <p><strong>可以将DataView同数据库的视图类比，不过二者存在以下区别。</strong></p> <table> <thead> <tr> <th>DataView</th> <th>视图</th> </tr> </thead> <tbody> <tr> <td>只能对某一个DataTable建立视图</td> <td>可以跨表建立视图</td> </tr> <tr> <td>通过DataTable.DefaultView属性来建立，通过DataTable.DefaultView的RowFilter 属性和RowStateFilter 属性筛选这个DataTable的一个行子集。</td> <td></td> </tr> </tbody> </table> <h2> <a id="_20" rel="nofollow"></a>二、相互联系</h2> <table> <thead> <tr> <th>DataView</th> <th>DataTable</th> </tr> </thead> <tbody> <tr> <td>建立在DataTable基础上</td> <td></td> </tr> <tr> <td>DataView.Table 属性可以得到此DataView对应的DataTable</td> <td></td> </tr> <tr> <td>DataView dv = dt.DefaultView;</td> <td>DataTable dt = dv.ToTable();</td> </tr> </tbody> </table> <p>DataView的toTable和Table</p> <table> <thead> <tr> <th>toTable</th> <th>Table</th> </tr> </thead> <tbody> <tr> <td>方法</td> <td>属性</td> </tr> <tr> <td>通过RowFilter等过滤后的数据创建新实例</td> <td>返回原始数据</td> </tr> <tr> <td>会对DataView本身的数据产生影响</td> <td>不会对DataView本身的数据产生影响</td> </tr> </tbody> </table> <h2> <a id="_34" rel="nofollow"></a>三、相互转化</h2> <p>1.<strong>dataTable转成dataview</strong><br /> 方法一：</p> <pre><code class="prism language-csharp">        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>dt <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>dt<span class="token punctuation">.</span>Rows<span class="token punctuation">)</span><span class="token punctuation">.</span>Count <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>         <span class="token class-name">IEnumerable</span>  dv <span class="token operator">=</span> <span class="token punctuation">(</span>IEnumerable<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">(</span>IListSource<span class="token punctuation">)</span>dt<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">GetList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//将datatable转成dataview</span>         <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token class-name">Object</span> o <span class="token keyword">in</span> dv<span class="token punctuation">)</span>         <span class="token punctuation">{<!-- --></span>             <span class="token class-name">PropertyDescriptorCollection</span> propDesColl <span class="token operator">=</span> TypeDescriptor<span class="token punctuation">.</span><span class="token function">GetProperties</span><span class="token punctuation">(</span>o<span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token class-name">PropertyDescriptor</span> pd <span class="token keyword">in</span> propDesColl<span class="token punctuation">)</span>             <span class="token punctuation">{<!-- --></span>                 <span class="token class-name">Type</span> type <span class="token operator">=</span> pd<span class="token punctuation">.</span>PropertyType<span class="token punctuation">;</span>             <span class="token punctuation">}</span>         <span class="token punctuation">}</span></code></pre> <p>方法二：</p> <pre><code class="prism language-csharp"><span class="token class-name">IEnumerable</span> dv <span class="token operator">=</span> <span class="token punctuation">(</span>IEnumerable<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">(</span>IListSource<span class="token punctuation">)</span>dt<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">GetList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre> <p>2.<strong>将DataView转换为DataTable</strong></p> <p>(1).DataView.ToTable()<br /> 根据现有DataView中的行，创建并返回一个新的DataTable。</p> <p>(2).DataView.ToTable(String)<br /> 参数String为返回的DataTable的名称。</p> <p>注意：输出的表与输入表的列相同，不可自定义。</p> <p>(3).DataView.ToTable(Boolean,String[]) || DataView.ToTable(Boolean,String[],String[],…)<br /> 参数Boolean为true，去重；为false，不去重。</p> <p>数组String[]为显示返回列值的集合。去重是针对String去重的。</p> <p>注意：参数Boolean且默认为false；可自定义返回的列。</p> <pre><code class="prism language-csharp"><span class="token class-name">DataView</span> dv <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DataView</span><span class="token punctuation">(</span>table<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//table是DataTable类型的对象</span> table <span class="token operator">=</span> dv<span class="token punctuation">.</span><span class="token function">ToTable</span><span class="token punctuation">(</span><span class="token keyword">true</span><span class="token punctuation">,</span><span class="token string">"ID"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//去重，且只返回ID列</span></code></pre> <p>(4).DataView.ToTable(String,Boolean,String[])<br /> 根据现有DataView中的行，创建并返回一个新的DataTable。比3多一个参数，可以定义返回表的名称。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-55001.htm">南京宠物收容中心（南京宠物领养中心电话）</a></p>
+                                        <p>下一个：<a href="/news/article-55546.htm">意大利的名胜古迹有哪些(意大利的名胜古迹有哪些地方)</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-41729.htm" title="生物颗粒燃料价格多少钱一吨（生物燃料颗粒料价格）">生物颗粒燃料价格多少钱一吨（生物燃料颗粒料价格）</a></li>
+                        <li class="py-2"><a href="/news/article-44225.htm" title="设计模式详解之结构型设计模式——适配器、装饰器">设计模式详解之结构型设计模式——适配器、装饰器</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-6-free-high-speed-nodes.htm" title="「12月6日」最高速度18.4M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「12月6日」最高速度18.4M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-2-free-high-speed-nodes.htm" title="「1月2日」最高速度19.5M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「1月2日」最高速度19.5M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-9-free-subscribe-node.htm" title="「12月9日」最高速度21.2M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「12月9日」最高速度21.2M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-18-free-node-subscribe-links.htm" title="「11月18日」最高速度20.9M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「11月18日」最高速度20.9M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-24-free-high-speed-nodes.htm" title="「12月24日」最高速度22.4M/S，2024年Pass Wall2每天更新免费机场订阅节点链接">「12月24日」最高速度22.4M/S，2024年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-24992.htm" title="同安宠物领养中心电话地址 同安宠物领养中心电话地址查询">同安宠物领养中心电话地址 同安宠物领养中心电话地址查询</a></li>
+                        <li class="py-2"><a href="/news/article-53353.htm" title="uniapp封装request">uniapp封装request</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-25-free-node-subscribe-links.htm" title="「1月25日」最高速度19.7M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「1月25日」最高速度19.7M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">36</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">91</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
