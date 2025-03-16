@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-75257.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>解决Error response from daemon: Get https://registry-1.docker.io/v2/library/hello-world/manifests/问题</title>
+        <meta name="description" content="昨天在使用docker 时，将 image 文件从仓库抓取到本地一直报错，经过尝试，终于得以解决。 错误信息如下：  [root@archlinux ~]# docker image pull lib" />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Pass Wall2机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://passwall2.github.io/news/article-75257.htm" />
+    <meta property="og:site_name" content="Pass Wall2机场订阅官网" />
+    <meta property="og:title" content="解决Error response from daemon: Get https://registry-1.docker.io/v2/library/hello-world/manifests/问题" />
+    <meta property="og:image" content="https://passwall2.github.io/uploads/20240825/8dc24354a0bc0d6698192327eb97c831.webp" />
+        <meta property="og:release_date" content="2025-03-16T10:30:40" />
+    <meta property="og:updated_time" content="2025-03-16T10:30:40" />
+        <meta property="og:description" content="昨天在使用docker 时，将 image 文件从仓库抓取到本地一直报错，经过尝试，终于得以解决。 错误信息如下：  [root@archlinux ~]# docker image pull lib" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="解决Error response from daemon: Get https://registry-1.docker.io/v2/library/hello-world/manifests/问题">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://use.fontawesome.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a href="/" class="navbar-brand p-0">
+                                <span class="text-primary mb-0">Pass Wall2</span>
+                                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">解决Error response from daemon: Get https://registry-1.docker.io/v2/library/hello-world/manifests/问题</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>昨天在使用docker 时，将 image 文件从仓库抓取到本地一直报错，经过尝试，终于得以解决。</p> <p>错误信息如下：</p> <blockquote> <p>[root@archlinux ~]# docker image pull library/hello-world<br /> Using default tag: latest<br /> Error response from daemon: Get https://registry-1.docker.io/v2/library/hello-world/manifests/latest: dial tcp 52.20.146.203:443: i/o timeout</p> </blockquote> <p>或者：</p> <blockquote> <p>[root@archlinux quanxj]# docker image pull library/hello-world<br /> Using default tag: latest<br /> latest: Pulling from library/hello-world<br /> ca4f61b1923c: Pull complete<br /> error pulling image configuration: Get https://registry-1.docker.io/v2/library/hello-world/blobs/sha256:f2a91732366c0332ccd7afd2a5c4ff2b9af81f549370f7a19acd460f87686bc7: dial tcp 35.169.231.249:443: i/o timeout</p> </blockquote> <p>解决方法如下：</p> <p>**第一步：**通过<code>dig @114.114.114.114 registry-1.docker.io</code>找到可用IP</p> <blockquote> <p>[root@archlinux ~]# dig @114.114.114.114 registry-1.docker.io<br /> ; &lt;&lt;&gt;&gt; DiG 9.12.0 &lt;&lt;&gt;&gt; @114.114.114.114 registry-1.docker.io<br /> ; (1 server found)<br /> ;; global options: +cmd<br /> ;; Got answer:<br /> ;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 37534<br /> ;; flags: qr rd ra; QUERY: 1, ANSWER: 8, AUTHORITY: 0, ADDITIONAL: 1<br /> ;; OPT PSEUDOSECTION:<br /> ; EDNS: version: 0, flags:; udp: 4096<br /> ; COOKIE: 88f87a15f4ca45dc (echoed)<br /> ;; QUESTION SECTION:<br /> ;registry-1.docker.io. IN A<br /> ;; ANSWER SECTION:<br /> registry-1.docker.io. 30 IN A 34.200.28.105<br /> registry-1.docker.io. 30 IN A 52.22.181.254<br /> registry-1.docker.io. 30 IN A 35.169.231.249<br /> registry-1.docker.io. 30 IN A 52.5.185.86<br /> registry-1.docker.io. 30 IN A 54.164.230.151<br /> registry-1.docker.io. 30 IN A 34.200.90.16<br /> registry-1.docker.io. 30 IN A 52.20.146.203<br /> registry-1.docker.io. 30 IN A 52.206.156.207<br /> ;; Query time: 116 msec<br /> ;; SERVER: 114.114.114.114#53(114.114.114.114)<br /> ;; WHEN: 四 3月 08 09:27:12 CST 2018<br /> ;; MSG SIZE rcvd: 189</p> </blockquote> <p>第二步：尝试修改<code>/etc/hosts</code>强制docker.io相关的域名解析到其它可用IP</p> <blockquote> <p>vim /etc/hosts</p> </blockquote> <p>添加一个可用IP：</p> <blockquote> <p>52.5.185.86 registry-1.docker.io</p> </blockquote> <p>保存之后重试:</p> <blockquote> <p>[root@archlinux quanxj]# docker image pull library/hello-world<br /> Using default tag: latest<br /> latest: Pulling from library/hello-world<br /> ca4f61b1923c: Already exists<br /> Digest: sha256:083de497cff944f969d8499ab94f07134c50bcf5e6b9559b27182d3fa80ce3f7<br /> Status: Downloaded newer image for hello-world:latest</p> </blockquote> <p>验证：</p> <blockquote> <p>[root@archlinux quanxj]# docker image ls<br /> REPOSITORY TAG IMAGE ID CREATED SIZE<br /> hello-world latest f2a91732366c 3 months ago 1.85kB</p> </blockquote> <p>成功！</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-74564.htm">经营动物疫苗药品需要什么手续办理的简单介绍</a></p>
+                                        <p>下一个：<a href="/news/article-75259.htm">济南宠物领养中心官网电话 济南宠物领养中心官网电话号码</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-47190.htm" title="动物疫苗企业名单查询官网 动物疫苗企业名单查询官网下载">动物疫苗企业名单查询官网 动物疫苗企业名单查询官网下载</a></li>
+                        <li class="py-2"><a href="/news/article-47666.htm" title="丹阳宠物免费领养中心电话（丹阳宠物免费领养中心电话号码）">丹阳宠物免费领养中心电话（丹阳宠物免费领养中心电话号码）</a></li>
+                        <li class="py-2"><a href="/news/article-42716.htm" title="理解OIDC协议和认证机制">理解OIDC协议和认证机制</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-24-node-share-links.htm" title="「2月24日」最高速度23M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「2月24日」最高速度23M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-71905.htm" title="动物疫苗的种类和制备原理是什么呢（动物疫苗制备流程）">动物疫苗的种类和制备原理是什么呢（动物疫苗制备流程）</a></li>
+                        <li class="py-2"><a href="/news/article-57232.htm" title="宠物疫苗多少钱一次（宠物疫苗一般多少钱一只）">宠物疫苗多少钱一次（宠物疫苗一般多少钱一只）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-12-free-subscribe-node.htm" title="「2月12日」最高速度19.4M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「2月12日」最高速度19.4M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-64270.htm" title="天津宠物猫免费领养 天津宠物猫免费领养地址">天津宠物猫免费领养 天津宠物猫免费领养地址</a></li>
+                        <li class="py-2"><a href="/news/article-73232.htm" title="动物疫苗管理法律法规最新版本是什么样的（动物疫苗政策）">动物疫苗管理法律法规最新版本是什么样的（动物疫苗政策）</a></li>
+                        <li class="py-2"><a href="/news/article-62451.htm" title="动物疫苗生产厂家排名前十名（动物疫苗生产企业排行）">动物疫苗生产厂家排名前十名（动物疫苗生产企业排行）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">82</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

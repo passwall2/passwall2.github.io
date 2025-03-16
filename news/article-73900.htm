@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-73900.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>环形链表方法解决约瑟夫环问题（JAVA）</title>
+        <meta name="description" content="&nbsp;&nbsp;&nbsp; 编号是1，2...n的n个人围坐一圈，编号为k（1&lt;=k&lt;=n）的人从1开始报数，每数到第m个，该人就要离开此圈，它的下一位从1开始报数，数到m出列，" />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Pass Wall2机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://passwall2.github.io/news/article-73900.htm" />
+    <meta property="og:site_name" content="Pass Wall2机场订阅官网" />
+    <meta property="og:title" content="环形链表方法解决约瑟夫环问题（JAVA）" />
+    <meta property="og:image" content="https://passwall2.github.io/uploads/20240825/fe7c2185098f7454720cbfef744548a0.webp" />
+        <meta property="og:release_date" content="2025-03-14T07:07:16" />
+    <meta property="og:updated_time" content="2025-03-14T07:07:16" />
+        <meta property="og:description" content="&nbsp;&nbsp;&nbsp; 编号是1，2...n的n个人围坐一圈，编号为k（1&lt;=k&lt;=n）的人从1开始报数，每数到第m个，该人就要离开此圈，它的下一位从1开始报数，数到m出列，" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="环形链表方法解决约瑟夫环问题（JAVA）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://use.fontawesome.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a href="/" class="navbar-brand p-0">
+                                <span class="text-primary mb-0">Pass Wall2</span>
+                                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">环形链表方法解决约瑟夫环问题（JAVA）</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <h3 id="%C2%A0%C2%A0%C2%A0%20%E7%BC%96%E5%8F%B7%E6%98%AF1%EF%BC%8C2...n%E7%9A%84n%E4%B8%AA%E4%BA%BA%E5%9B%B4%E5%9D%90%E4%B8%80%E5%9C%88%EF%BC%8C%E7%BC%96%E5%8F%B7%E4%B8%BAk%EF%BC%881%3C%3Dk%3C%3Dn%EF%BC%89%E7%9A%84%E4%BA%BA%E4%BB%8E1%E5%BC%80%E5%A7%8B%E6%8A%A5%E6%95%B0%EF%BC%8C%E6%AF%8F%E6%95%B0%E5%88%B0%E7%AC%ACm%E4%B8%AA%EF%BC%8C%E8%AF%A5%E4%BA%BA%E5%B0%B1%E8%A6%81%E7%A6%BB%E5%BC%80%E6%AD%A4%E5%9C%88%EF%BC%8C%E5%AE%83%E7%9A%84%E4%B8%8B%E4%B8%80%E4%BD%8D%E4%BB%8E1%E5%BC%80%E5%A7%8B%E6%8A%A5%E6%95%B0%EF%BC%8C%E6%95%B0%E5%88%B0m%E5%87%BA%E5%88%97%EF%BC%8C%E8%BF%99%E6%A0%B7%E4%BE%9D%E6%AC%A1%E4%B8%8B%E6%9D%A5%EF%BC%8C%E7%9B%B4%E5%88%B0%E5%9C%88%E4%B8%AD%E6%89%80%E6%9C%89%E4%BA%BA%E5%87%BA%E5%88%97%EF%BC%8C%E6%9C%80%E5%90%8E%E4%BA%A7%E7%94%9F%E4%B8%80%E4%B8%AA%E5%87%BA%E9%98%9F%E7%BC%96%E5%8F%B7%E3%80%82">&nbsp;&nbsp;&nbsp; 编号是1，2...n的n个人围坐一圈，编号为k（1&lt;=k&lt;=n）的人从1开始报数，每数到第m个，该人就要离开此圈，它的下一位从1开始报数，数到m出列，这样依次下来，直到圈中所有人出列，最后产生一个出队编号。</h3> <p id="main-toc"><strong>目录</strong></p> <p id="%E4%B8%80%E3%80%81%E9%A6%96%E5%85%88%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E7%B1%BB-toc" style="margin-left:40px;"><a href="#%E4%B8%80%E3%80%81%E9%A6%96%E5%85%88%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E7%B1%BB" rel="nofollow">一、首先编写一个节点类</a></p> <p id="%E4%BA%8C%E3%80%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF-toc" style="margin-left:40px;"><a href="#%E4%BA%8C%E3%80%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF" rel="nofollow">二、问题解决思路</a></p> <p id="%E4%B8%89%E3%80%81%E7%9C%81%E7%95%A5%E9%83%A8%E5%88%86%E5%AF%B9%E5%BA%94%E4%BB%A3%E7%A0%81-toc" style="margin-left:40px;"><a href="#%E4%B8%89%E3%80%81%E7%9C%81%E7%95%A5%E9%83%A8%E5%88%86%E5%AF%B9%E5%BA%94%E4%BB%A3%E7%A0%81" rel="nofollow">三、省略部分对应代码</a></p> <p id="%E5%9B%9B%E3%80%81%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81-toc" style="margin-left:40px;"><a href="#%E5%9B%9B%E3%80%81%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81" rel="nofollow">四、测试代码</a></p> <hr id="hr-toc"/> <h2 id="%E4%B8%80%E3%80%81%E9%A6%96%E5%85%88%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E7%B1%BB">一、首先编写一个节点类</h2> <pre><code>public class Node {      //节点编号(题中人的编号)     private int id;     //下一个节点     private Node next;      public Node(int id) {         this.id = id;     }      public int getId() {         return id;     }      public void setId(int id) {         this.id = id;     }      public Node getNext() {         return next;     }      public void setNext(Node next) {         this.next = next;     }      @Override     public String toString() {         return "Node{" +                 "id=" + id +                 '}';     } }</code></pre> <h2 id="%E4%BA%8C%E3%80%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF">二、问题解决思路</h2> <p>定义一个头节点，不代表题中任何人的编号；</p> <ol> <li>添加节点；</li> <li>查看环形链表中的所有节点；</li> <li>根据题意，编写对应代码。</li> </ol> <p><strong><span style="color:#fe2c24;">省略代码在第三部分</span></strong></p> <pre><code>public class CSLinkedList {      //头节点，编号不计算     public Node first = new Node(-1);       /**      * 为环形链表添加节点      * @param num 环形链表的节点个数      */     public void addNode(int num){         //代码     }       /**      * 查看环形链表中所有的节点      */     public void showNode(){           //代码     }           /**      * 约瑟夫环问题      * @param start 开始报数人的编号：编号为k（1&lt;=k&lt;=n）的人从1开始报数      * @param count 离开时报的数：每数到第m个，该人就要离开此圈，它的下一位又从1开始报数      * @param num 圈内人数：编号是1，2...n的n个人围坐一圈      */     public void josephCircle(int start, int count, int num){         //代码     }  } </code></pre> <h2 id="%E4%B8%89%E3%80%81%E7%9C%81%E7%95%A5%E9%83%A8%E5%88%86%E5%AF%B9%E5%BA%94%E4%BB%A3%E7%A0%81">三、省略部分对应代码</h2> <p>1、添加节点</p> <pre><code>    /**      * 为环形链表添加节点      * @param num 环形链表的节点个数      */     public void addNode(int num){          //判断num         if (num &lt; 1){             System.out.println("不符合要求！");             return;         }          //临时节点         //添加临时节点，只用更改临时节点指向的节点即可，不需要对环形链表中的节点进行复杂操作         Node temp = null;          for (int i = 1; i &lt;= num; i++) {              //新节点             //从编号1开始，每循环一次，添加一个新节点             Node node = new Node(i);              //判断添加方式             if (i == 1){                 //第一个节点的添加                 //使编号为1的节点为第一个节点，第一个节点的下一个节点指向自身。                 first = node;                 first.setNext(first);                 //使编号为1的节点指向临时节点，方便以后的添加操作                 temp = first;             }else {                 //其它节点的添加                 //使临时节点指向新添加的节点                 temp.setNext(node);                 //新添加的节点指向编号为1的节点                 node.setNext(first);                 //使新添加的节点指向临时节点，方便以后操作                 temp = node;              }           }       }</code></pre> <p>2、查看环形链表中的所有节点</p> <pre><code>public void showNode(){                  if (first.getNext() == null){             System.out.println("该环形链表为空！");             return;         }          Node node = first;          while (true){             //输出每一个节点的编号             System.out.printf("编号为%d\n",node.getId());              //节点的下一个节点指向第一个节点时，循环结束             if(node.getNext() == first){                 break;             }             //使节点向后移动             node = node.getNext();         }     }</code></pre> <p>3、约瑟夫环问题相关代码</p> <pre><code>public void josephCircle(int start, int count, int num){           //判断输入是否正确         if (first == null || start &lt; 1 || count &gt; num){             System.out.println("输入有错误！");             return;         }          //定义一个结束节点，指向环形链表的最后一个元素         Node end = first;         while (end.getNext() != first){             end = end.getNext();         }          //定义一个开始节点         //开始报数人的编号为2,则first节点移动2-1次         //first节点移动，结束节点（end）也会移动，移动次数和first节点相同         for (int i = 0; i &lt; start - 1; i++) {             first = first.getNext();             end = end.getNext();         }          //出列节点         //判断节点个数，只有一个节点         while (end != first){              //判断出列节点             //报3的人出列，first是编号为2的人，则移动3-1次，编号为4的人出列，             for (int i = 0; i &lt; count - 1; i++) {                 first = first.getNext();                 end = end.getNext();             }              System.out.printf("编号-%d-节点出环形链表！\n",first.getId());              first = first.getNext();             end.setNext(first);         }         System.out.printf("编号-%d-节点出环形链表！\n",first.getId());     }</code></pre> <h2 id="%E5%9B%9B%E3%80%81%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81">四、测试代码</h2> <pre><code>public class Test01 {     public static void main(String[] args) {         Node node1 = new Node(1);          CSLinkedList list = new CSLinkedList();          list.addNode(15);         list.showNode();         System.out.println("-------------------");         list.josephCircle(1,2,15);     } }</code></pre> <p>测试结果如下：</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230113/ae2a7d4220fb0fc02f3f1a3cb25cd4b5.jpg"></p> <hr/> <p><strong><span style="color:#38d8f0;">&nbsp;</span></strong><span style="color:#38d8f0;">&nbsp;</span><span style="color:#0d0016;">这是我在书里面看的，书名记不太清，看到就是缘分！</span></p> <blockquote> <p><strong><span style="color:#1a439c;">互联网时代，我们即将看到，无创造则无毁灭。</span></strong></p> </blockquote> <hr/> <p><strong><span style="color:#38d8f0;">&nbsp; &nbsp; &nbsp; </span></strong>&nbsp; <strong><span style="color:#38d8f0;">以上仅供学习参考，可能会有不正确的地方，不过问题应该不大吧，注释是我的想法，表述可能有一点点粗糙，希望可以帮助大家！</span></strong></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-73233.htm">宠物店一年利润分析怎么写（宠物店月入利润报表）</a></p>
+                                        <p>下一个：<a href="/news/article-73902.htm">微信上买狗被欺骗怎么办 微信上买狗被欺骗怎么办2400元</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-73233.htm" title="宠物店一年利润分析怎么写（宠物店月入利润报表）">宠物店一年利润分析怎么写（宠物店月入利润报表）</a></li>
+                        <li class="py-2"><a href="/news/article-70583.htm" title="动物打疫苗需要多少钱（动物打疫苗需要多少钱一次）">动物打疫苗需要多少钱（动物打疫苗需要多少钱一次）</a></li>
+                        <li class="py-2"><a href="/news/article-39256.htm" title="动物医学实验报告（动物医学实验报告范文）">动物医学实验报告（动物医学实验报告范文）</a></li>
+                        <li class="py-2"><a href="/news/article-63051.htm" title="自己帮宠物打疫苗（自己给宠物打疫苗需要注意什么）">自己帮宠物打疫苗（自己给宠物打疫苗需要注意什么）</a></li>
+                        <li class="py-2"><a href="/news/article-35616.htm" title="三国杀武将台词语音代码（三国杀武将语音大全）">三国杀武将台词语音代码（三国杀武将语音大全）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-28-free-high-speed-nodes.htm" title="「1月28日」最高速度22M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「1月28日」最高速度22M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-62451.htm" title="动物疫苗生产厂家排名前十名（动物疫苗生产企业排行）">动物疫苗生产厂家排名前十名（动物疫苗生产企业排行）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-18-free-node-subscribe-links.htm" title="「2月18日」最高速度18.9M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「2月18日」最高速度18.9M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-free-node-subscribe.htm" title="「1月4日」最高速度18.5M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「1月4日」最高速度18.5M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-24-node-share-links.htm" title="「2月24日」最高速度23M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「2月24日」最高速度23M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">82</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
