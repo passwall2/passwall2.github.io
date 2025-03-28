@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-83558.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>KTL 一个支持C++14编辑公式的K线技术工具平台 &#8211; 第五版，支持sqlite3，全新sqlite3zz语法超简单使用sqlite3; 添加方差等统计函数。</title>
+        <meta name="description" content="K，K线，Candle蜡烛图。 T，技术分析，工具平台 L，公式Language语言使用c++14，Lite小巧简易。 项目仓库：https://github.com/bbqz007/KTL 国内仓库" />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Pass Wall2机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://passwall2.github.io/news/article-83558.htm" />
+    <meta property="og:site_name" content="Pass Wall2机场订阅官网" />
+    <meta property="og:title" content="KTL 一个支持C++14编辑公式的K线技术工具平台 &#8211; 第五版，支持sqlite3，全新sqlite3zz语法超简单使用sqlite3; 添加方差等统计函数。" />
+    <meta property="og:image" content="https://passwall2.github.io/uploads/20240825/d7d5ba0f323a5a7020859c3bf070283d.webp" />
+        <meta property="og:release_date" content="2025-03-28T09:56:54" />
+    <meta property="og:updated_time" content="2025-03-28T09:56:54" />
+        <meta property="og:description" content="K，K线，Candle蜡烛图。 T，技术分析，工具平台 L，公式Language语言使用c++14，Lite小巧简易。 项目仓库：https://github.com/bbqz007/KTL 国内仓库" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="KTL 一个支持C++14编辑公式的K线技术工具平台 &#8211; 第五版，支持sqlite3，全新sqlite3zz语法超简单使用sqlite3; 添加方差等统计函数。">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://use.fontawesome.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a href="/" class="navbar-brand p-0">
+                                <span class="text-primary mb-0">Pass Wall2</span>
+                                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">KTL 一个支持C++14编辑公式的K线技术工具平台 &#8211; 第五版，支持sqlite3，全新sqlite3zz语法超简单使用sqlite3; 添加方差等统计函数。</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p>K，K线，Candle蜡烛图。</p> <p>T，技术分析，工具平台</p> <p>L，公式Language语言使用c++14，Lite小巧简易。</p> <p>项目仓库：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/bbqz007/KTL"  target="_blank" rel="nofollow">https://github.com/bbqz007/KTL</a></p> <p>国内仓库：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://gitee.com/bbqz007/KTL"  target="_blank" rel="nofollow">https://gitee.com/bbqz007/KTL</a></p> <p>CoreAnimation for Windows:<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/bbqz007/xw"  target="_blank" rel="nofollow">https://github.com/bbqz007/xw</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/bbqz007/zhelper-qt5Widgets"  target="_blank" rel="nofollow">zqt5</a>&nbsp;一个超简单的Qt5窗口语法:<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/bbqz007/zhelper-qt5Widgets"  target="_blank" rel="nofollow">https://github.com/bbqz007/zhelper-qt5Widgets</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/bbqz007/sqlite3zz"  target="_blank" rel="nofollow">zqlite3</a>&nbsp;一个超简单的流式语法，整合封装Sqlite3&nbsp;capis&nbsp;与 SQL&nbsp;跟 c/c++程序绑定：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/bbqz007/sqlite3zz"  target="_blank" rel="nofollow">https://github.com/bbqz007/sqlite3zz</a></p> <p>KTL提供一个c++14编译平台，用户可以使用c++14编辑自定义技术指标等。</p> <p>用户可以使用crt常用函数，c++标准库容器以及算法，c++14特性编程。</p> <p>本期更新内容</p> <p>添加方差等统计函数。</p> <p>支持sqlite3 capi。</p> <p>全新<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/bbqz007/sqlite3zz"  target="_blank" rel="nofollow">sqlite3zz</a>流式语法，超简单使用sqlite3 capi，轻松绑定SQL跟c/c++程序<img decoding="async" src="http://img.555519.xyz/uploads3/20220509/b6232661ca265a3abf37cfe857da5433.jpg" alt="KTL 一个支持C++14编辑公式的K线技术工具平台 - 第五版，支持sqlite3，全新sqlite3zz语法超简单使用sqlite3; 添加方差等统计函数。"></p> <p>本平台在本期主要添加对sqlite3支持。</p> <p>用户可以使用sqlite3存入结果，加载数据，分析数据等。</p> <p>为方便使用sqlite3 capi，本平台开发了一个全新的sqlite3zz流式语法。</p> <p>也许你是SQL高手，但是sqlite3 capi太繁琐，无法集中业务逻辑。</p> <p>也许你轻舟熟驾CREATE, INSERT, UPDATE, SELECT，但是妨碍于不知如何整合在c/c++程序中运行，并绑定参数或结果。</p> <p>也许太多问号要绑定，SQL语句是否写对了问号数量。</p> <p>也许你忘了绑定的起始是0还是1，查文档调试太不想。</p> <p>也许...，&nbsp;还有一千零一个理由让你觉得麻烦。</p> <p>现在本平台提供一个全新的<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/bbqz007/sqlite3zz"  target="_blank" rel="nofollow">sqlite3zz</a>流式语法。</p> <p>1. 对于基本的SQL语法应用，你甚至不用写任何SQL语句，也不必要认识SQL语法。</p> <p>2.&nbsp;简化批量插入更新流程。</p> <p>3.&nbsp;完全c++代码定义表结构。</p> <p>4.&nbsp;输出流（out &lt;&lt; val）绑定参数变量。</p> <p>5.&nbsp;输入流（in &gt;&gt; val）输出结果到变量。</p> <p>6.&nbsp;自动生成SQL语句。</p> <p>7.&nbsp;编译期静态检测类型绑定。</p> <p>示例1，c++代码定义表结构。</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 128, 128, 1)">1</span>   auto tbl2 =<span style="color: rgba(0, 0, 0, 1)"> make_zqlite3_table(</span><span style="color: rgba(0, 128, 128, 1)">2</span>         select_para&lt;<span style="color: rgba(0, 0, 255, 1)">int</span>&gt;(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">1</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">),</span><span style="color: rgba(0, 128, 128, 1)">3</span>         select_para&lt;<span style="color: rgba(0, 0, 255, 1)">string</span>&gt;(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">2</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">),</span><span style="color: rgba(0, 128, 128, 1)">4</span>         select_para&lt;<span style="color: rgba(0, 0, 255, 1)">double</span>&gt;(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">dbl</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">),</span><span style="color: rgba(0, 128, 128, 1)">5</span>         select_para&lt;vector&lt;<span style="color: rgba(0, 0, 255, 1)">char</span>&gt;&gt;(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">blob</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">),</span><span style="color: rgba(0, 128, 128, 1)">6</span>         index_para(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">1</span><span style="color: rgba(128, 0, 0, 1)">"</span>,<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">2</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">),</span><span style="color: rgba(0, 128, 128, 1)">7</span>         index_para(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">1</span><span style="color: rgba(128, 0, 0, 1)">"</span>,<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">2</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">));</span><span style="color: rgba(0, 128, 128, 1)">8</span><span style="color: rgba(0, 128, 128, 1)">9</span></pre> </div> <p>示例2，自动生成SQL语句</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 128, 128, 1)">1</span>     cout &lt;&lt; tbl2.create_table_statment(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">abc</span><span style="color: rgba(128, 0, 0, 1)">"</span>) &lt;&lt;<span style="color: rgba(0, 0, 0, 1)"> endl;</span><span style="color: rgba(0, 128, 128, 1)">2</span>     cout &lt;&lt; tbl2.insert_statment(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">abc</span><span style="color: rgba(128, 0, 0, 1)">"</span>) &lt;&lt;<span style="color: rgba(0, 0, 0, 1)"> endl;</span><span style="color: rgba(0, 128, 128, 1)">3</span>     cout &lt;&lt; tbl2.update_statment(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">abc</span><span style="color: rgba(128, 0, 0, 1)">"</span>) &lt;&lt;<span style="color: rgba(0, 0, 0, 1)"> endl;</span><span style="color: rgba(0, 128, 128, 1)">4</span>     cout &lt;&lt; tbl2.select_statment(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">abc</span><span style="color: rgba(128, 0, 0, 1)">"</span>) &lt;&lt; endl;</pre> </div> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 128, 128, 1)">1</span> CREATE TABLE IF NOT EXISTS `abc` (`<span style="color: rgba(128, 0, 128, 1)">1</span>` INTEGER, `<span style="color: rgba(128, 0, 128, 1)">2</span>` VARCHAR, `dbl` REAL, `blob` BLOB, UNIQUE (`<span style="color: rgba(128, 0, 128, 1)">1</span>`  DESC, `<span style="color: rgba(128, 0, 128, 1)">2</span>`  DESC), UNIQUE (`<span style="color: rgba(128, 0, 128, 1)">1</span>`  DESC, `<span style="color: rgba(128, 0, 128, 1)">2</span><span style="color: rgba(0, 0, 0, 1)">`  DESC));</span><span style="color: rgba(0, 128, 128, 1)">2</span> INSERT INTO `abc` (`<span style="color: rgba(128, 0, 128, 1)">1</span>`, `<span style="color: rgba(128, 0, 128, 1)">2</span>`, `dbl`, `blob`) VALUES (?,?,?,?<span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 128, 1)">3</span> UPDATE `abc` SET `<span style="color: rgba(128, 0, 128, 1)">1</span>` = ?, `<span style="color: rgba(128, 0, 128, 1)">2</span>` = ?, `dbl` = ?, `blob` = ?<span style="color: rgba(0, 0, 0, 1)">;</span><span style="color: rgba(0, 128, 128, 1)">4</span> SELECT `<span style="color: rgba(128, 0, 128, 1)">1</span>`, `<span style="color: rgba(128, 0, 128, 1)">2</span>`, `dbl`, `blob` FROM `abc` ;</pre> </div> <p>示例3，输出流绑定参数变量，批量插入更新。</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 128, 128, 1)"> 1</span>     tbl2.open_db(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">db</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 128, 1)"> 2</span>     tbl2.create_table(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">abc</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 128, 1)"> 3</span><span style="color: rgba(0, 0, 0, 1)">    {</span><span style="color: rgba(0, 128, 128, 1)"> 4</span>         auto oz = tbl2.insert_into(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">abc</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 128, 1)"> 5</span>         auto ou = tbl2.update_where(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">abc</span><span style="color: rgba(128, 0, 0, 1)">"</span>,<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">where `1`=? AND `2` = ?</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 128, 1)"> 6</span><span style="color: rgba(0, 0, 0, 1)">        oz.begin_trans();</span><span style="color: rgba(0, 128, 128, 1)"> 7</span>         oz(<span style="color: rgba(128, 0, 128, 1)">1</span>,<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">2</span><span style="color: rgba(128, 0, 0, 1)">"</span>,<span style="color: rgba(128, 0, 128, 1)">4</span>., {<span style="color: rgba(128, 0, 128, 1)">0</span>,<span style="color: rgba(128, 0, 128, 1)">0</span><span style="color: rgba(0, 0, 0, 1)">});</span><span style="color: rgba(0, 128, 128, 1)"> 8</span>         oz &lt;&lt;<span style="color: rgba(128, 0, 128, 1)">2</span> &lt;&lt;<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">e</span><span style="color: rgba(128, 0, 0, 1)">"</span> &lt;&lt;<span style="color: rgba(128, 0, 128, 1)">1</span>. &lt;&lt; make_pair((<span style="color: rgba(0, 0, 255, 1)">char</span>*)NULL,<span style="color: rgba(128, 0, 128, 1)">0</span>) &lt;&lt; ios_base::end<span style="color: rgba(0, 0, 0, 1)">;</span><span style="color: rgba(0, 128, 128, 1)"> 9</span><span style="color: rgba(0, 0, 255, 1)">if</span><span style="color: rgba(0, 0, 0, 1)"> (oz.ignored())</span><span style="color: rgba(0, 128, 128, 1)">10</span>             ou &lt;&lt;<span style="color: rgba(128, 0, 128, 1)">2</span> &lt;&lt;<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">e</span><span style="color: rgba(128, 0, 0, 1)">"</span> &lt;&lt;<span style="color: rgba(128, 0, 128, 1)">1</span>. &lt;&lt; make_pair((<span style="color: rgba(0, 0, 255, 1)">char</span>*)NULL,<span style="color: rgba(128, 0, 128, 1)">0</span>) &lt;&lt; where_para&lt;<span style="color: rgba(0, 0, 255, 1)">int</span>&gt;(<span style="color: rgba(128, 0, 128, 1)">2</span>) &lt;&lt; where_para&lt;<span style="color: rgba(0, 0, 255, 1)">string</span>&gt;(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">e</span><span style="color: rgba(128, 0, 0, 1)">"</span>) &lt;&lt; ios_base::end<span style="color: rgba(0, 0, 0, 1)">;</span><span style="color: rgba(0, 128, 128, 1)">11</span><span style="color: rgba(0, 0, 0, 1)">        oz.commit_trans();</span><span style="color: rgba(0, 128, 128, 1)">12</span>     }</pre> </div> <p>示例4，输入流查询count(0)输入到变量。</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 128, 128, 1)">1</span> auto cnttbl = make_zqlite3_table(select_para&lt;<span style="color: rgba(0, 0, 255, 1)">int</span>&gt;(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">count(0)</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">).expr());</span><span style="color: rgba(0, 128, 128, 1)">2</span>     cnttbl.open_db(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">db</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 128, 1)">3</span><span style="color: rgba(0, 0, 0, 1)">    {</span><span style="color: rgba(0, 128, 128, 1)">4</span><span style="color: rgba(128, 128, 128, 1)">///</span><span style="color: rgba(0, 128, 0, 1)">/ select statment would not lock the database until finalized.</span><span style="color: rgba(0, 128, 128, 1)">5</span>         auto iz6 = cnttbl.select_from(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">abc</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 128, 1)">6</span><span style="color: rgba(0, 0, 255, 1)">int</span> cnt =<span style="color: rgba(128, 0, 128, 1)">0</span><span style="color: rgba(0, 0, 0, 1)">;</span><span style="color: rgba(0, 128, 128, 1)">7</span>         iz6 &gt;&gt; ios_base::beg &gt;&gt; cnt &gt;&gt; ios_base::end<span style="color: rgba(0, 0, 0, 1)">;</span><span style="color: rgba(0, 128, 128, 1)">8</span>         cout &lt;&lt; cnt &lt;&lt;<span style="color: rgba(0, 0, 0, 1)"> endl;</span><span style="color: rgba(0, 128, 128, 1)">9</span>     }</pre> </div> <p>对于上面4个示例，涉及create, insert, update, select的基本使用，完全可以不与SQL语法还有sqltie3 capi打交道。</p> <p>示例5，输入流查询内联。</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 128, 128, 1)"> 1</span> auto join =<span style="color: rgba(0, 0, 0, 1)"> make_zqlite3_table(</span><span style="color: rgba(0, 128, 128, 1)"> 2</span>         select_para&lt;<span style="color: rgba(0, 0, 255, 1)">int</span>&gt;(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">a.`1`</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">).expr(),</span><span style="color: rgba(0, 128, 128, 1)"> 3</span>         select_para&lt;<span style="color: rgba(0, 0, 255, 1)">int</span>&gt;(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">b.`double`</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">).expr());</span><span style="color: rgba(0, 128, 128, 1)"> 4</span><span style="color: rgba(0, 128, 128, 1)"> 5</span>     join.open_db(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">db</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 128, 1)"> 6</span><span style="color: rgba(0, 0, 0, 1)">    {</span><span style="color: rgba(0, 128, 128, 1)"> 7</span>         auto ij = join.select_from2(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">abc a, table1 b limit 1</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 128, 1)"> 8</span>         auto row =<span style="color: rgba(0, 0, 0, 1)"> join.create_row();</span><span style="color: rgba(0, 128, 128, 1)"> 9</span>         ij &gt;&gt;<span style="color: rgba(0, 0, 0, 1)"> ios_base::beg;</span><span style="color: rgba(0, 128, 128, 1)">10</span><span style="color: rgba(0, 0, 255, 1)">for</span> (; !ij.eof(); ij &gt;&gt;<span style="color: rgba(0, 0, 0, 1)"> ios_base::beg)</span><span style="color: rgba(0, 128, 128, 1)">11</span><span style="color: rgba(0, 0, 0, 1)">        {</span><span style="color: rgba(0, 128, 128, 1)">12</span>             ij &gt;&gt; std::<span style="color: rgba(0, 0, 255, 1)">get</span>&lt;<span style="color: rgba(128, 0, 128, 1)">0</span>&gt;<span style="color: rgba(0, 0, 0, 1)">(row)</span><span style="color: rgba(0, 128, 128, 1)">13</span>                 &gt;&gt; std::<span style="color: rgba(0, 0, 255, 1)">get</span>&lt;<span style="color: rgba(128, 0, 128, 1)">1</span>&gt;<span style="color: rgba(0, 0, 0, 1)">(row)</span><span style="color: rgba(0, 128, 128, 1)">14</span>                 &gt;&gt;<span style="color: rgba(0, 0, 0, 1)"> ios_base::end</span><span style="color: rgba(0, 0, 0, 1)">;</span><span style="color: rgba(0, 128, 128, 1)">16</span>             cout &lt;&lt; std::<span style="color: rgba(0, 0, 255, 1)">get</span>&lt;<span style="color: rgba(128, 0, 128, 1)">0</span>&gt;(row) &lt;&lt;<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">,</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 128, 128, 1)">17</span>                 &lt;&lt; std::<span style="color: rgba(0, 0, 255, 1)">get</span>&lt;<span style="color: rgba(128, 0, 128, 1)">1</span>&gt;(row) &lt;&lt;<span style="color: rgba(0, 0, 0, 1)"> endl;</span><span style="color: rgba(0, 128, 128, 1)">18</span><span style="color: rgba(0, 0, 0, 1)">        }</span><span style="color: rgba(0, 128, 128, 1)">19</span>     }</pre> </div> <p>下期更新更加精彩。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-83556.htm">让我们写一个 Win32 文本编辑器吧 &#8211; 2. 计划和显示</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-56662.htm" title="开一个宠物医院需要多少钱（开一个宠物医院需要多少钱呢）">开一个宠物医院需要多少钱（开一个宠物医院需要多少钱呢）</a></li>
+                        <li class="py-2"><a href="/news/article-39750.htm" title="修改docker容器端口映射的方法">修改docker容器端口映射的方法</a></li>
+                        <li class="py-2"><a href="/news/article-44713.htm" title="vue中使用$http.post请求传参的错误及解决_vue.js">vue中使用$http.post请求传参的错误及解决_vue.js</a></li>
+                        <li class="py-2"><a href="/news/article-82824.htm" title="宠物粮食主要特征（宠物粮食品牌前十）">宠物粮食主要特征（宠物粮食品牌前十）</a></li>
+                        <li class="py-2"><a href="/news/article-82823.htm" title="义乌流浪狗领养在哪里 义乌流浪狗领养在哪里办理">义乌流浪狗领养在哪里 义乌流浪狗领养在哪里办理</a></li>
+                        <li class="py-2"><a href="/news/article-35616.htm" title="三国杀武将台词语音代码（三国杀武将语音大全）">三国杀武将台词语音代码（三国杀武将语音大全）</a></li>
+                        <li class="py-2"><a href="/news/article-77980.htm" title="邪祟小说全文免费阅读（师傅演员表）原创，">邪祟小说全文免费阅读（师傅演员表）原创，</a></li>
+                        <li class="py-2"><a href="/news/article-79350.htm" title="宠物粮加工机器设备厂家排名 宠物粮加工机器设备厂家排名前十">宠物粮加工机器设备厂家排名 宠物粮加工机器设备厂家排名前十</a></li>
+                        <li class="py-2"><a href="/news/article-57802.htm" title="狗粮批发市场进货渠道小包装多少钱一箱（狗粮批发市场进货渠道小包装多少钱一箱）">狗粮批发市场进货渠道小包装多少钱一箱（狗粮批发市场进货渠道小包装多少钱一箱）</a></li>
+                        <li class="py-2"><a href="/news/article-37788.htm" title="做猫粮的机器多少钱一台（家用猫粮机器）">做猫粮的机器多少钱一台（家用猫粮机器）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">82</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
