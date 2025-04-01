@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-84273.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>C语言之分支语句</title>
+        <meta name="description" content="C语言语句分为以下五类： 1. 表达式语句 2. 函数调用语句 3. 控制语句 4. 复合语句 5. 空语句 其中控制语句用于控制程序的执行流程，以实现程序的各种结构方式，它们由特定的语句定义符组成，" />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Pass Wall2机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://passwall2.github.io/news/article-84273.htm" />
+    <meta property="og:site_name" content="Pass Wall2机场订阅官网" />
+    <meta property="og:title" content="C语言之分支语句" />
+    <meta property="og:image" content="https://passwall2.github.io/uploads/20240825/f795fb3aa863b85d73da3cfc82e390d4.webp" />
+        <meta property="og:release_date" content="2025-03-29T09:03:41" />
+    <meta property="og:updated_time" content="2025-03-29T09:03:41" />
+        <meta property="og:description" content="C语言语句分为以下五类： 1. 表达式语句 2. 函数调用语句 3. 控制语句 4. 复合语句 5. 空语句 其中控制语句用于控制程序的执行流程，以实现程序的各种结构方式，它们由特定的语句定义符组成，" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="C语言之分支语句">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://use.fontawesome.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a href="/" class="navbar-brand p-0">
+                                <span class="text-primary mb-0">Pass Wall2</span>
+                                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">C语言之分支语句</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <p>C语言语句分为以下五类：</p> <p>1. 表达式语句</p> <p>2. 函数调用语句</p> <p>3. 控制语句</p> <p>4. 复合语句</p> <p>5. 空语句</p> <p>其中控制语句用于控制程序的执行流程，以实现程序的各种结构方式，它们由特定的语句定义符组成，C语 言有九种控制语句。</p> <p>分为三类：</p> <p>1. 条件判断语句也叫分支语句：if语句、switch语句；</p> <p>2. 循环执行语句：do while语句、while语句、for语句；</p> <p>3. 转向语句：break语句、goto语句、continue语句、return语句</p> </h1> <p>1. if语句</p> <pre><code class="language-cpp">//语法结构： if(表达式) //括号里可以为一个变量，判断变量是否为真，真就输出，反正不输出     语句; if(表达式)     语句1; else     语句2; //多分支     if(表达式1)     语句1; else if(表达式2)     语句2; else     语句3;</code></pre> <p>（1）如果表达式的结果为真，则语句执行</p> <p><span style="color:#fe2c24;"><strong>（2）0表示假，非0表示真（-1也为真）</strong></span></p> <pre><code class="language-cpp">//1 if (age &gt;= 18 &amp;&amp; age &lt; 40) { 	printf("1：呵呵\n"); } //2 - 逻辑上是不满足要求的 if (18 &lt;= age &lt; 40)//当输入的值小于18时，18 &lt;= age为假，判断为0，因为0 &lt; 40，所以会输出 { 	printf("2: 哈哈\n"); }</code></pre> <p>如果条件成立，要执行多条语句，应该使用<span style="color:#38d8f0;">代码块</span></p> <pre><code class="language-cpp">#include &lt;stdio.h&gt; int main() {     if(表达式)    {         语句列表1；    }     else    {         语句列表2；    }     return 0; } </code></pre> <p>这里的一对 { } 就是一个<span style="color:#38d8f0;">代码块</span></p> <p>2. 悬空else</p> <pre><code class="language-cpp">//不规范代码 #include &lt;stdio.h&gt; int main() {     int a = 0;     int b = 2;     if(a == 1)         if(b == 2)             printf("hehe\n");     else         printf("haha\n");     return 0; }   //改正： //适当的使用{}可以使代码的逻辑更加清楚。 //代码风格很重要 #include &lt;stdio.h&gt; int main() {     int a = 0;     int b = 2;     if(a == 1)    {         if(b == 2)        {             printf("hehe\n");        }    }     else    {          printf("haha\n");    }            return 0; } </code></pre> <p><span style="color:#fe2c24;"><strong>注：else的匹配：else是和它离的最近的if匹配的。</strong></span></p> <p><strong><span style="color:#0d0016;">3. if书写形式的对比</span></strong></p> <pre><code class="language-cpp">//代码1（不规范） if (condition) {     return x; } return y; //代码2（对比一更规范） if(condition) {     return x; } else {     return y; } //代码3（num == 5 容易写成 num = 5，编译器允许通过编译，语法没错，但是代码有误，易产生bug） int num = 1; if(num == 5) {     printf("hehe\n"); } //代码4（5 == num 对比3，即使写成5 = num也不能编译，因此比代码3好） int num = 1; if(5 == num) {     printf("hehe\n"); }</code></pre> </h1> <p>1. switch语句也是一种分支语句。</p> <p>常常用于多分支的情况。</p> <p>比如：</p> <p>输入1，输出星期一</p> <p>输入2，输出星期二</p> <p>输入3，输出星期三</p> <p>输入4，输出星期四</p> <p>输入5，输出星期五</p> <p>输入6，输出星期六</p> <p>输入7，输出星期日</p> <p>那我没写成 if...else if ...else if 的形式太复杂，那我们就得有不一样的语法形式。</p> <p>这就是switch 语句。</p> <pre><code class="language-cpp">switch(整型表达式) {     语句项； } //是一些case语句： //如下： case 整形常量表达式:     语句;</code></pre> <p><span style="color:#fe2c24;">注：（1）switch (&nbsp;<strong>整形表达式&nbsp;</strong>)&nbsp; （ 必须是<strong>整形表达式和枚举类型(char可以)</strong>&nbsp;）</span></p> <p><span style="color:#fe2c24;">&nbsp; &nbsp; &nbsp; &nbsp;（2）case <strong>整形常量表达式 :&nbsp;（&nbsp;</strong>必须是<strong>整形</strong>且<strong>常量</strong>表达式 ）</span></p> <p>2. switch语句中的 <span style="color:#fe2c24;">break（嵌套中只能跳出当前的语句）</span></p> <p>在switch语句中，我们没办法直接实现分支，搭配break使用才能实现真正的分支</p> <p>比如：</p> <pre><code class="language-cpp">#include &lt;stdio.h&gt; int main() {     int day = 0;     switch(day)    {         case 1：             printf("星期一\n");             break;         case 2:             printf("星期二\n");             break;         case 3:             printf("星期三\n");             break;             case 4:             printf("星期四\n");             break;             case 5:             printf("星期五\n");             break;         case 6:             printf("星期六\n");             break;         case 7:             printf("星期天\n");                 break;    }     return 0; } </code></pre> <p>有时候我们的需求变了：</p> <p>1. 输入1-5，输出的是“weekday”;</p> <p>2. 输入6-7，输出“weekend”</p> <p>所以我们的代码就应该这样实现了：</p> <pre><code class="language-cpp">#include &lt;stdio.h&gt; //switch代码演示 int main() {     int day = 0;     switch(day)    {             //1,2,3,4,5,6,7...不是必须按照这个顺序走，case语句无顺序可言         case 1：          case 2:         case 3:         case 4:         case 5:             printf("weekday\n");             break;         case 6:         case 7:             printf("weekend\n");             break;    }     return 0; }</code></pre> <p><span style="color:#a2e043;">break</span><span style="color:#0d0016;">（不是switch都必须有）</span><span style="color:#a2e043;">语句</span> 的实际效果是把语句列表划分为不同的分支部分</p> <p><span style="color:#956fe7;"><strong>编程好习惯</strong></span></p> <p><span style="color:#956fe7;"><strong>在最后一个 case 语句的后面加上一条 break语句。 </strong></span></p> <p><span style="color:#956fe7;"><strong>（之所以这么写是可以避免出现在以前的最后一个 case 语句后面忘了添加 break语句）</strong></span></p> <p><span style="color:#0d0016;">3. defualt子句</span></p> <pre><code class="language-cpp">//默认 default： </code></pre> <p><span style="color:#fe2c24;">写在任何一个 case 标签可以出现的位置</span>。 当 switch 表达式的值并不匹配所有 case 标签的值时，这个 default 子句后面的语句就会执行。 所以，<span style="color:#fe2c24;">每个switch语句中只能出现一条default子句</span>。 但是它<span style="color:#fe2c24;">可以出现在语句列表的任何位置</span>，而且语句流会像执行一个case标签一样执行default子句。</p> <p><span style="color:#956fe7;"><strong>编程好习惯 </strong></span></p> <p><span style="color:#956fe7;"><strong>在每个 switch 语句中都放一条default子句是个好习惯，甚至可以在后边再加一个 break</strong></span></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-83558.htm">KTL 一个支持C++14编辑公式的K线技术工具平台 &#8211; 第五版，支持sqlite3，全新sqlite3zz语法超简单使用sqlite3; 添加方差等统计函数。</a></p>
+                                        <p>下一个：<a href="/news/article-84274.htm">动物疫苗研究进展 动物疫苗研究进展论文</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-69292.htm" title="附近哪里可以寄养宠物（附近有没有寄养宠物的）">附近哪里可以寄养宠物（附近有没有寄养宠物的）</a></li>
+                        <li class="py-2"><a href="/news/article-75918.htm" title="狗粮配方大全及做法视频（狗粮配方有哪些原料）">狗粮配方大全及做法视频（狗粮配方有哪些原料）</a></li>
+                        <li class="py-2"><a href="/news/article-50182.htm" title="广州市宠物领养平台有哪些（广州哪里有宠物领养机构）">广州市宠物领养平台有哪些（广州哪里有宠物领养机构）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-19-free-high-speed-nodes.htm" title="「2月19日」最高速度18.2M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「2月19日」最高速度18.2M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-36158.htm" title="实战篇：单库单表变更成多库多表">实战篇：单库单表变更成多库多表</a></li>
+                        <li class="py-2"><a href="/news/article-43716.htm" title="孕妇被猫抓流血了,会影响胎儿发育吗（孕妇被猫抓流血了,会影响胎儿发育吗视频）">孕妇被猫抓流血了,会影响胎儿发育吗（孕妇被猫抓流血了,会影响胎儿发育吗视频）</a></li>
+                        <li class="py-2"><a href="/news/article-51234.htm" title="成都宠物领养平台领养可靠吗现在多少钱（成都宠物领养平台领养可靠吗现在多少钱）">成都宠物领养平台领养可靠吗现在多少钱（成都宠物领养平台领养可靠吗现在多少钱）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-18-free-node-subscribe-links.htm" title="「2月18日」最高速度18.9M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「2月18日」最高速度18.9M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-39256.htm" title="动物医学实验报告（动物医学实验报告范文）">动物医学实验报告（动物医学实验报告范文）</a></li>
+                        <li class="py-2"><a href="/news/article-42716.htm" title="理解OIDC协议和认证机制">理解OIDC协议和认证机制</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">82</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

