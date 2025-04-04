@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-87835.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Spring Boot框架下实现Excel服务端导入导出</title>
+        <meta name="description" content="Spring Boot是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。今天" />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Pass Wall2机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://passwall2.github.io/news/article-87835.htm" />
+    <meta property="og:site_name" content="Pass Wall2机场订阅官网" />
+    <meta property="og:title" content="Spring Boot框架下实现Excel服务端导入导出" />
+    <meta property="og:image" content="https://passwall2.github.io/uploads/20240825/72c2e527198fbb49bb81156e34ddb6af.webp" />
+        <meta property="og:release_date" content="2025-04-03T08:34:40" />
+    <meta property="og:updated_time" content="2025-04-03T08:34:40" />
+        <meta property="og:description" content="Spring Boot是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。今天" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Spring Boot框架下实现Excel服务端导入导出">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://use.fontawesome.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a href="/" class="navbar-brand p-0">
+                                <span class="text-primary mb-0">Pass Wall2</span>
+                                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Spring Boot框架下实现Excel服务端导入导出</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>Spring Boot是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。今天我们就使用纯前对按表格控件带大家了解，如何在Spring Boot框架下实现Excel服务端导入导出。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/d0d2b6a908934cd07b9aadf4a8868bd2.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <h2> <a id="1IDEASpringBoot_4" rel="nofollow"></a><strong>1.IDEA创建SpringBoot项目</strong><br /> </h2> <h3> <a id="11_Spring_Initializr_5" rel="nofollow"></a><strong>1.1 Spring Initializr</strong><br /> </h3> <p>想要在IDEA下快速搭建一个SpringBoot项目，可以使用Spring Initializr工具作为脚手架。</p> <p>进入IDEA后，在左侧菜单中可以找到Plugins，点击后，在上方的搜索框中输入Spring Initializr。</p> <p>之后点击右上角的绿色Install按钮进行安装。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/5b18348cf3c6efc8682730b3e0a0ef37.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <p>安装完毕后，在New Project 的时候就会多一个Spring Initializr的选项。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/15b7c02795310e580d370c8d2ec9f094.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <h3> <a id="12_SpringBoot__18" rel="nofollow"></a><strong>1.2 SpringBoot 项目的创建</strong><br /> </h3> <p>Project SDK：根据实际应用情况选择用于配置项目所依赖的Java SDK。</p> <p>Choose Spring Initializr Server：选择一个Spring Initializr服务器，一般来说都选择默认的。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/09fc5f4e3b84da2b5cbe52722dbb8310.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <p>GroupId：一般分为多个段，第一段为域，第二段为公司名称。例如：org.apache，com.grapecity。</p> <p>ArtifactId：是项目的唯一标识符，在实际开发中一般对应项目的名称，就是项目根目录的名称。</p> <p>Group Id，Artfact Id是保证项目唯一性的标识，一般来说如果项目打包上传至maven这样的包管理仓库中。在搜索你的项目时，Group Id，Artfact Id是必要的条件。</p> <p>Version：版本号，默认0.0.1-SNAPSHOT。SNAPSHOT代表不稳定的版本，与之相对的有RELEASE。</p> <p>Project type：工程的类型，maven工程还是gradle工程。</p> <p>Language：语言（Java，Kotlin，Groovy）。</p> <p>Packaging：Jar包还是War包。</p> <p>Java version：语法版本，与Project SDK不同，Project SDK是实际用到的JDK。Java version指的是语法版本。一般来说语言特性不能比SDK高。比如SDK版本是11，语法选择8。那么实际项目中只能使用java 8的语法。反之SDK版本是8，语法选11就有问题了。一般情况下都会与SDK保持一致。</p> <p>Project name：项目名称</p> <p>Project description：项目描述</p> <p>Package name：包名</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/b9257b620c92ffd3ab7509846dd0cf46.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/a491070f5c4d41bf5277f99056b63179.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <p>第三部分根据项目的实际需求去配置。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/ee02a63c61205256d42357b3f7397d2f.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <p>第四部分：</p> <p>设置项目名称与路径。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/c381c0396420b3ab0fd864ff4fd63b3b.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <h2> <a id="2_63" rel="nofollow"></a><strong>2.前端配置</strong><br /> </h2> <p>考虑到导入导出功能需要对Excel具有较高的还原度，这里使用了SpreadJS组件，通过SpreadJS组件的ExcelIO功能，进行Excel的导入与导出。SpreadJS是一款纯前端的组件，与后端完全解耦，可以完美的整合到SpringBoot工程中。</p> <h3> <a id="21__65" rel="nofollow"></a><strong>2.1 前端页面创建</strong><br /> </h3> <p>在static目录下建立index.html文件，用来绘制前端页面。如果用了thymeleaf也可以将文件建立在templates目录中。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/0369b2448bc095108504e67c481df341.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <h3> <a id="21_SpreadJS_70" rel="nofollow"></a><strong>2.1 SpreadJS组件引入和初始化</strong><br /> </h3> <p>在header中引入SpreadJS相关的css与js引用。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/2754cc0585b11aff63109f088e66f0bf.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <p>创建SpreadJS对应的DOM对象。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/a5c8ba858638bbd86679d9c1b4c5a7dc.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <p>在JS中初始化SpreadJS和导入导出Excel相关的ExcelIO对象。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/7300703d65eacc3579ca48606dcfa5ef.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <p>通过按钮点击进行服务端导入与导出。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/cc6fa170595a7d5353e18b4d30f87a55.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <p>导入导出事件处理，在事件中发送请求与服务端进行连接。</p> <p>导入原理：</p> <p>将服务端的文件以文件流的形式传输至前端，前端通过ExcelIO将结果导入结果呈现值SpreadJS中，所以导入的传递的参数是一个文件路径。注意该路径是文件在服务端或者工程中的一个路径。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/77bf0de3644293bdfb6c6103be2e0898.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <p>导出原理:</p> <p>通过SpreadJS ExcelIO的功能将内容导出成Excel的blob流。之后将blob流传至服务器端，在服务器端进行保存Excel文件的操作。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/00fe9bf02058e38a6f8290fcb99d65da.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <h2> <a id="3_105" rel="nofollow"></a><strong>3.后端配置</strong><br /> </h2> <p>创建后端controller，可按照自身项目的包的层级分类进行创建。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/9a752b004df5c8c2138a01d456181788.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <p>构建服务端的导入导出方法和相关逻辑。</p> <p>服务器端导入：</p> <p>由于前端传入的是一个文件的路径，所以参数这里我们需要一个字符串类型的参数去接收。</p> <p>另外，我们会将流传到前端，所以会将流写到response中，所以参数中还需要response对象，方法本身不需要返回，返回空即可。原理是通过inputStream读取文件后，将其写入response的outputStream中。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/a8a12111d3bf94072f414d82b8d4da73.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <p>导出到服务器：</p> <p>由于前端传入传入的是保存文件的名称以及文件blob文件流。服务器端需要两个参数，String用来接收文件名称，MultipartFile对象用来接收blob文件流。后端接受到文件流之后通过transferTo方法在指定目录下根军传来的fileName转存成新的文件。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/b1631e316cfe0004636c6543a7750d9f.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <h2> <a id="4_127" rel="nofollow"></a><strong>4.测试运行</strong><br /> </h2> <p>将工程跑起来之后进入主页面，显示如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/b4b776dd635a7404dc5521aa72792b9e.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <p>点击服务端导入按钮，从服务器端下载指定的Excel文件并打开。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/42f03aa60fbf1738880b0279b5d94c32.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <p>对该文件进行操作修改并点击服务端导出的按钮。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/10a5c7346557014c0049087eaddd4528.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <p>之后我们去服务器端的导出路径下查看，发下文件存在，用Excel打开文件后发现，修改后的内容健在并且其他内容显示均无问题。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/5d580815ee1954f123d0675dbfd24f20.jpg" alt="Spring Boot框架下实现Excel服务端导入导出"></p> <p>到这里我们就实现了Spring Boot框架下实现Excel服务端导入导出。</p> <h2> <a id="_149" rel="nofollow"></a><strong>拓展阅读</strong><br /> </h2> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.grapecity.com.cn/blogs/spreadjs-realize-excel-report-automation-from-0"  rel="nofollow">React + Springboot + Quartz，从0实现Excel报表自动化</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.grapecity.com.cn/blogs/spreadjs-three-steps-shopping-cart-with-spreadsheet"  rel="nofollow">电子表格也能做购物车？简单三步就能实现</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.grapecity.com.cn/blogs/spreadjs-construction-of-enterprise-cash-flow-statement"  rel="nofollow">使用纯前端类Excel表格控件SpreadJS构建企业现金流量表</a></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-87139.htm">动物疫苗注射的作用是什么呢 动物疫苗注射的作用是什么呢视频</a></p>
+                                        <p>下一个：<a href="/news/article-87836.htm">参观动物医院的心得体会范文怎么写（参观动物博物馆的心得体会）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-83558.htm" title="KTL 一个支持C++14编辑公式的K线技术工具平台 &#8211; 第五版，支持sqlite3，全新sqlite3zz语法超简单使用sqlite3; 添加方差等统计函数。">KTL 一个支持C++14编辑公式的K线技术工具平台 &#8211; 第五版，支持sqlite3，全新sqlite3zz语法超简单使用sqlite3; 添加方差等统计函数。</a></li>
+                        <li class="py-2"><a href="/news/article-69292.htm" title="附近哪里可以寄养宠物（附近有没有寄养宠物的）">附近哪里可以寄养宠物（附近有没有寄养宠物的）</a></li>
+                        <li class="py-2"><a href="/news/article-78665.htm" title="非泼罗尼和阿维菌素哪一个驱虫好用（阿维菌素透皮溶液和非泼罗尼滴剂哪个更合适泰迪幼崽）">非泼罗尼和阿维菌素哪一个驱虫好用（阿维菌素透皮溶液和非泼罗尼滴剂哪个更合适泰迪幼崽）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-16-node-share-links.htm" title="「3月16日」最高速度22.6M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月16日」最高速度22.6M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-86417.htm" title="Linux-SUID提权_在线工具Live2D">Linux-SUID提权_在线工具Live2D</a></li>
+                        <li class="py-2"><a href="/news/article-69291.htm" title="领养宠物用英语怎么说（领养英文单词怎么写）">领养宠物用英语怎么说（领养英文单词怎么写）</a></li>
+                        <li class="py-2"><a href="/news/article-71262.htm" title="哈尔滨农大兽医院官网（哈尔滨农大动物医院地址）">哈尔滨农大兽医院官网（哈尔滨农大动物医院地址）</a></li>
+                        <li class="py-2"><a href="/news/article-68002.htm" title="宠物粮食加工厂设备有哪些种类图片及价格大全（宠物粮食加工厂怎么起步）">宠物粮食加工厂设备有哪些种类图片及价格大全（宠物粮食加工厂怎么起步）</a></li>
+                        <li class="py-2"><a href="/news/article-80041.htm" title="开宠物店会血本无归吗（开宠物店会血本无归吗）">开宠物店会血本无归吗（开宠物店会血本无归吗）</a></li>
+                        <li class="py-2"><a href="/news/article-73902.htm" title="微信上买狗被欺骗怎么办 微信上买狗被欺骗怎么办2400元">微信上买狗被欺骗怎么办 微信上买狗被欺骗怎么办2400元</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
