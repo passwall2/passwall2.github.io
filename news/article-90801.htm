@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-90801.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>K8S 将 pod 调度到指定 nodes 上运行</title>
+        <meta name="description" content="K8S将pod调度到指定nodes上运行 两种方式 方式1：强制固定 编写yaml，添加参数（node节点名） vim text.yaml nodeName: worker01  #添加节点名参数 具" />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Pass Wall2机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://passwall2.github.io/news/article-90801.htm" />
+    <meta property="og:site_name" content="Pass Wall2机场订阅官网" />
+    <meta property="og:title" content="K8S 将 pod 调度到指定 nodes 上运行" />
+    <meta property="og:image" content="https://passwall2.github.io/uploads/20240825/f795fb3aa863b85d73da3cfc82e390d4.webp" />
+        <meta property="og:release_date" content="2025-04-07T09:03:50" />
+    <meta property="og:updated_time" content="2025-04-07T09:03:50" />
+        <meta property="og:description" content="K8S将pod调度到指定nodes上运行 两种方式 方式1：强制固定 编写yaml，添加参数（node节点名） vim text.yaml nodeName: worker01  #添加节点名参数 具" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="K8S 将 pod 调度到指定 nodes 上运行">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://use.fontawesome.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a href="/" class="navbar-brand p-0">
+                                <span class="text-primary mb-0">Pass Wall2</span>
+                                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">K8S 将 pod 调度到指定 nodes 上运行</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h3><a id="K8Spodnodes_0" rel="nofollow"></a>K8S将pod调度到指定nodes上运行</h3> <h4><a id="_1" rel="nofollow"></a>两种方式</h4> <h4><a id="1_2" rel="nofollow"></a>方式1：强制固定</h4> <h5><a id="yamlnode_3" rel="nofollow"></a>编写yaml，添加参数（node节点名）</h5> <pre><code class="prism language-groovy">vim text<span class="token punctuation">.</span>yaml nodeName<span class="token punctuation">:</span> worker01  #添加节点名参数</code></pre> <h5><a id="yaml_9" rel="nofollow"></a>具体yaml</h5> <pre><code class="prism language-groovy">apiVersion<span class="token punctuation">:</span> v1 kind<span class="token punctuation">:</span> Pod metadata<span class="token punctuation">:</span>   name<span class="token punctuation">:</span> text   namespace<span class="token punctuation">:</span> text spec<span class="token punctuation">:</span>   nodeName<span class="token punctuation">:</span> worker01   #添加节点名参数   containers<span class="token punctuation">:</span><span class="token operator">-</span> name<span class="token punctuation">:</span> hello     image<span class="token punctuation">:</span> centos<span class="token punctuation">:</span><span class="token number">7</span>     imagePullPolicy<span class="token punctuation">:</span> IfNotPresent     command<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">"bash"</span><span class="token punctuation">,</span><span class="token string">"-c"</span><span class="token punctuation">,</span><span class="token string">"--"</span><span class="token punctuation">]</span>     args<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">"while true; do sleep 3;done;"</span><span class="token punctuation">]</span></code></pre> <h5><a id="pod_26" rel="nofollow"></a>创建该pod</h5> <pre><code class="prism language-groovy">kubectl create<span class="token operator">-</span>f text<span class="token punctuation">.</span>yaml</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/9f182b815089fd6815e6384a1c07ae24.jpg" alt="K8S 将 pod 调度到指定 nodes 上运行"></p> <h5><a id="pod_31" rel="nofollow"></a>查看pod，运行成功</h5> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/26e3347311f977855527a0d0af773b45.jpg" alt="K8S 将 pod 调度到指定 nodes 上运行"></p> <h5><a id="worker01_33" rel="nofollow"></a>查看是否在worker01上运行</h5> <pre><code class="prism language-groovy">kubectl describe pod text<span class="token operator">-</span>n text</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/2358c4fee1050aee19e95fd01d210f12.jpg" alt="K8S 将 pod 调度到指定 nodes 上运行"></p> <h4><a id="2labelselector_38" rel="nofollow"></a>方式2：使用标签选择器（label-selector）</h4> <h5><a id="_39" rel="nofollow"></a>给节点添加标签</h5> <pre><code class="prism language-groovy">kubectl label nodes worker03 type<span class="token operator">=</span>node_type</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/fa731fccea59b10503963b63f57cd549.jpg" alt="K8S 将 pod 调度到指定 nodes 上运行"></p> <h5><a id="_44" rel="nofollow"></a>查看标签是否添加成功</h5> <pre><code class="prism language-groovy">kubectl get node<span class="token operator">--</span>show<span class="token operator">-</span>labels   #获取所有节点的标签，得到worker03设置的标签</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/7e112fba5fba9ed4a7572103f43caf86.jpg" alt="K8S 将 pod 调度到指定 nodes 上运行"></p> <h5><a id="yamlpod_50" rel="nofollow"></a>编写yaml创建pod，添加标签选择器参数</h5> <pre><code class="prism language-groovy">vim text1<span class="token punctuation">.</span>yaml</code></pre> <h5><a id="_54" rel="nofollow"></a>内容如下</h5> <pre><code class="prism language-groovy">apiVersion<span class="token punctuation">:</span> v1 kind<span class="token punctuation">:</span> Pod metadata<span class="token punctuation">:</span>   name<span class="token punctuation">:</span> text1   namespace<span class="token punctuation">:</span> text spec<span class="token punctuation">:</span>   nodeSelector<span class="token punctuation">:</span>    #标签选择器参数     type<span class="token punctuation">:</span> node_type #刚刚添加的类型   containers<span class="token punctuation">:</span><span class="token operator">-</span> name<span class="token punctuation">:</span> hello1     image<span class="token punctuation">:</span> centos<span class="token punctuation">:</span><span class="token number">7</span>     imagePullPolicy<span class="token punctuation">:</span> IfNotPresent     command<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">"bash"</span><span class="token punctuation">,</span><span class="token string">"-c"</span><span class="token punctuation">,</span><span class="token string">"--"</span><span class="token punctuation">]</span>     args<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">"while true; do sleep 3;done;"</span><span class="token punctuation">]</span></code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/203677eae70ddc98e2b3c459a365ac49.jpg" alt="K8S 将 pod 调度到指定 nodes 上运行"></p> <h5><a id="_72" rel="nofollow"></a>查看是否运行</h5> <pre><code class="prism language-groovy">kubectl get pod<span class="token operator">-</span>n text</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/56cdd192ad91e2608853357b055a98c4.jpg" alt="K8S 将 pod 调度到指定 nodes 上运行"></p> <h5><a id="worker03_78" rel="nofollow"></a>查看是否成功在worker03上运行</h5> <pre><code class="prism language-groovy">kubectl describe pod text1<span class="token operator">-</span>n text</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220819/6a9c47da052fcd7e812a1e769940a2f4.jpg" alt="K8S 将 pod 调度到指定 nodes 上运行"><br /> 原文链接：http://www.hainiubl.com/topics/75623</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-90800.htm">MySQL在日期中添加“半年间隔”的不同方式是什么？</a></p>
+                                        <p>下一个：<a href="/news/article-91175.htm">昆明免费领养宠物的地方（昆明免费领养宠物的地方在哪里）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-4-4-free-high-speed-nodes.htm" title="「4月4日」最高速度19.5M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「4月4日」最高速度19.5M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-17-free-subscribe-node.htm" title="「3月17日」最高速度22.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月17日」最高速度22.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-83556.htm" title="让我们写一个 Win32 文本编辑器吧 &#8211; 2. 计划和显示">让我们写一个 Win32 文本编辑器吧 &#8211; 2. 计划和显示</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-5-node-share-links.htm" title="「3月5日」最高速度20.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月5日」最高速度20.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-71263.htm" title="兽医防疫简报范文（兽医开展工作简报）">兽医防疫简报范文（兽医开展工作简报）</a></li>
+                        <li class="py-2"><a href="/news/article-87835.htm" title="Spring Boot框架下实现Excel服务端导入导出">Spring Boot框架下实现Excel服务端导入导出</a></li>
+                        <li class="py-2"><a href="/news/article-80719.htm" title="广州宠物猫领养中心电话号码多少（广州宠物猫领养中心电话号码多少啊）">广州宠物猫领养中心电话号码多少（广州宠物猫领养中心电话号码多少啊）</a></li>
+                        <li class="py-2"><a href="/news/article-77295.htm" title="开宠物店前景怎么样啊（2021年开宠物店怎么样）">开宠物店前景怎么样啊（2021年开宠物店怎么样）</a></li>
+                        <li class="py-2"><a href="/news/article-66119.htm" title="动物疫苗批签发查询（动物疫苗批准文号）">动物疫苗批签发查询（动物疫苗批准文号）</a></li>
+                        <li class="py-2"><a href="/news/article-82099.htm" title="办理宠物诊所需要什么资料（办个宠物医院需要什么条件?）">办理宠物诊所需要什么资料（办个宠物医院需要什么条件?）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

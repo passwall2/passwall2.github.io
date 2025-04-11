@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-93019.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Springboot过滤器和拦截器实现</title>
+        <meta name="description" content="1.过滤器 首先先写一个过滤器Filter,不使用注解 package com.liuhaiyang.springboot.filter2;   import javax.servlet.*; imp" />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Pass Wall2机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://passwall2.github.io/news/article-93019.htm" />
+    <meta property="og:site_name" content="Pass Wall2机场订阅官网" />
+    <meta property="og:title" content="Springboot过滤器和拦截器实现" />
+    <meta property="og:image" content="https://passwall2.github.io/uploads/20240825/fe7c2185098f7454720cbfef744548a0.webp" />
+        <meta property="og:release_date" content="2025-04-10T08:20:34" />
+    <meta property="og:updated_time" content="2025-04-10T08:20:34" />
+        <meta property="og:description" content="1.过滤器 首先先写一个过滤器Filter,不使用注解 package com.liuhaiyang.springboot.filter2;   import javax.servlet.*; imp" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Springboot过滤器和拦截器实现">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://use.fontawesome.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a href="/" class="navbar-brand p-0">
+                                <span class="text-primary mb-0">Pass Wall2</span>
+                                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Springboot过滤器和拦截器实现</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h2><a id="1_0" rel="nofollow"></a>1.过滤器</h2> <p>首先先写一个过滤器Filter,不使用注解</p> <pre><code>package com.liuhaiyang.springboot.filter2;   import javax.servlet.*; import javax.servlet.annotation.WebFilter; import java.io.IOException;   //过滤器 public class MyFilter implements Filter {     @Override     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {         System.out.println("---------您已进入过滤器222----------");         filterChain.doFilter(servletRequest,servletResponse);     } }</code></pre> <p>再写一个配置类</p> <pre><code>package com.liuhaiyang.springboot.config;   import com.liuhaiyang.springboot.filter2.MyFilter; import org.springframework.boot.web.servlet.FilterRegistrationBean; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration;   @Configuration  //定义此类为配置类 public class FilterConfig {     @Bean     public FilterRegistrationBean myFilterRegistrationBean(){         FilterRegistrationBean filterRegistrationBean=new FilterRegistrationBean(new MyFilter());           //添加过滤路径         filterRegistrationBean.addUrlPatterns("/user/*");         return filterRegistrationBean;     }   }</code></pre> <p>最后写一个controller类</p> <pre><code>package com.liuhaiyang.springboot.controller;   import org.springframework.stereotype.Controller; import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.web.bind.annotation.ResponseBody;   @Controller public class MyController {     @RequestMapping("/user/detail")     public @ResponseBody String userDetail(){         return "/user/detail";     }       @RequestMapping("/center")     public @ResponseBody String center(){         return "/center";     } }</code></pre> <h2><a id="2_61" rel="nofollow"></a>2.拦截器</h2> <p>创建拦截器类,实现HandlerInterceptor接口,重写preHandle方法,在该方法中编写业务拦截的规则</p> <pre><code>public class UserInterceptor implements HandlerInterceptor {     @Override     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {         //从session中获取user的信息         User user =(User)request.getSession().getAttribute("user");         //判断用户是否登录         if (null==user){             response.sendRedirect(request.getContextPath()+"/user/error");             return false;         }         return true;     } }</code></pre> <p>使用@Configuration注解将这个类定义为配置类,实现WebMvcConfigurer接口并且重写addInterceptors方法</p> <pre><code>@Configuration//定义此类为配置类 public class InterceptorConfig implements WebMvcConfigurer {     @Override     public void addInterceptors(InterceptorRegistry registry) {     	//addPathPatterns拦截的路径         String[] addPathPatterns = {                 "/user/**"         };         //excludePathPatterns排除的路径         String[] excludePathPatterns = {                 "/user/login","/user/noLg","/user/error"         };         //创建用户拦截器对象并指定其拦截的路径和排除的路径         registry.addInterceptor(new UserInterceptor()).addPathPatterns(addPathPatterns).excludePathPatterns(excludePathPatterns);     } }</code></pre> <p>编写Controller类</p> <pre><code>@RestController @RequestMapping("/user") public class MyController {     //用户登录     @RequestMapping("login")     public Object login(HttpServletRequest request){         //将已经登录的用户信息添加到session中         request.getSession().setAttribute("user",new User(1,"张三",20));         return "Login Success";     }     //不需要登录也能访问的请求     @RequestMapping("/noLg")     public Object noLg(){         return "Everyone Can See";     }     //必须要登录才能访问的请求     @RequestMapping("/mustLg")     public Object mustLg(){         return "Only User Can See";     }     //如果用户未登录访问了需要登录才能访问的请求会跳转到这个错误提示页面     @RequestMapping("/error")     public Object error(){         return "You Must Login";     } }</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-92287.htm">猫粮生产流程（猫粮生产流程图解）</a></p>
+                                        <p>下一个：<a href="/news/article-93020.htm">给宠物医院的好评怎么写评语 给宠物医院的好评怎么写评语呢</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-86418.htm" title="动物医院办理条件有哪些规定和要求（动物医院办理条件有哪些规定和要求呢）">动物医院办理条件有哪些规定和要求（动物医院办理条件有哪些规定和要求呢）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-27-node-share-links.htm" title="「3月27日」最高速度18.6M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月27日」最高速度18.6M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-82823.htm" title="义乌流浪狗领养在哪里 义乌流浪狗领养在哪里办理">义乌流浪狗领养在哪里 义乌流浪狗领养在哪里办理</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-5-node-share-links.htm" title="「3月5日」最高速度20.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月5日」最高速度20.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-75918.htm" title="狗粮配方大全及做法视频（狗粮配方有哪些原料）">狗粮配方大全及做法视频（狗粮配方有哪些原料）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-23-free-node-subscribe.htm" title="「3月23日」最高速度20.9M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月23日」最高速度20.9M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-10-node-share-links.htm" title="「4月10日」最高速度22.9M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「4月10日」最高速度22.9M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-82824.htm" title="宠物粮食主要特征（宠物粮食品牌前十）">宠物粮食主要特征（宠物粮食品牌前十）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-5-free-node-subscribe-links.htm" title="「4月5日」最高速度21.4M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「4月5日」最高速度21.4M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-76617.htm" title="动物防疫所电话号码（动物防疫管理部门电话）">动物防疫所电话号码（动物防疫管理部门电话）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
