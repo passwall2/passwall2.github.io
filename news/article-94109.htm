@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-94109.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Pygame从0实战10(泡泡小游戏添加音效)</title>
+        <meta name="description" content="1.Pygame从0实战10(泡泡小游戏添加音效) 这节我们将如何在Pygame游戏中添加音效并且在上节未完成的泡泡游戏中 添加音效 下面是资源链接&nbsp;点击打开链接&nbsp;密码：hfjz " />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Pass Wall2机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://passwall2.github.io/news/article-94109.htm" />
+    <meta property="og:site_name" content="Pass Wall2机场订阅官网" />
+    <meta property="og:title" content="Pygame从0实战10(泡泡小游戏添加音效)" />
+    <meta property="og:image" content="https://passwall2.github.io/uploads/20240825/8885e4183d72c610f2317fddba1dad08.webp" />
+        <meta property="og:release_date" content="2025-04-12T08:54:40" />
+    <meta property="og:updated_time" content="2025-04-12T08:54:40" />
+        <meta property="og:description" content="1.Pygame从0实战10(泡泡小游戏添加音效) 这节我们将如何在Pygame游戏中添加音效并且在上节未完成的泡泡游戏中 添加音效 下面是资源链接&nbsp;点击打开链接&nbsp;密码：hfjz " />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Pygame从0实战10(泡泡小游戏添加音效)">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://use.fontawesome.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a href="/" class="navbar-brand p-0">
+                                <span class="text-primary mb-0">Pass Wall2</span>
+                                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Pygame从0实战10(泡泡小游戏添加音效)</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <h5>1.Pygame从0实战10(泡泡小游戏添加音效)</h5> <p>这节我们将如何在Pygame游戏中添加音效并且在上节未完成的泡泡游戏中</p> <p>添加音效 下面是资源链接&nbsp;<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://pan.baidu.com/s/1cWL5530tuxptnT0LcEwLfA"  rel="nofollow">点击打开链接</a>&nbsp;密码：hfjz</p> <p><strong>播放声音和音效</strong></p> <p><strong>建议将将.ogg格式作为背景音乐,.wav作为音效</strong></p> <p><strong>播放背景音乐:</strong><br />-pygame.mixer.music对象<br />pygame.mixer.music:<br /><span style="white-space:pre;"> </span>pygame module for controlling streamed audio<br />music对象的方法:<br /><span style="white-space:pre;"> </span>方法<span style="white-space:pre;"> </span> 含义<br />load()<span style="white-space:pre;"> </span>载入音乐<br />play()<span style="white-space:pre;"> </span>播放音乐<br />rewind()<span style="white-space:pre;"> </span>重新播放<br />stop()<span style="white-space:pre;"> </span>停止播放<br />pause()<span style="white-space:pre;"> </span>暂停播放<br />unpause()<span style="white-space:pre;"> </span>恢复播放<br />fadeout()<span style="white-space:pre;"> </span>淡出<br />set_volumn()<span style="white-space:pre;"> </span>设置音量<br />get_volumn()<span style="white-space:pre;"> </span>获取音量<br />get_busy()<span style="white-space:pre;"> </span>检测音乐流是否正在播放<br />set_pos()<span style="white-space:pre;"> </span>设置开始播放的位置<br />get_pos()<span style="white-space:pre;"> </span>获取已经播放的时间<br />queue()<span style="white-space:pre;"> </span>将音乐文件放入待播放列表中<br />set_endevent()<span style="white-space:pre;"> </span>在音乐播放完毕时发送事件</p> <p>get_endevent()<span style="white-space:pre;"> </span>获取音乐播放完毕时发送的事件类型</p> <p>运行程序，在屏幕上鼠标左键点击发出狗叫声，右键点击发出鸟叫声</p> <p>空格键控制背景音乐的播放和暂停</p> <pre><code class="language-python"># -*- coding: utf-8 -*- # @Author: Clarence # @Date:   2018-03-10 16:09:22 # @Last Modified by:   Clarence # @Last Modified time: 2018-03-10 23:34:24 import pygame import sys from pygame.locals import *  pygame.init() #Initialize the mixer module for Sound loading and playback. #使用之前最好先初始化一下 pygame.mixer.init()  pygame.mixer.music.load("bg_music.ogg") pygame.mixer.music.set_volume(0.2) pygame.mixer.music.play() #开始播放  bird_sound = pygame.mixer.Sound("birdsound.wav") bird_sound.set_volume(0.2) dog_sound = pygame.mixer.Sound("dogbark.wav") dog_sound.set_volume(0.2)   bg_size = width, height = 300, 200 screen = pygame.display.set_mode(bg_size) pygame.display.set_caption("MusicPlayDemo")  #空格表示暂停，再次按空格播放音乐 pause = False  pause_image = pygame.image.load("pause.png").convert_alpha() unpause_image = pygame.image.load("unpause.png").convert_alpha() pause_rect = pause_image.get_rect() #将按钮显示到屏幕的正中央 pause_rect.left, pause_rect.top = (width - pause_rect.width) // 2,\ (height - pause_rect.height) // 2  clock = pygame.time.Clock()  while True: 	for event in pygame.event.get(): 		if event.type == QUIT: 			sys.exit()  		if event.type == MOUSEBUTTONDOWN: 			if event.button == 1: 				#鼠标按左键播放狗叫声 				dog_sound.play() 			if event.button == 3: 				#鼠标按右键播放鸟叫声 				bird_sound.play()  		if event.type == KEYDOWN: 			#按下空格键 控制背景音乐的暂停和播放 			if event.key == K_SPACE: 				pause = not pause   	screen.fill((255, 255, 255))  	if pause: 		screen.blit(pause_image, pause_rect) 		pygame.mixer.music.pause() 	else: 		screen.blit(unpause_image, pause_rect) 		pygame.mixer.music.unpause()  	pygame.display.flip()  	clock.tick(30)</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230110/7f6a10bb68fd5eb60dab8a44ff50e49b.jpg" alt="Pygame从0实战10(泡泡小游戏添加音效)" width="200" height="200"></p> <p></p> <p>下面是加入背景音乐的泡泡游戏代码</p> <pre><code class="language-python">import  pygame import sys from pygame.locals import * from random import *  class Ball(pygame.sprite.Sprite): 	def __init__(self, image, position, speed, bg_size): 		# Call the parent class (Sprite) constructor 		pygame.sprite.Sprite.__init__(self)  		self.image = pygame.image.load(image).convert_alpha() 		self.rect = self.image.get_rect() 		#小球的位置 		self.rect.left, self.rect.top = position 		self.speed = speed 		self.width, self.height = bg_size[0], bg_size[1] 		#self.width = self.width / 2  	''' 	Pygame.Rect.move(): 		moves the rectangle  		move(x, y) -&gt; Rect 		Returns a new rectangle that is moved by the given offset. The 		x and y arguments can be any integer value, positive or  		negative. 		可以在Rect对象的move方法中添加可正可负的两元素 		如果要实现小球的移动，则要在类中添加一个move()方法，并且在绘图的时候调用小球 		对象的move()方法 	''' 	def move(self): 		self.rect = self.rect.move(self.speed)  		#类似实现贪吃蛇穿入墙壁从对面墙壁出来(左右方向) 		if self.rect.right &lt; 0: 			self.rect.left = self.width 		elif self.rect.left &gt; self.width: 			self.rect.right = 0  		#(上下方向) 从下往上 和 从上往下 		elif self.rect.bottom &lt; 0: 			self.rect.top = self.height 		elif self.rect.top &gt; self.height: 			self.rect.bottom = 0   def main(): 	pygame.init()  	ball_image = "gray_ball.png" 	bg_image = "background.png"  	running = True  	# 添加模型的背景音乐 	pygame.mixer.music.load("bg_music.ogg") 	pygame.mixer.music.play()  	# 添加音效 	loser_sound = pygame.mixer.Sound("loser.wav") 	laugh_sound = pygame.mixer.Sound("laugh.wav") 	winner_sound = pygame.mixer.Sound("winner.wav") 	hole_sound = pygame.mixer.Sound("hole.wav")  	# 音乐播放完时游戏结束,将GAMEOVER事件加入到事件队列中去 	# USEREVENT为用户自定义的事件 	# 如果想定义第二个事件可以是GAMEOVERTWO = USEREVENT + 1 	GAMEOVER = USEREVENT 	#背景音乐结束后发生GAMEOVER事件消息 	pygame.mixer.music.set_endevent(GAMEOVER)  	# 根据背景图片指定游戏界面尺寸 	bg_size = width, height = 1024, 681 	screen = pygame.display.set_mode(bg_size) 	pygame.display.set_caption("Play the Ball")  	#.png格式可以加入apha通道 	background = pygame.image.load(bg_image).convert_alpha()  	#用来存放小球对象的列表 	balls = [] 	group = pygame.sprite.Group()  	for i in range(5): 		#球的尺寸是100*100 随机产生小球的位置 		position = randint(0, width-100), randint(0, height-100) 		#两个元素的一个列表，表示x轴和y轴方向的速度 		speed = [randint(-10, 10), randint(-10, 10)] 		#实例化小球对象 分别传入Surface对象 位置二元组 速度两元素列表 		ball = Ball(ball_image, position, speed, bg_size) 		#碰撞检测之后不从组里面删除 		while pygame.sprite.spritecollide(ball, group, False, pygame.sprite.collide_circle): 			ball.rect.left, ball.rect.top = randint(0, width - 100),\ 			randint(0, height - 100)  		balls.append(ball) #将小球加入到小球列表中 		group.add(ball)  	# CLock()对象用来设置小球的帧率 	clock = pygame.time.Clock()  	while  running: 		for event in pygame.event.get(): 			if event.type == QUIT: 				sys.exit()  			elif event.type == GAMEOVER: 				loser_sound.play() 				pygame.time.delay(2000) 				laugh_sound.play() 				running = False #结束循环  		screen.blit(background, (0, 0))  		for each in balls: 			each.move() 			screen.blit(each.image, each.rect)   		for each in group: 			group.remove(each)  			if pygame.sprite.spritecollide(each, group, False, pygame.sprite.collide_circle): 				each.speed[0] = -each.speed[0] 				each.speed[1] = -each.speed[1]  			group.add(each)  		pygame.display.flip() #将显示缓冲区中的数据刷入显示器中 		clock.tick(30)   if __name__ == "__main__": 	main() </code></pre> <p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-93761.htm">穷人养猫还是富人养猫（穷人养猫富人养狗）</a></p>
+                                        <p>下一个：<a href="/news/article-94110.htm">如何保证Redis缓存和数据库一致性？</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-4-11-node-share-links.htm" title="「4月11日」最高速度20.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「4月11日」最高速度20.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-1-node-share.htm" title="「4月1日」最高速度22.3M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「4月1日」最高速度22.3M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-71263.htm" title="兽医防疫简报范文（兽医开展工作简报）">兽医防疫简报范文（兽医开展工作简报）</a></li>
+                        <li class="py-2"><a href="/news/article-91176.htm" title="动物疫苗注射部位图片高清（动物疫苗的使用方法及注意事项）">动物疫苗注射部位图片高清（动物疫苗的使用方法及注意事项）</a></li>
+                        <li class="py-2"><a href="/news/article-69938.htm" title="动物疫苗接种间隔（动物疫苗接种间隔多久）">动物疫苗接种间隔（动物疫苗接种间隔多久）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-6-node-share-links.htm" title="「4月6日」最高速度21.2M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「4月6日」最高速度21.2M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-28-free-high-speed-nodes.htm" title="「3月28日」最高速度19.4M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月28日」最高速度19.4M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-74563.htm" title="动物防疫站打疫苗多少钱一次啊（动物防疫站打疫苗多少钱一次啊）">动物防疫站打疫苗多少钱一次啊（动物防疫站打疫苗多少钱一次啊）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-31-free-subscribe-node.htm" title="「3月31日」最高速度22.9M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月31日」最高速度22.9M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-66727.htm" title="养猫咪不吉利吗（养猫咪不吉利吗怎么办）">养猫咪不吉利吗（养猫咪不吉利吗怎么办）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
