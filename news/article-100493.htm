@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-100493.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>教你在 Java 中实现 Dijkstra 最短路算法的方法_java</title>
+        <meta name="description" content="目录  定义 带权有向图的实现  带权有向边 带权有向图  最短路算法  API Dijkstra 算法  算法流程  最小索引优先队列 实现算法  后记     定义 最短路问题的定义为：  下图左" />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Pass Wall2机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://passwall2.github.io/news/article-100493.htm" />
+    <meta property="og:site_name" content="Pass Wall2机场订阅官网" />
+    <meta property="og:title" content="教你在 Java 中实现 Dijkstra 最短路算法的方法_java" />
+    <meta property="og:image" content="https://passwall2.github.io/uploads/20240825/72c2e527198fbb49bb81156e34ddb6af.webp" />
+        <meta property="og:release_date" content="2025-04-20T09:05:39" />
+    <meta property="og:updated_time" content="2025-04-20T09:05:39" />
+        <meta property="og:description" content="目录  定义 带权有向图的实现  带权有向边 带权有向图  最短路算法  API Dijkstra 算法  算法流程  最小索引优先队列 实现算法  后记     定义 最短路问题的定义为：  下图左" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="教你在 Java 中实现 Dijkstra 最短路算法的方法_java">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://use.fontawesome.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a href="/" class="navbar-brand p-0">
+                                <span class="text-primary mb-0">Pass Wall2</span>
+                                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">教你在 Java 中实现 Dijkstra 最短路算法的方法_java</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail">
+                      				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">定义</a></li> <li><a href="#_label1" rel="nofollow">带权有向图的实现</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_1_0" rel="nofollow">带权有向边</a></li> <li><a href="#_lab2_1_1" rel="nofollow">带权有向图</a></li> </ul> <li><a href="#_label2" rel="nofollow">最短路算法</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_2_2" rel="nofollow">API</a></li> <li><a href="#_lab2_2_3" rel="nofollow">Dijkstra 算法</a></li> </ul> <li><a href="#_label3" rel="nofollow">算法流程</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_3_4" rel="nofollow">最小索引优先队列</a></li> <li><a href="#_lab2_3_5" rel="nofollow">实现算法</a></li> </ul> <li><a href="#_label4" rel="nofollow">后记</a></li> <ul class="second_class_ul"></ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>定义</h2> <p>最短路问题的定义为：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220427/826879e05d6250ecebf02f03c436ebc0.jpg"></p> <p>下图左侧是一幅带权有向图，以顶点 0 为起点到各个顶点的最短路径形成的最短路径树如下图右侧所示：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220427/5560c928257f28e9aaaa43fc2d0de059.jpg"></p> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>带权有向图的实现</h2> <p>在实现最短路算法之前需要先实现带权有向图。在上一篇博客 <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.jb51.net/article/243529.htm"  target="_blank" rel="nofollow">《如何在 Java 中实现最小生成树算法》</a> 中我们实现了带权无向图，只需一点修改就能实现带权有向图。</p> <p class="maodian"><a name="_lab2_1_0" rel="nofollow"></a></p> <h3>带权有向边</h3> <p>首先应该实现带权有向图中的边 <code>DirectedEdge</code>，这个类有三个成员变量：指出边的顶点 <code>v</code>、边指向的顶点 <code>w</code> 和边的权重 <code>weight</code>。代码如下所示：</p> <div class="ay1code"> <pre class="brush:java;">package com.zhiyiyo.graph;  /**   * 带权有向边   */  public class DirectedEdge {      int v, w;      double weight;      public DirectedEdge(int v, int w, double weight) {          this.v = v;          this.w = w;          this.weight = weight;      }      public int from() {          return v;      public int to() {          return w;      public double getWeight() {          return weight;      @Override      public String toString() {          return String.format("%d-&gt;%d(%.2f)", v, w, weight);  }  </pre> </div> <p class="maodian"><a name="_lab2_1_1" rel="nofollow"></a></p> <h3>带权有向图</h3> <p>带权有向图的实现非常简单，只需将带权无向图使用的 <code>Edge</code> 类换成 <code>DirectedEdge</code> 类，并作出少许调整即可：</p> <div class="ay1code"> <pre class="brush:java;">package com.zhiyiyo.graph;  import com.zhiyiyo.collection.stack.LinkStack;  import com.zhiyiyo.collection.stack.Stack;  public class WeightedDigraph {      private final int V;      protected int E;      protected LinkStack&lt;DirectedEdge&gt;[] adj;      public WeightedDigraph(int V) {          this.V = V;          adj = (LinkStack&lt;DirectedEdge&gt;[]) new LinkStack[V];          for (int i = 0; i &lt; V; i++) {              adj[i] = new LinkStack&lt;&gt;();          }      }      public int V() {          return V;      }      public int E() {          return E;      }      public void addEdge(DirectedEdge edge) {          adj[edge.from()].push(edge);          E++;      }      public Iterable&lt;DirectedEdge&gt; adj(int v) {          return adj[v];      }      public Iterable&lt;DirectedEdge&gt; edges() {          Stack&lt;DirectedEdge&gt; edges = new LinkStack&lt;&gt;();          for (int v = 0; v &lt; V; ++v) {              for (DirectedEdge edge : adj(v)) {                  edges.push(edge);              }          }          return edges;      }  }  </pre> </div> <p class="maodian"><a name="_label2" rel="nofollow"></a></p> <h2>最短路算法</h2> <p class="maodian"><a name="_lab2_2_2" rel="nofollow"></a></p> <h3>API</h3> <p>最短路算法应该支持起始点 \(v_s\) 到任意顶点 \(v_t\) 的最短距离和最短路径的查询：</p> <div class="ay1code"> <pre class="brush:java;">package com.zhiyiyo.graph;  import com.zhiyiyo.collection.stack.LinkStack;  import com.zhiyiyo.collection.stack.Stack;  public class WeightedDigraph {      private final int V;      protected int E;      protected LinkStack&lt;DirectedEdge&gt;[] adj;      public WeightedDigraph(int V) {          this.V = V;          adj = (LinkStack&lt;DirectedEdge&gt;[]) new LinkStack[V];          for (int i = 0; i &lt; V; i++) {              adj[i] = new LinkStack&lt;&gt;();          }      }      public int V() {          return V;      public int E() {          return E;      public void addEdge(DirectedEdge edge) {          adj[edge.from()].push(edge);          E++;      public Iterable&lt;DirectedEdge&gt; adj(int v) {          return adj[v];      public Iterable&lt;DirectedEdge&gt; edges() {          Stack&lt;DirectedEdge&gt; edges = new LinkStack&lt;&gt;();          for (int v = 0; v &lt; V; ++v) {              for (DirectedEdge edge : adj(v)) {                  edges.push(edge);              }          return edges;  }  </pre> </div> <p class="maodian"><a name="_lab2_2_3" rel="nofollow"></a></p> <h3>Dijkstra 算法</h3> <p>我们可以使用一个距离数组 <code>distTo[]</code> 来保存起始点 \(v_s\) 到其余顶点 \(v_t\) 的最短路径，且 <code>distTo[]</code> 数组满足以下条件：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220427/7d71061681153df25ade354c067cf9e8.jpg"></p> <p>可以使用 <code>Double.POSITIVE_INFINITY</code> 来表示无穷大，有了这个数组之后我们可以实现 <code>ShortestPath</code> 前两个方法：</p> <div class="ay1code"> <pre class="brush:java;">package com.zhiyiyo.graph;  public class DijkstraSP implements ShortestPath {      private double[] distTo;      @Override      public double distTo(int v) {          return distTo[v];      }      public boolean hasPathTo(int v) {          return distTo[v] &lt; Double.POSITIVE_INFINITY;  }  </pre> </div> <p>为了实现保存 \(v_s\) 到 \(v_t\) 的最短路径，可以使用一个边数组 <code>edgeTo[]</code>，其中 <code>edgeTo[v] = e_wv</code> 表示要想到达 \(v_t\)，需要先经过顶点 \(v_w\)，接着从 <code>edgeTo[w]</code>获取到达 \(v_w\) 之前需要到达的上一个节点，重复上述步骤直到发现 <code>edgeTo[i] = null</code>，这时候就说明我们回到了 \(v_s\)。 获取最短路径的代码如下所示：</p> <div class="ay1code"> <pre class="brush:java;">@Override  public Iterable&lt;DirectedEdge&gt; pathTo(int v) {      if (!hasPathTo(v)) return null;      Stack&lt;DirectedEdge&gt; path = new LinkStack&lt;&gt;();      for (DirectedEdge e = edgeTo[v]; e != null; e = edgeTo[e.from()]) {          path.push(e);      }      return path;  }  </pre> </div> <p class="maodian"><a name="_label3" rel="nofollow"></a></p> <h2>算法流程</h2> <p>虽然我们已经实现了上述接口，但是如何得到 <code>distTo[]</code> 和 <code>edgeTo[]</code> 还是个问题，这就需要用到 Dijkstra 算法了。算法的思想是这样的：</p> <ul> <li>初始化 <code>distTo[]</code> 使得除了 <code>distTo<span class="show-more" title="文字折叠"><span><i class="be be-squareplus"></i>展开</span></span> = 0</code> 外，其余的元素都为 <code>Double.POSITIVE_INFINITY</code>。同时初始化 <code>edgeTo[]</code> 的每个元素都是 <code>null</code>；</li> <li>将顶点 s 的所有相邻顶点 \(v_j\) 加入集合 \(V'\) 中，设置 <code>distTo[j] = l_sj</code> 即初始化最短距离为邻边的权重；</li> <li>从 \(V'\) 中取出距离最短即 <code>distTo[m]</code> 最小的顶点 \(v_m\)，遍历 \(v_m\) 的所有邻边 \((v_m, v_w)\)，如果有 \(l_{mw}+l_{sw}&lt;l_{sw}\)，就说明从 \(v_s\) 走到 \(v_m\) 再一步走到 \(v_w\) 距离最短，我们就去更新 <code>distTo[m]</code>，同时将 \(v_w\) 添加到 \(V'\) 中（如果 \(v_w\) 不在的话）；</li> </ul> <p>重复上述过程直到 \(V'\) 变为空，我们就已经找到了所有 \(v_s\) 可达的顶点的最短路径。</p> <p>上述过程中有个地方会影响算法的性能，就是如何从 \(V'\) 中取出最小距离对应的顶点 \(v_m\)。如果直接遍历 \(V'\) 最坏情况下时间复杂度为 \(O(|V|)\)，如果换成最小索引优先队列则可以将时间复杂度降至 \(O(\log|V|)\)。</p> <p class="maodian"><a name="_lab2_3_4" rel="nofollow"></a></p> <h3>最小索引优先队列</h3> <p>上一篇博客<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.jb51.net/article/243529.htm"  target="_blank" rel="nofollow"> 《如何在 Java 中实现最小生成树算法》</a> 中介绍了最小堆的使用，最小堆可以在对数时间内取出数据集合中的最小值，对应到最短路算法中就是最短路径。但是有一个问题，就是我们想要的是最短路径对应的那个顶点 \(v_m\)，只使用最小堆是做不到这一点的。如何能将最小堆中的距离值和顶点进行绑定呢？这就要用到索引优先队列。</p> <p>索引优先队列的 API 如下所示，可以看到每个元素 <code>item</code> 都和一个索引 <code>k</code> 进行绑定，我们可以通过索引 <code>k</code> 读写优先队列中的元素。想象一下堆中的所有元素放在一个数组 <code>pq</code> 中，索引优先队列可以做到在对数时间内取出 <code>pq</code> 的最小值。</p> <div class="ay1code"> <pre class="brush:java;">package com.zhiyiyo.collection.queue;  /**   * 索引优先队列   */  public interface IndexPriorQueue&lt;K extends Comparable&lt;K&gt;&gt; {      /**       * 向堆中插入一个元素       *       * @param k 元素的索引       * @param item 插入的元素       */      void insert(int k, K item);       * 修改堆中指定索引的元素值       * @param item 新的元素值      void change(int k, K item);       * 向堆中插入或修改元素      void set(int k, K item);       * 堆是否包含索引为 k 的元素       * @param k 索引       * @return 是否包含      boolean contains(int k);       * 弹出堆顶的元素并返回其索引       * @return 堆顶元素的索引      int pop();       * 弹出堆中索引为 k 为元素       * @return 索引对应的元素      K delete(int k);       * 获取堆中索引为 k 的元素，如果 k 不存在则返回 null       * @return 索引为 k 的元素      K get(int k);       * 获取堆中的元素个数      int size();       * 堆是否为空      boolean isEmpty();  }  </pre> </div> <p>实现索引优先队列比优先队列麻烦一点，因为需要维护每个元素的索引。之前我们是将元素按照完全二叉树的存放顺序进行存储，现在可以换成索引，而元素只需根据索引值 <code>k</code> 放在数组 <code>keys[k]</code> 处即可。只有索引数组 <code>indexes[]</code> 和元素数组 <code>keys[]</code> 还不够，如果我们想实现 <code>contains(int k)</code> 方法，目前只能遍历一下 <code>indexes[]</code>，看看 <code>k</code> 在不在里面，时间复杂度是 \(O(|V|)\)。何不多维护一个数组 <code>nodeIndexes[]</code>，使得它满足下述关系：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220427/97e8708450797ea2f543f2af18a2edff.jpg"></p> <p>如果能在 <code>nodeIndexes[k]</code> 不是 -1，就说明索引 \(k\) 对应的元素存在与堆中，且索引 k 在 <code>indexes[]</code> 中的位置为 \(d\)，即有下述等式成立：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220427/7ae30cf7f450e31012f77950a8afb904.jpg"></p> <p>有了这三个数组之后我们就可以实现最小索引优先队列了：</p> <div class="ay1code"> <pre class="brush:java;">package com.zhiyiyo.collection.queue;  import java.util.Arrays;  import java.util.NoSuchElementException;  /**   * 最小索引优先队列   */  public class IndexMinPriorQueue&lt;K extends Comparable&lt;K&gt;&gt; implements IndexPriorQueue&lt;K&gt; {      private K[] keys;           // 元素      private int[] indexes;      // 元素的索引，按照最小堆的顺序摆放      private int[] nodeIndexes;  // 元素的索引在完全二叉树中的编号      private int N;      public IndexMinPriorQueue(int maxSize) {          keys = (K[]) new Comparable[maxSize + 1];          indexes = new int[maxSize + 1];          nodeIndexes = new int[maxSize + 1];          Arrays.fill(nodeIndexes, -1);      }      @Override      public void insert(int k, K item) {          keys[k] = item;          indexes[++N] = k;          nodeIndexes[k] = N;          swim(N);      public void change(int k, K item) {          validateIndex(k);          swim(nodeIndexes[k]);          sink(nodeIndexes[k]);      public void set(int k, K item) {          if (!contains(k)) {              insert(k, item);          } else {              change(k, item);          }      public boolean contains(int k) {          return nodeIndexes[k] != -1;      public int pop() {          int k = indexes[1];          delete(k);          return k;      public K delete(int k) {          K item = keys[k];          // 交换之后 nodeIndexes[k] 发生变化，必须先保存为局部变量          int nodeIndex = nodeIndexes[k];          swap(nodeIndex, N--);          // 必须有上浮的操作，交换后的元素可能比上面的元素更小          swim(nodeIndex);          sink(nodeIndex);          keys[k] = null;          nodeIndexes[k] = -1;          return item;      public K get(int k) {          return contains(k) ? keys[k] : null;      public K min() {          return keys[indexes[1]];      /**       * 获取最小的元素对应的索引       */      public int minIndex() {          return indexes[1];      public int size() {          return N;      public boolean isEmpty() {          return N == 0;       * 元素上浮       *       * @param k 元素的索引      private void swim(int k) {          while (k &gt; 1 &amp;&amp; less(k, k / 2)) {              swap(k, k / 2);              k /= 2;       * 元素下沉      private void sink(int k) {          while (2 * k &lt;= N) {              int j = 2 * k;              // 检查是否有两个子节点              if (j &lt; N &amp;&amp; less(j + 1, j)) j++;              if (less(k, j)) break;              swap(k, j);              k = j;       * 交换完全二叉树中编号为 a 和 b 的节点       * @param a 索引 a       * @param b 索引 b      private void swap(int a, int b) {          int k1 = indexes[a], k2 = indexes[b];          nodeIndexes[k2] = a;          nodeIndexes[k1] = b;          indexes[a] = k2;          indexes[b] = k1;      private boolean less(int a, int b) {          return keys[indexes[a]].compareTo(keys[indexes[b]]) &lt; 0;      private void validateIndex(int k) {              throw new NoSuchElementException("索引" + k + "不在优先队列中");  }  </pre> </div> <p>注意对比最小堆和最小索引堆的 <code>swap(int a, int b)</code> 方法以及 <code>less(int a, int b)</code> 方法，在交换堆中的元素时使用的依据是元素的大小，交换之后无需调整 <code>keys[]</code>，而是交换 <code>nodeIndexes[]</code> 和 <code>indexes[]</code> 中的元素。</p> <p class="maodian"><a name="_lab2_3_5" rel="nofollow"></a></p> <h3>实现算法</h3> <p>通过上述的分析，实现 Dijkstra 算法就很简单了，时间复杂度为 \(O(|E|\log |V|)\)：</p> <div class="ay1code"> <pre class="brush:java;">package com.zhiyiyo.graph;  import com.zhiyiyo.collection.queue.IndexMinPriorQueue;  import com.zhiyiyo.collection.stack.LinkStack;  import com.zhiyiyo.collection.stack.Stack;  import java.util.Arrays;  public class DijkstraSP implements ShortestPath {      private double[] distTo;      private DirectedEdge[] edgeTo;      private IndexMinPriorQueue&lt;Double&gt; pq;      private int s;      public DijkstraSP(WeightedDigraph graph, int s) {          pq = new IndexMinPriorQueue&lt;&gt;(graph.V());          edgeTo = new DirectedEdge[graph.V()];                    // 初始化距离          distTo = new double[graph.V()];          Arrays.fill(distTo, Double.POSITIVE_INFINITY);          distTo<span class="show-more" title="文字折叠"><span><i class="be be-squareplus"></i>展开</span></span> = 0;          visit(graph, s);          while (!pq.isEmpty()) {              visit(graph, pq.pop());          }      }      private void visit(WeightedDigraph graph, int v) {          for (DirectedEdge edge : graph.adj(v)) {              int w = edge.to();              if (distTo[w] &gt; distTo[v] + edge.getWeight()) {                  distTo[w] = distTo[v] + edge.getWeight();                  edgeTo[w] = edge;                  pq.set(w, distTo[w]);              }      // 省略已实现的方法 ...  }  </pre> </div> <p class="maodian"><a name="_label4" rel="nofollow"></a></p> <h2>后记</h2> <p>Dijkstra 算法还能继续优化，将最小索引堆换成斐波那契堆之后时间复杂度为 \(O(|E|+|V|\log |V|)\)，这里就不写了（<s>因为还没学到斐波那契堆</s>），以上~~</p> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-100492.htm">springboot 2.X Jar包部署到阿里云 配置SSL证书 启用HTTPS  通过域名访问</a></p>
+                                        <p>下一个：<a href="/news/article-101118.htm">济南有猫咪领养站吗（济南哪里有领养猫的地方）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-66119.htm" title="动物疫苗批签发查询（动物疫苗批准文号）">动物疫苗批签发查询（动物疫苗批准文号）</a></li>
+                        <li class="py-2"><a href="/news/article-101118.htm" title="济南有猫咪领养站吗（济南哪里有领养猫的地方）">济南有猫咪领养站吗（济南哪里有领养猫的地方）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-21-node-share.htm" title="「4月21日」最高速度18M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「4月21日」最高速度18M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-101119.htm" title="上海宠物繁殖基地电话（上海宠物繁育基地）">上海宠物繁殖基地电话（上海宠物繁育基地）</a></li>
+                        <li class="py-2"><a href="/news/article-66726.htm" title="Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(摄取、修改数据 DML)">Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(摄取、修改数据 DML)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-22-free-subscribe-node.htm" title="「3月22日」最高速度19M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月22日」最高速度19M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-19-free-subscribe-node.htm" title="「4月19日」最高速度20.2M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「4月19日」最高速度20.2M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-11-node-share-links.htm" title="「4月11日」最高速度20.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「4月11日」最高速度20.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-69292.htm" title="附近哪里可以寄养宠物（附近有没有寄养宠物的）">附近哪里可以寄养宠物（附近有没有寄养宠物的）</a></li>
+                        <li class="py-2"><a href="/news/article-88590.htm" title="面试题-kafka如何保证消息不丢失">面试题-kafka如何保证消息不丢失</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">63</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
