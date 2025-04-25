@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://passwall2.github.io/news/article-102637.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>kubectl 远程访问内网中的 kubernetes 集群</title>
+        <meta name="description" content="之前自己在三台阿里云服务器上搭建了一套 kubernetes 集群，因为在是在内网中，所以每次部署都要先将 yaml 文件 scp 到 master 服务器上，再自己手动 ssh 到 master 上" />
+        <link rel="icon" href="/assets/website/img/passwall2/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Pass Wall2机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://passwall2.github.io/news/article-102637.htm" />
+    <meta property="og:site_name" content="Pass Wall2机场订阅官网" />
+    <meta property="og:title" content="kubectl 远程访问内网中的 kubernetes 集群" />
+    <meta property="og:image" content="https://passwall2.github.io/uploads/20240825/7fc8e053cd4a85c0fda25501cdbce08d.webp" />
+        <meta property="og:release_date" content="2025-04-23T08:44:38" />
+    <meta property="og:updated_time" content="2025-04-23T08:44:38" />
+        <meta property="og:description" content="之前自己在三台阿里云服务器上搭建了一套 kubernetes 集群，因为在是在内网中，所以每次部署都要先将 yaml 文件 scp 到 master 服务器上，再自己手动 ssh 到 master 上" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="kubectl 远程访问内网中的 kubernetes 集群">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://use.fontawesome.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="/assets/website/js/frontend/passwall2/animate/animate.min.css" />
+    <link href="/assets/website/js/frontend/passwall2/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/passwall2/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/passwall2/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/passwall2/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8TLG2ND4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BD8TLG2ND4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a href="/" class="navbar-brand p-0">
+                                <span class="text-primary mb-0">Pass Wall2</span>
+                                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-0 mx-lg-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">kubectl 远程访问内网中的 kubernetes 集群</h1>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                <li class="breadcrumb-item active text-primary">正文</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail">
+                      				  				  				<div id="content_views" class="markdown_views prism-atelier-sulphurpool-light"> <p>之前自己在三台阿里云服务器上搭建了一套 kubernetes 集群，因为在是在内网中，所以每次部署都要先将 yaml 文件 scp 到 master 服务器上，再自己手动 ssh 到 master 上用 kubectl 执行部署命令，很是不方便。网上找了些资料，配置了下kubectl 远程访问内网k8s， 这篇文章记录下配置的细节。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220610/746891654328a59f4ceb41ff0c04a89f.jpg" alt="kubectl 远程访问内网中的 kubernetes 集群"></p> <p>scp 把集群上 kubectl 的配置拷贝到本地电脑。集群中 kubectl 的配置都存放在，<code>~/.kube/config</code> 文件中，将该文件拷贝到本地的<code>~/.kube</code>目录下。（在本地电脑安装 kubectl 后，会自动创建该目录）。</p> <pre><code class="prism language-bash"><span class="token function">scp</span> master.aliyun:.kube/config ~/Downloads/<span class="token function">cp</span> ~/Downloads/config ~/.kube/</code></pre> <p>此时如果在本地电脑执行<code>kubectl get pods</code> 是没有反应的，因为 config 文件中的 server 是内网 IP。所以需要将 server IP 该成公网 IP：<code>39.105.17.56</code> ，而且需要打开集群的<code>6443</code> 端口做映射。</p> <pre><code class="prism language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1<span class="token key atrule">clusters</span><span class="token punctuation">:</span><span class="token punctuation">-</span><span class="token key atrule">cluster</span><span class="token punctuation">:</span><span class="token key atrule">certificate-authority-data</span><span class="token punctuation">:</span> LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJd01EWXhOakV5TXpZeU1Gb1hEVE13TURZeE5ERXlNell5TUZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTEQzCmo2Mml3RjR5ZnNscFkwYm9LTjZSVFMvRFF3TlBWVzdUNnFpMnJWelMwWW9QNXRVNDZrZk9TV0hkZnJyNEdlZXgKQm02RHR5MWo3Q2UzemdTdVpGL1lJYXN5MVFQdnBrZktVczk2MHNCMThYMlFaN0JnZUF4a2FHR0JpVlc1SWlIeApoNmNPVkUrb003V0gwSjdPRXQ3eVo3TzF2MjNreGxZWXhwUWE3aDY3Rk4ybnRqeUE2UjVaYU9RaE85a3VscEcxCllpK2s4NGVXVklOWHBJdDk4NzgvMkFVN3Q3QlhFTWpDMkM0TG95RG1qa1FsZU9wZUVGbXJKZzNoaFNaMmp0YmgKUWxZV3RhMjFsOVp3S3ZIQlllb1A2aDUrR1Nnd2pPVWVUQnJEcTNYZWdxL2FacHJIaDMrWGs3N09ZUStSM2hzawo2U0gvMzRuTWFtcEozMkpMalU4Q0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFKSERQdHM1VHZlS2RkM2pIYnAwVnp0ZDBJbU0KT09SZUdGWGdlcG5xbVBFYmNsNDZhTmpDU3R5MlFyRW5UNitZUFdwbmVIendpNW1jMkxHSHpxUTA1VDgwR2NhZwo5SzdnV3V4SW9jZDNDZmlOTDF6ekVEcGlrRUliVDZyWTRENTBUcklVQjdEOUdNMTZYa242UWVYUkJnc2RDckprCmloZ01Mc05iOWJxamJROW5jaHMybXFET0tXZEtveHVrelZleUxSL0ZobVlKcFByOHJYc2NqV3JvOXVvMGs5eGEKY2lCaTRHQzBsd3VHaXl6aWtuTnpYZ2k1L3E1ckJtWHJ1R01VUUdXYVZjbTIwQXNIRitLZlF6UDhsS0t2T2t6bQp2N2RuMGMzRUtURW83RFdDYkxjeHlqTXlQUDg1VkVjaXZnVXhQWEUzYkpJZmpxVGJtU1lwS3lDb0xSUT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=<span class="token key atrule">server</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//172.17.43.150<span class="token punctuation">:</span><span class="token number">6443</span><span class="token key atrule">name</span><span class="token punctuation">:</span> kubernetes</code></pre> <p>修改后的第 5 行：</p> <pre><code class="prism language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//39.105.17.56<span class="token punctuation">:</span><span class="token number">6443</span></code></pre> <p>在阿里云集群的安全组访问规则中打开 6443 端口。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220610/85a4613cec91e387f42122fe9174599b.jpg" alt="kubectl 远程访问内网中的 kubernetes 集群"></p> <p>这会如果在本地电脑执行<code>kubectl get pods</code> 也会提示报错，报错提示的意思是： 39.105.17.56 使用当前证书访问 api server 是无效的，当前证书只能用于 172.17.43.150 访问 api-server。很明显外网访问内网中的 k8s 集群 TLS 校验没通过。</p> <p>有两种解决办法：</p> <p>第一种，直接跳过 TLS 校验，使用很简单，但总觉得有点”奇技淫巧“的味道。</p> <pre><code class="prism language-bash">kubectl --insecure-skip-tls-verify get pods</code></pre> <p>采用<code>--insecure-skip-tls-verify</code> 选项执行命令就可以避开校验直接操作 k8s 集群。</p> <p>第二种，修改集群中 api server 的证书，操作相对第一种繁琐些，但是真正彻底解决问题。</p> <p>我是用 kubeadm 安装的 k8s，minikube用这种方式能否 work 我没有测试过。kubeadm 在创建 k8s 集群的同时也生成了集群所需的全部证书，并将其存放在 master 的<code>/etc/kubernetes/pki</code> 路径下。</p> <pre><code class="prism language-bash"><span class="token function">ls</span> /etc/kubernetes/pki<span class="token operator">|</span><span class="token function">grep</span> apiserver</code></pre> <pre><code class="prism language-bash">apiserver-etcd-client.crt apiserver-etcd-client.key apiserver-kubelet-client.crt apiserver-kubelet-client.key apiserver.crt apiserver.key</code></pre> <p>我们要修改的就是：<code>apiserver.crt</code> 和<code>apiserver.key</code> ，说是修改，实际上是使用 kubeadm 重新生成这两个文件。</p> <p>这个时候集群已经启动了，kubeadm 的配置信息都放在 kube-system 空间下的 configmaps 中。我们需要先将configmaps 中的信息保存到 master 上的文件中。</p> <pre><code class="prism language-bash">kubectl get configmaps -n kube-system<span class="token operator">|</span><span class="token function">grep</span> kubeadm-config kubeadm-config                       2      134d</code></pre> <p>导出信息到 master 的 yaml 文件</p> <pre><code class="prism language-bash">kubectl -n kube-system get configmap kubeadm-config -o jsonpath<span class="token operator">=</span><span class="token string">'{.data.ClusterConfiguration}'</span><span class="token operator">&gt;</span> kubeadm.yaml</code></pre> <pre><code class="prism language-bash"><span class="token function">vi</span> kubeadm.yaml</code></pre> <pre><code class="prism language-yaml"><span class="token key atrule">apiServer</span><span class="token punctuation">:</span><span class="token key atrule">extraArgs</span><span class="token punctuation">:</span><span class="token key atrule">authorization-mode</span><span class="token punctuation">:</span> Node<span class="token punctuation">,</span>RBAC<span class="token key atrule">timeoutForControlPlane</span><span class="token punctuation">:</span> 4m0s<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> kubeadm.k8s.io/v1beta2<span class="token key atrule">certificatesDir</span><span class="token punctuation">:</span> /etc/kubernetes/pki<span class="token key atrule">clusterName</span><span class="token punctuation">:</span> kubernetes<span class="token key atrule">controllerManager</span><span class="token punctuation">:</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token key atrule">dns</span><span class="token punctuation">:</span><span class="token key atrule">type</span><span class="token punctuation">:</span> CoreDNS<span class="token key atrule">etcd</span><span class="token punctuation">:</span><span class="token key atrule">local</span><span class="token punctuation">:</span><span class="token key atrule">dataDir</span><span class="token punctuation">:</span> /var/lib/etcd<span class="token key atrule">imageRepository</span><span class="token punctuation">:</span> registry.aliyuncs.com/google_containers<span class="token key atrule">kind</span><span class="token punctuation">:</span> ClusterConfiguration<span class="token key atrule">kubernetesVersion</span><span class="token punctuation">:</span> v1.18.3<span class="token key atrule">networking</span><span class="token punctuation">:</span><span class="token key atrule">dnsDomain</span><span class="token punctuation">:</span> cluster.local<span class="token key atrule">podSubnet</span><span class="token punctuation">:</span> 192.169.0.0/16<span class="token key atrule">serviceSubnet</span><span class="token punctuation">:</span> 10.96.0.0/12<span class="token key atrule">scheduler</span><span class="token punctuation">:</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span></code></pre> <p>稍稍做一点修改，将 master 的公网 IP 地址添加到里面，并保存yaml。将公网地址添加到 SAN 中，再次生成的证书。后面公网访问内网 k8s 集群时，就可以使用新证书做 TLS 校验了。</p> <pre><code class="prism language-yaml"><span class="token key atrule">apiServer</span><span class="token punctuation">:</span><span class="token key atrule">certSANs</span><span class="token punctuation">:</span><span class="token punctuation">-</span><span class="token string">"39.105.17.56"</span><span class="token key atrule">extraArgs</span><span class="token punctuation">:</span><span class="token key atrule">authorization-mode</span><span class="token punctuation">:</span> Node<span class="token punctuation">,</span>RBAC<span class="token key atrule">timeoutForControlPlane</span><span class="token punctuation">:</span> 4m0s<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> kubeadm.k8s.io/v1beta2</code></pre> <p>再生成新证书前，必须先将老的证书删除。如果 kubeadm 发现目录下已经存在证书，那它就不会生成新的。</p> <pre><code class="prism language-bash"><span class="token function">mv</span> /etc/kubernetes/pki/apiserver.<span class="token punctuation">{<!-- --></span>crt,key<span class="token punctuation">}</span> ~</code></pre> <p>生成新的证书</p> <pre><code class="prism language-bash">kubeadm init phase certs apiserver --config kubeadm.yaml</code></pre> <p>新的证书产生了，还需要让 api-server 加载新证书。重启下 api-server 就可以了，最简单的方式就是把 api-server 的 container 给删了。等一会集群就会重新创建个新的 container。</p> <pre><code class="prism language-bash">docker<span class="token function">kill</span><span class="token variable"><span class="token variable">$(</span>docker<span class="token function">ps</span><span class="token operator">|</span><span class="token function">grep</span> kube-apiserver<span class="token operator">|</span><span class="token function">grep</span> -v pause<span class="token operator">|</span><span class="token function">awk</span><span class="token string">'{print<span class="token variable">$1</span>}'</span><span class="token variable">)</span></span></code></pre> <p>最后一步，我们要同时将修改的 kubeadm 配置信息更新到对应的 configmap 中。</p> <pre><code class="prism language-bash">kubeadm config upload from-file --config kubeadm.yaml</code></pre> <p>第二种方式到这里就结束了，接下来就是在本地电脑执行<code>kubetcl get pods</code> 测试，会显示出内网集群上的 pods。</p> <p>参考链接：</p> <p>https://blog.scottlowe.org/2019/07/30/adding-a-name-to-kubernetes-api-server-certificate/</p> </div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-101874.htm">动物疫苗的使用方法及注意事项有哪些呢 动物疫苗的使用方法及注意事项有哪些呢英语</a></p>
+                                        <p>下一个：<a href="/news/article-102638.htm">1970年6月27日农历是多少（1970年阳历6月26号阴历是多少）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-82824.htm" title="宠物粮食主要特征（宠物粮食品牌前十）">宠物粮食主要特征（宠物粮食品牌前十）</a></li>
+                        <li class="py-2"><a href="/news/article-77296.htm" title="狗粮品牌排行 狗粮品牌排行榜">狗粮品牌排行 狗粮品牌排行榜</a></li>
+                        <li class="py-2"><a href="/news/article-93761.htm" title="穷人养猫还是富人养猫（穷人养猫富人养狗）">穷人养猫还是富人养猫（穷人养猫富人养狗）</a></li>
+                        <li class="py-2"><a href="/news/article-70583.htm" title="动物打疫苗需要多少钱（动物打疫苗需要多少钱一次）">动物打疫苗需要多少钱（动物打疫苗需要多少钱一次）</a></li>
+                        <li class="py-2"><a href="/news/article-98924.htm" title="动物疫苗预防控制中心官网电话（动物疫苗厂家电话）">动物疫苗预防控制中心官网电话（动物疫苗厂家电话）</a></li>
+                        <li class="py-2"><a href="/news/article-102637.htm" title="kubectl 远程访问内网中的 kubernetes 集群">kubectl 远程访问内网中的 kubernetes 集群</a></li>
+                        <li class="py-2"><a href="/news/article-90049.htm" title="动物疫苗销售需要什么手续呢多少钱（动物疫苗经营许可证办理条件）">动物疫苗销售需要什么手续呢多少钱（动物疫苗经营许可证办理条件）</a></li>
+                        <li class="py-2"><a href="/news/article-70581.htm" title="从多线程的基础，到JDK8的异步编程，再到异步框架的选择">从多线程的基础，到JDK8的异步编程，再到异步框架的选择</a></li>
+                        <li class="py-2"><a href="/news/article-91176.htm" title="动物疫苗注射部位图片高清（动物疫苗的使用方法及注意事项）">动物疫苗注射部位图片高清（动物疫苗的使用方法及注意事项）</a></li>
+                        <li class="py-2"><a href="/news/article-67343.htm" title="Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(摄取、修改数据 DML)">Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(摄取、修改数据 DML)</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">75</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="text-center">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    Pass Wall2机场订阅官网 版权所有 Powered by WordPress
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/wow/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/counterup/counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/passwall2/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/passwall2/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
