@@ -250,9 +250,39 @@ A5：在设备的应用管理界面直接卸载即可，或通过第三方清理
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>VMess 使用 AEAD 加密对安全性有何帮助？</h5></div>
+    <div class="panel-body">
+        AEAD 加密可防止数据篡改、重放攻击和流量特征泄露。高封锁环境下使用，有助于保持节点长期可用，保证数据安全和连接稳定性，同时降低被检测的风险。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Mellow 有哪些优势？</h5></div>
+    <div class="panel-body">
+        Mellow 是一个轻量化的跨平台代理客户端，采用透明代理和规则路由技术。它支持 V2Ray、Trojan 等协议，适用于 macOS、Windows 等操作系统。Mellow 运行稳定、资源占用低，非常适合后台长期使用。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>QuantumultX 如何实现按端口和协议分流？</h5></div>
+    <div class="panel-body">
+        QuantumultX 支持按 TCP、UDP、端口及应用协议分流流量，结合策略组选择最优节点。这样可以为游戏、视频和广告屏蔽提供最佳网络体验，提高访问速度和稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Sing-box 如何按 IP 段实现智能分流？</h5></div>
+    <div class="panel-body">
+        Sing-box 支持根据 IP 段匹配流量，将国内流量直连、国外流量走代理。结合策略组和规则文件，实现精细化流量管理，保证访问速度和稳定性，同时提高节点使用效率。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Nekobox 能否使用订阅链接？</h5></div>
+    <div class="panel-body">
+        Nekobox 支持通过订阅 URL 导入节点。用户在应用中选择“添加订阅”，输入链接后系统会自动更新节点数据，并支持定期刷新，确保始终使用最新线路。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>VLESS 的伪装流量如何提升隐蔽性？</h5></div>
     <div class="panel-body">
         VLESS 通过 Reality 或 XTLS 模式对流量进行伪装，使其在外观上与正常 HTTPS 请求一致。这样可以绕过深度包检测和封锁，提高高封锁网络环境下的可用性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Potatso Lite 是否支持多节点手动管理？</h5></div>
+    <div class="panel-body">
+        支持。用户可以手动输入节点参数或扫描二维码导入节点，并可进行修改或删除。虽然不支持订阅自动更新，但足够满足轻量用户对节点管理和分流的基本需求。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Sing-box 是否兼容 Clash 配置文件？</h5></div>
@@ -267,37 +297,7 @@ A5：在设备的应用管理界面直接卸载即可，或通过第三方清理
 <div class="panel panel-default">
     <div class="panel-heading"><h5>SSR 节点延迟高、丢包严重，常见排查步骤有哪些？</h5></div>
     <div class="panel-body">
-        先用 ping 和 traceroute 检查到服务器的延迟与路由跳数；再通过测速工具测带宽并尝试更换不同出站端口或混淆方式；若仍然不稳，考虑更换节点或联系客服查看服务端链路质量。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Sing-box 如何按 IP 段实现智能分流？</h5></div>
-    <div class="panel-body">
-        Sing-box 支持根据 IP 段匹配流量，将国内流量直连、国外流量走代理。结合策略组和规则文件，实现精细化流量管理，保证访问速度和稳定性，同时提高节点使用效率。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>QuantumultX 如何实现按端口和协议分流？</h5></div>
-    <div class="panel-body">
-        QuantumultX 支持按 TCP、UDP、端口及应用协议分流流量，结合策略组选择最优节点。这样可以为游戏、视频和广告屏蔽提供最佳网络体验，提高访问速度和稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>VMess 使用 AEAD 加密对安全性有何帮助？</h5></div>
-    <div class="panel-body">
-        AEAD 加密可防止数据篡改、重放攻击和流量特征泄露。高封锁环境下使用，有助于保持节点长期可用，保证数据安全和连接稳定性，同时降低被检测的风险。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Mellow 有哪些优势？</h5></div>
-    <div class="panel-body">
-        Mellow 是一个轻量化的跨平台代理客户端，采用透明代理和规则路由技术。它支持 V2Ray、Trojan 等协议，适用于 macOS、Windows 等操作系统。Mellow 运行稳定、资源占用低，非常适合后台长期使用。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekobox 能否使用订阅链接？</h5></div>
-    <div class="panel-body">
-        Nekobox 支持通过订阅 URL 导入节点。用户在应用中选择“添加订阅”，输入链接后系统会自动更新节点数据，并支持定期刷新，确保始终使用最新线路。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Potatso Lite 是否支持多节点手动管理？</h5></div>
-    <div class="panel-body">
-        支持。用户可以手动输入节点参数或扫描二维码导入节点，并可进行修改或删除。虽然不支持订阅自动更新，但足够满足轻量用户对节点管理和分流的基本需求。    </div>
+        先用 ping 和 traceroute 检查到服务器的延迟与路由跳数；再通过测速工具测带宽并尝试更换不同出站端口或混淆方式；若仍然不稳，考虑更换节点或联系客服查看服务端链路质量。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -326,16 +326,16 @@ A5：在设备的应用管理界面直接卸载即可，或通过第三方清理
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-4-10-free-node-subscribe-links.htm" title="「4月10日」最高速度19.7M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「4月10日」最高速度19.7M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-16-free-subscribe-node.htm" title="「3月16日」最高速度20.6M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月16日」最高速度20.6M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-13-node-share.htm" title="「3月13日」最高速度22.6M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月13日」最高速度22.6M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-6-node-share-links.htm" title="「3月6日」最高速度19.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月6日」最高速度19.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-10-free-node-subscribe.htm" title="「3月10日」最高速度19.6M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月10日」最高速度19.6M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-11-node-share.htm" title="「4月11日」最高速度22.8M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「4月11日」最高速度22.8M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-15-free-high-speed-nodes.htm" title="「3月15日」最高速度22.7M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月15日」最高速度22.7M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-27-node-share-links.htm" title="「3月27日」最高速度19.3M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月27日」最高速度19.3M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-26-free-subscribe-node.htm" title="「3月26日」最高速度19.9M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月26日」最高速度19.9M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-19-free-subscribe-node.htm" title="「4月19日」最高速度19.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「4月19日」最高速度19.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-20-free-subscribe-node.htm" title="「3月20日」最高速度19M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月20日」最高速度19M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-3-9-free-node-subscribe.htm" title="「3月9日」最高速度20.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月9日」最高速度20.1M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-10-free-node-subscribe-links.htm" title="「4月10日」最高速度19.7M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「4月10日」最高速度19.7M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-11-node-share.htm" title="「4月11日」最高速度22.8M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「4月11日」最高速度22.8M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-21-free-subscribe-node.htm" title="「3月21日」最高速度18.9M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月21日」最高速度18.9M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-23-free-node-subscribe.htm" title="「3月23日」最高速度18.6M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月23日」最高速度18.6M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-28-free-subscribe-node.htm" title="「3月28日」最高速度21M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月28日」最高速度21M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-12-node-share-links.htm" title="「4月12日」最高速度20M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「4月12日」最高速度20M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-8-node-share.htm" title="「3月8日」最高速度22M/S，2025年Pass Wall2每天更新免费机场订阅节点链接">「3月8日」最高速度22M/S，2025年Pass Wall2每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -347,7 +347,7 @@ A5：在设备的应用管理界面直接卸载即可，或通过第三方清理
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">7</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
+                <h4><span class="badge" style="float: right;">14</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">25</span> <a href="/date/2026-03/" title="2026-03 归档">2026-03</a></h4>
